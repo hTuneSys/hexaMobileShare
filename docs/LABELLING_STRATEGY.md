@@ -24,9 +24,8 @@ This document defines the complete, system-approved label taxonomy used in the h
 
 ## 🧩 Module Labels
 
-- `module:firmware` – Effected firmware code
-- `module:hardware` – Effected hardware design
-- `module:mechanic` – Effected mechanical design
+- `module:packages` – Packages and libraries
+- `module:widgetbook` - Widgetbook integration
 - `module:docs` – Documentation tasks
 - `module:cli` – CLI tools
 

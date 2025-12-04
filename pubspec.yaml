@@ -1,0 +1,73 @@
+# SPDX-FileCopyrightText: 2025 hexaTune LLC
+# SPDX-License-Identifier: MIT
+
+name: hexamobileshare_workspace
+description: "Flutter mobile kit monorepo - collection of 11 reusable kits for cross-platform mobile development"
+publish_to: none
+
+environment:
+  sdk: ^3.10.1
+
+# Pub Workspaces configuration (Melos 7.x requirement)
+# Note: Dart SDK 3.11+ supports glob patterns, but 3.10.1 requires explicit paths
+workspace:
+  - packages/analytics_kit
+  - packages/auth_kit
+  - packages/core_kit
+  - packages/data_kit
+  - packages/forms_kit
+  - packages/localization_kit
+  - packages/media_kit
+  - packages/monetization_kit
+  - packages/navigation_kit
+  - packages/notifications_kit
+  - packages/storage_kit
+  - widgetbook_kit
+
+dev_dependencies:
+  melos: ^7.3.0
+
+# Melos configuration (migrated from melos.yaml)
+melos:
+  name: hexaMobileShare
+
+  command:
+    bootstrap:
+      usePubspecOverrides: true
+
+  scripts:
+    analyze:
+      run: flutter analyze
+      description: Run analyze for all Dart/Flutter packages in monorepo.
+
+    format:
+      run: dart format .
+      description: Format all Dart files in the repository.
+
+    test:
+      run: flutter test
+      description: Run all tests for all packages.
+
+    clean:
+      run: melos exec -- flutter clean
+      description: Clean build folders for every package.
+
+    pub_get:
+      run: melos exec -- flutter pub get
+      description: Run flutter pub get for all packages.
+
+    widgetbook:web:
+      run: melos exec --scope="widgetbook_kit" -- flutter run -d chrome
+      description: Run Widgetbook in Chrome for rapid UI development.
+
+    widgetbook:build_web:
+      run: melos exec --scope="widgetbook_kit" -- flutter build web
+      description: Build the widgetbook web output.
+
+    core:analyze:
+      run: melos exec --scope="core_kit" -- flutter analyze
+      description: Analyze only the core_kit package.
+
+    docs:
+      run: melos exec --dart-doc
+      description: Generate dartdocs for all public packages.

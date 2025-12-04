@@ -5,6 +5,14 @@
 # MODULE LABELS
 # ────────────────────────────────────────────────────────────────────────────────
 
+module:packages:
+  - changed-files:
+      - any-glob-to-any-file: ["packages/**"]
+
+module:widgetbook:
+  - changed-files:
+      - any-glob-to-any-file: ["widgetbook_kit/**"]
+
 module:docs:
   - changed-files:
       - any-glob-to-any-file: ["docs/**", "examples/**", "**/README.md"]

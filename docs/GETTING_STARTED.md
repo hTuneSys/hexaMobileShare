@@ -5,20 +5,65 @@ SPDX-License-Identifier: MIT
 
 # 🚀 Getting Started with hexaMobileShare
 
-Welcome to the hexaMobileShare project! This guide will help you set up your development environment, build the project components, and get started with contributing or using hexaMobileShare.
+Welcome to the hexaMobileShare mobile kit monorepo! This guide will help you set up your development environment, understand the project structure, and start building or using widgets.
 
-## Prerequisites
+---
+
+## 📋 What is hexaMobileShare?
+
+hexaMobileShare is a comprehensive **Flutter mobile kit monorepo** featuring:
+
+- 🎨 **Modular architecture** across 11 specialized kits
+- 🌈 **Material Design 3** styling system
+- 📖 **Widgetbook** for widget development and documentation
+- ✨ **Dart 3.x** for type safety and null safety
+- ♿ **Accessibility-first** design
+- 🎯 **Production-ready** widgets and utilities
+
+---
+
+## 🛠️ Prerequisites
 
 Before you begin, ensure you have the following installed:
 
-- **Git**: For version control
-- **Node.js** and **pnpm**: For managing development tools
-- **Rust**: For firmware development (install via rustup)
-- **KiCad**: For PCB design (optional, for hardware development)
-- **FreeCAD**: For mechanical design (optional, for enclosure design)
-- **picotool**: For flashing firmware to Raspberry Pi Pico
+### Required
 
-## Project Setup
+- **Node.js** 18+ (LTS recommended)
+  - Download from [nodejs.org](https://nodejs.org/)
+  - Verify: `node --version`
+
+- **pnpm** 9+
+  ```bash
+  npm install -g pnpm
+  # Verify
+  pnpm --version
+  ```
+
+- **Flutter SDK** 3.x+
+  - Download from [flutter.dev](https://flutter.dev/docs/get-started/install)
+  - Verify: `flutter --version`
+
+- **Dart SDK** 3.x+ (comes with Flutter)
+  - Verify: `dart --version`
+
+- **Git** for version control
+  ```bash
+  git --version
+  ```
+
+### Recommended
+
+- **VS Code** with extensions:
+  - Flutter for VS Code
+  - Dart for VS Code
+  - Material Design Icons IntelliSense
+  - Better Comments
+
+---
+
+## 📦 Installation
+
+### For Contributors (Development)
 
 1. **Clone the repository**:
    ```bash
@@ -26,98 +71,436 @@ Before you begin, ensure you have the following installed:
    cd hexaMobileShare
    ```
 
-2. **Install dependencies**:
+2. **Install dependencies** (one-time setup):
    ```bash
    pnpm install
    ```
+   
+   This command will automatically:
+   - ✅ Install Node.js development dependencies (Husky, Commitlint)
+   - ✅ Install Melos globally (`dart pub global activate melos`)
+   - ✅ Run `melos bootstrap` to install all Flutter package dependencies
+   - ✅ Setup Git hooks for commit message validation
+   
+   **Note**: This is a one-time setup. Melos will be installed globally and available for all future commands.
 
-3. **Set up pre-commit hooks**:
+3. **Run Widgetbook** (recommended for widget development):
    ```bash
-   pnpm prepare
+   pnpm storybook
+   ```
+   
+   Opens at [http://localhost:8080](http://localhost:8080)
+
+### For Consumers (Using the Library)
+
+Add individual kits to your Flutter project's `pubspec.yaml`:
+
+```yaml
+dependencies:
+  core_kit:
+    git:
+      url: https://github.com/hTuneSys/hexaMobileShare.git
+      path: packages/core_kit
+  auth_kit:
+    git:
+      url: https://github.com/hTuneSys/hexaMobileShare.git
+      path: packages/auth_kit
+```
+
+Then run:
+```bash
+flutter pub get
+```
+
+> **Note**: Packages will be published to pub.dev in the future for easier installation.
+
+---
+
+## 🚦 Quick Start
+
+### Option 1: Explore with Widgetbook (Recommended)
+
+Widgetbook provides an interactive environment to browse and test all widgets:
+
+```bash
+cd hexaMobileShare
+pnpm install
+pnpm storybook
+```
+
+Browse widgets by kit in your browser at [http://localhost:8080](http://localhost:8080):
+- **analytics_kit** → Analytics events, feature flags, logging
+- **auth_kit** → Authentication flows, permissions, session management
+- **core_kit** → Buttons, inputs, layout, typography, theme
+- **data_kit** → API client, pagination, error handling
+- **forms_kit** → Form controllers, validators, custom fields
+- **localization_kit** → i18n support, translations
+- **media_kit** → Audio/video players, media handling
+- **monetization_kit** → In-app purchases, subscriptions
+- **navigation_kit** → Routing, deep linking, navigation guards
+- **notifications_kit** → Push notifications, local notifications
+- **storage_kit** → Local storage, caching, secure storage
+
+### Option 2: Build Your First Flutter Widget
+
+1. **Navigate to a kit and create a new widget**:
+   ```bash
+   cd packages/core_kit/lib
+   mkdir -p buttons
+   touch buttons/custom_button.dart
    ```
 
-## Development Areas
-
-### Firmware Development
-
-The firmware is written in Rust for the RP2040 microcontroller.
-
-1. **Navigate to firmware directory**:
-   ```bash
-   cd firmware
+2. **Write the widget**:
+   ```dart
+   // packages/core_kit/lib/buttons/custom_button.dart
+   import 'package:flutter/material.dart';
+   
+   class CustomButton extends StatelessWidget {
+     final String label;
+     final VoidCallback? onPressed;
+     final ButtonVariant variant;
+     
+     const CustomButton({
+       Key? key,
+       required this.label,
+       this.onPressed,
+       this.variant = ButtonVariant.primary,
+     }) : super(key: key);
+     
+     @override
+     Widget build(BuildContext context) {
+       return ElevatedButton(
+         onPressed: onPressed,
+         child: Text(label),
+       );
+     }
+   }
+   
+   enum ButtonVariant { primary, secondary, accent }
    ```
 
-2. **Install Rust targets** (if not already installed):
-   ```bash
-   rustup target add thumbv6m-none-eabi
+3. **Create a Widgetbook story**:
+   ```dart
+   // widgetbook_kit/lib/stories/core_kit/buttons/custom_button_stories.dart
+   import 'package:flutter/material.dart';
+   import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+   import 'package:core_kit/buttons/custom_button.dart';
+   
+   @UseCase(name: 'Default', type: CustomButton)
+   Widget customButtonDefault(BuildContext context) {
+     return CustomButton(
+       label: 'Click me',
+       onPressed: () {},
+     );
+   }
    ```
 
-3. **Connect your hexaMobileShare device** via USB and put it in BOOTSEL mode (hold BOOTSEL button while plugging in).
-
-4. **Flash and test the firmware**:
+4. **View in Widgetbook**:
    ```bash
-   cargo run
+   pnpm storybook
    ```
+   
+   Navigate to: `Core Kit > Buttons > CustomButton`
 
-   This will build the firmware and flash it to the connected device.
+### Option 3: Use Kits in Your Flutter App
 
-5. **Monitor output** (optional):
-   Use a tool like `minicom` or the embedded debugger to view serial output.
+Add the kit to your `pubspec.yaml`:
 
-### Hardware Development
+```yaml
+dependencies:
+  core_kit:
+    git:
+      url: https://github.com/hTuneSys/hexaMobileShare.git
+      path: packages/core_kit
+```
 
-PCB designs are created with KiCad.
+Then use it in your app:
 
-1. **Open KiCad** and load the project:
-   - Navigate to `hardware/hexaMobileShare-v1/`
-   - Open `hexaMobileShare-v1.kicad_pro`
+```dart
+import 'package:flutter/material.dart';
+import 'package:core_kit/core_kit.dart';
 
-2. **View schematics**:
-   - Open `hexaMobileShare-v1.kicad_sch`
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('My App')),
+      body: Column(
+        children: [
+          Gap(height: 16),
+          ResponsivePadding(
+            child: Text('Welcome to hexaMobileShare!'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
 
-3. **View PCB layout**:
-   - Open `hexaMobileShare-v1.kicad_pcb`
+---
 
-4. **Generate fabrication files**:
-   - Use KiCad's Plot and Drill tools to export Gerber files
-   - Fabrication outputs are pre-generated in `fabrication_output/`
+## 📂 Project Structure
 
-### Mechanical Development
+```
+hexaMobileShare/
+├── packages/                  # 11 modular kits
+│   ├── analytics_kit/        # Analytics, logging, feature flags
+│   ├── auth_kit/             # Authentication & authorization
+│   ├── core_kit/             # Core UI widgets & theming
+│   ├── data_kit/             # HTTP client, API handling
+│   ├── forms_kit/            # Form management & validation
+│   ├── localization_kit/     # Internationalization (i18n)
+│   ├── media_kit/            # Audio/video players, media
+│   ├── monetization_kit/     # In-app purchases, subscriptions
+│   ├── navigation_kit/       # Routing, deep linking
+│   ├── notifications_kit/    # Push & local notifications
+│   └── storage_kit/          # Local storage, caching
+├── widgetbook_kit/           # Widgetbook catalog app
+├── docs/                     # Documentation
+├── melos.yaml                # Monorepo configuration
+└── package.json              # Node.js dev dependencies
+```
 
-Enclosure designs are created with FreeCAD.
+---
 
-1. **Open FreeCAD** and load the design files:
-   - `mechanic/Bottom.FCStd` - Bottom case
-   - `mechanic/PcbBoard.FCStd` - PCB mounting
+## 🎨 Kit Overview
 
-2. **Export for manufacturing**:
-   - Use FreeCAD's export tools for STL (3D printing) or DXF (laser cutting)
+Each kit provides specialized functionality:
 
-## Testing Your Setup
+- **analytics_kit** → Analytics events, feature flags, logging
+- **auth_kit** → Authentication flows, permissions, session management
+- **core_kit** → Buttons, inputs, layout, typography, theme
+- **data_kit** → API client, pagination, error handling
+- **forms_kit** → Form controllers, validators, custom fields
+- **localization_kit** → i18n support, translations
+- **media_kit** → Audio/video players, media handling
+- **monetization_kit** → In-app purchases, subscriptions
+- **navigation_kit** → Routing, deep linking, navigation guards
+- **notifications_kit** → Push notifications, local notifications
+- **storage_kit** → Local storage, caching, secure storage
 
-1. **Firmware**: After flashing, the device should blink its status LED and be detectable as a USB MIDI device.
+---
 
-2. **AT Commands**: Use a MIDI tool to send SysEx messages with AT commands (see [ARCHITECTURE](ARCHITECTURE.md) for details).
+## ⚙️ Development Commands
 
-3. **Hardware**: Verify PCB connections and component placement.
+### Essential Commands
 
-## Documentation
+| Command | Description |
+|---------|-------------|
+| `pnpm install` | Install dependencies & bootstrap packages |
+| `pnpm storybook` | Start Widgetbook dev server |
+| `pnpm build-storybook` | Build static Widgetbook |
+| `pnpm test` | Run tests across all kits |
+| `pnpm analyze` | Run static analysis |
+| `pnpm format` | Format all Dart code |
+| `pnpm bootstrap` | Bootstrap all packages (melos) |
 
-For more detailed information, explore the documentation files:
+### Typical Development Flow
 
-- [ARCHITECTURE](ARCHITECTURE.md) - System design and AT command protocol
-- [DEVELOPMENT_GUIDE](DEVELOPMENT_GUIDE.md) - Detailed development setup
-- [PROJECT_STRUCTURE](PROJECT_STRUCTURE.md) - Repository organization
-- [CONTRIBUTING](CONTRIBUTING.md) - How to contribute
-- [FAQ](FAQ.md) - Common questions
+```bash
+# 1. Start Widgetbook
+pnpm storybook
+
+# 2. Make changes to widgets
+# (Widgetbook will hot-reload)
+
+# 3. Run analysis
+pnpm analyze
+
+# 4. Format code
+pnpm format
+
+# 5. Run tests
+pnpm test
+```
+
+---
+
+## 🧪 Testing Your Setup
+
+### 1. Verify Widgetbook Works
+
+```bash
+pnpm storybook
+```
+
+Expected: Widgetbook opens at `http://localhost:8080` showing the widget catalog.
+
+### 2. Check Flutter Analysis
+
+```bash
+pnpm analyze
+```
+
+Expected: No analyzer warnings or errors.
+
+### 3. Verify Tests Run
+
+```bash
+pnpm test
+```
+
+Expected: All tests pass successfully.
+
+### 4. Test Theme Switching
+
+1. Open Widgetbook
+2. Look for theme switcher in toolbar
+3. Toggle between light and dark themes
+4. Widgets should adapt automatically
+
+---
+
+## 🎨 Styling & Theming
+
+### Material Design 3 Themes
+
+The kits use Material Design 3 with customizable themes. Each kit can adapt to your app's theme configuration.
+
+### Apply Theme in Your App
+
+```dart
+import 'package:flutter/material.dart';
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'My App',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          brightness: Brightness.dark,
+        ),
+      ),
+      themeMode: ThemeMode.system,
+      home: MyHomePage(),
+    );
+  }
+}
+```
+
+### Theme Switching in Widgetbook
+
+Widgetbook includes a theme switcher in the toolbar. Use it to preview widgets in both light and dark themes.
 
 ---
 
 ## 📚 Next Steps
 
-- Check [ARCHITECTURE](ARCHITECTURE.md) to understand system design
-- Review [CONTRIBUTING](CONTRIBUTING.md) to contribute effectively
+### For Contributors
+
+1. Read [CONTRIBUTING.md](CONTRIBUTING.md) – Contribution guidelines
+2. Review [DEVELOPMENT_GUIDE.md](DEVELOPMENT_GUIDE.md) – Detailed development workflow
+3. Check [ARCHITECTURE.md](ARCHITECTURE.md) – Understand the architecture
+4. Explore [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) – Directory organization
+
+### For Widget Users
+
+1. Browse Widgetbook to explore widgets
+2. Check widget props in Widgetbook's "Controls" tab
+3. Copy code examples from stories
+4. Read [CONFIGURATION.md](CONFIGURATION.md) for integration setup
+
+### Learn More
+
+- [Flutter Documentation](https://docs.flutter.dev)
+- [Dart Language Guide](https://dart.dev/guides)
+- [Material Design 3](https://m3.material.io)
+- [Widgetbook Docs](https://docs.widgetbook.io)
 
 ---
 
-You're now ready to explore and build with hexaMobileShare. Happy hacking!
+## 🐛 Troubleshooting
+
+### pnpm install fails
+
+```bash
+# Clear cache and reinstall
+pnpm store prune
+rm -rf node_modules
+pnpm install
+```
+
+### Widgetbook doesn't start
+
+```bash
+# Check Node version (must be 18+)
+node --version
+
+# Check Flutter installation
+flutter doctor
+
+# Restart Widgetbook
+pnpm storybook
+```
+
+### Flutter analyzer errors
+
+```bash
+# Clean and get dependencies
+flutter clean
+pnpm bootstrap
+
+# Re-run analysis
+pnpm analyze
+```
+
+### Styles not loading
+
+Ensure Material Design 3 is configured correctly in your theme:
+
+```dart
+// Verify MaterialApp uses Material Design 3
+MaterialApp(
+  theme: ThemeData(
+    useMaterial3: true,
+    // ... your theme configuration
+  ),
+)
+```
+
+---
+
+## 🙋 Getting Help
+
+### Documentation
+
+- [FAQ.md](FAQ.md) – Frequently asked questions
+- [SUPPORT.md](SUPPORT.md) – Support channels
+- [CONTACT.md](CONTACT.md) – Contact information
+
+### Community
+
+- **GitHub Discussions**: [Ask questions](https://github.com/hTuneSys/hexaMobileShare/discussions)
+- **Issues**: [Report bugs](https://github.com/hTuneSys/hexaMobileShare/issues)
+- **Email**: [info@hexatune.com](mailto:info@hexatune.com)
+
+---
+
+## ✅ Checklist
+
+Before you start developing:
+
+- [ ] Node.js 18+ installed
+- [ ] pnpm 9+ installed  
+- [ ] Flutter SDK 3.x+ installed
+- [ ] Dart SDK 3.x+ installed
+- [ ] Repository cloned
+- [ ] Dependencies installed (`pnpm install`)
+- [ ] Widgetbook running (`pnpm storybook`)
+- [ ] Analysis passing (`pnpm analyze`)
+- [ ] Read [CONTRIBUTING.md](CONTRIBUTING.md)
+- [ ] Read [DEVELOPMENT_GUIDE.md](DEVELOPMENT_GUIDE.md)
+
+---
+
+You're now ready to explore and build with hexaMobileShare! 🎉
+
+Happy coding! 🚀

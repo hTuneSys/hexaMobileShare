@@ -28,7 +28,7 @@ Each commit message must follow this format:
 ```text
 feat: add dark mode support
 feat(auth): implement token refresh logic
-feat(ui): create responsive navbar component
+feat(ui): create responsive navbar widget
 ```
 
 ### 2. **fix** — A bug fix that impacts user behavior
@@ -68,7 +68,7 @@ refactor: extract common utility functions
 ```text
 perf(api): cache frequently accessed data
 perf: reduce image load time by optimizing assets
-perf(ui): memoize expensive component renders
+perf(ui): memoize expensive widget renders
 ```
 
 ### 7. **test** — Adding or updating tests
@@ -98,8 +98,8 @@ ci: integrate code coverage reporting
 ### 10. **build** — Changes to build system or dependencies
 
 ```text
-build: switch to Vite from Webpack
-build: update TypeScript compiler settings
+build: switch to Flutter build system from Webpack
+build: update Dart compiler settings
 build: configure output directory for deployment
 ```
 
