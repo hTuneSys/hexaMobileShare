@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: 2025 hexaTune LLC
+# SPDX-License-Identifier: MIT
+
+name: analytics_kit
+description: "Analytics and logging abstraction with unified event tracking, screen reporting, and feature flag support."
+version: 0.0.1
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.10.1
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

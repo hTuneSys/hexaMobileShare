@@ -1,0 +1,54 @@
+{
+  "name": "hexamobileshare-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "description": "hexaMobileShare - Comprehensive Flutter Mobile Kit Monorepo",
+  "type": "module",
+  "scripts": {
+    "prepare": "husky",
+    "postinstall": "dart pub global activate melos && dart pub global run melos bootstrap",
+    "bootstrap": "dart pub global run melos bootstrap",
+    "clean": "dart pub global run melos clean",
+    "analyze": "dart pub global run melos run analyze",
+    "format": "dart pub global run melos run format",
+    "format:fix": "dart format .",
+    "test": "dart pub global run melos run test",
+    "widgetbook:generate": "dart pub global run melos exec --scope=\"widgetbook_kit\" -- flutter pub run build_runner build --delete-conflicting-outputs",
+    "widgetbook:watch": "dart pub global run melos exec --scope=\"widgetbook_kit\" -- flutter pub run build_runner watch --delete-conflicting-outputs",
+    "widgetbook:web": "pnpm widgetbook:generate && dart pub global run melos exec --scope=\"widgetbook_kit\" -- flutter run -d chrome",
+    "widgetbook:build": "pnpm widgetbook:generate && dart pub global run melos exec --scope=\"widgetbook_kit\" -- flutter build web",
+    "storybook": "pnpm widgetbook:web",
+    "build-storybook": "pnpm widgetbook:build",
+    "ci:format": "dart format --set-exit-if-changed .",
+    "ci:analyze": "pnpm bootstrap && pnpm analyze",
+    "ci:test": "pnpm bootstrap && pnpm test",
+    "ci:local": "pnpm ci:format && pnpm ci:analyze && pnpm ci:test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hTuneSys/hexaMobileShare.git"
+  },
+  "keywords": [
+    "flutter",
+    "dart",
+    "components",
+    "design-system",
+    "ui-library",
+    "mobile",
+    "widgetbook",
+    "monorepo",
+    "melos"
+  ],
+  "author": "hexaTune LLC",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}

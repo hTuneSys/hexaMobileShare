@@ -1,0 +1,163 @@
+# SPDX-FileCopyrightText: 2025 hexaTune LLC
+# SPDX-License-Identifier: MIT
+
+version: 2
+updates:
+  # Flutter/Dart packages for all kits
+  - package-ecosystem: "pub"
+    directory: "/packages/analytics_kit"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:analytics-kit"
+    assignees:
+      - "husamettinarabaci"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/auth_kit"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:auth-kit"
+    assignees:
+      - "husamettinarabaci"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/core_kit"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:core-kit"
+    assignees:
+      - "husamettinarabaci"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/data_kit"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:data-kit"
+    assignees:
+      - "husamettinarabaci"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/forms_kit"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:forms-kit"
+    assignees:
+      - "husamettinarabaci"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/localization_kit"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:localization-kit"
+    assignees:
+      - "husamettinarabaci"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/media_kit"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:media-kit"
+    assignees:
+      - "husamettinarabaci"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/monetization_kit"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:monetization-kit"
+    assignees:
+      - "husamettinarabaci"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/navigation_kit"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:navigation-kit"
+    assignees:
+      - "husamettinarabaci"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/notifications_kit"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:notifications-kit"
+    assignees:
+      - "husamettinarabaci"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/storage_kit"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:storage-kit"
+    assignees:
+      - "husamettinarabaci"
+
+  # Widgetbook Kit
+  - package-ecosystem: "pub"
+    directory: "/widgetbook_kit"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:widgetbook-kit"
+    assignees:
+      - "husamettinarabaci"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "type:refactor"
+      - "status:needs-review"
+      - "scope:ci"
+    assignees:
+      - "husamettinarabaci"
