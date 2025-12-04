@@ -1,21 +1,163 @@
 version = 1
 
+# Flutter/Dart auto-generated and build artifacts
 [[annotations]]
 path = [
-  "package.json",
-  "CHANGELOG.md",
-  ".gitignore",
-  "docs/CNAME",
-  ".husky/**",
-  "package-lock.json",
-  "pnpm-lock.yaml",
+  "**/.dart_tool/**",
+  "**/build/**",
+  "**/.flutter-plugins",
+  "**/.flutter-plugins-dependencies",
+  "**/pubspec.lock",
+  "**/.metadata",
+  "**/flutter_export_environment.sh",
+  "**/GeneratedPluginRegistrant.*",
+  "**/generated_plugin_registrant.*",
+  "**/generated_plugins.cmake",
+  "**/*.g.dart",
+  "**/*.freezed.dart",
+  "**/*.mocks.dart",
 ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2025 hexaTune LLC"
 SPDX-License-Identifier = "MIT"
 
+# IDE files
 [[annotations]]
-path = [".github/ISSUE_TEMPLATE/**", ".github/PULL_REQUEST_TEMPLATE.md"]
+path = [
+  "**/.idea/**",
+  "**/*.iml",
+  "**/.vscode/**",
+  "**/local.properties",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 hexaTune LLC"
+SPDX-License-Identifier = "MIT"
+
+# Platform-specific native code (Android)
+[[annotations]]
+path = [
+  "**/android/**",
+  "**/*.jar",
+  "**/gradlew",
+  "**/gradlew.bat",
+  "**/gradle-wrapper.properties",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 hexaTune LLC"
+SPDX-License-Identifier = "MIT"
+
+# Platform-specific native code (iOS/macOS)
+[[annotations]]
+path = [
+  "**/ios/**",
+  "**/macos/**",
+  "**/*.pbxproj",
+  "**/*.xcconfig",
+  "**/*.xcscheme",
+  "**/*.xcworkspacedata",
+  "**/*.plist",
+  "**/*.storyboard",
+  "**/*.xib",
+  "**/*.entitlements",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 hexaTune LLC"
+SPDX-License-Identifier = "MIT"
+
+# Platform-specific native code (Linux/Windows)
+[[annotations]]
+path = [
+  "**/linux/**",
+  "**/windows/**",
+  "**/*.cmake",
+  "**/CMakeLists.txt",
+  "**/*.rc",
+  "**/*.manifest",
+  "**/*.ico",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 hexaTune LLC"
+SPDX-License-Identifier = "MIT"
+
+# Web assets and configuration
+[[annotations]]
+path = [
+  "**/web/**",
+  "**/*.html",
+  "**/*.json",
+  "**/*.webp",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 hexaTune LLC"
+SPDX-License-Identifier = "MIT"
+
+# Binary assets (fonts, images, icons)
+[[annotations]]
+path = [
+  "**/*.png",
+  "**/*.jpg",
+  "**/*.jpeg",
+  "**/*.gif",
+  "**/*.svg",
+  "**/*.ttf",
+  "**/*.otf",
+  "**/*.woff",
+  "**/*.woff2",
+  "**/*.eot",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 hexaTune LLC"
+SPDX-License-Identifier = "MIT"
+
+# Shader files
+[[annotations]]
+path = ["**/*.frag", "**/*.vert"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 hexaTune LLC"
+SPDX-License-Identifier = "MIT"
+
+# Configuration files (Dart/Flutter)
+[[annotations]]
+path = [
+  "**/pubspec.yaml",
+  "**/analysis_options.yaml",
+  "melos.yaml",
+  ".releaserc.yml",
+  "**/.gitignore",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 hexaTune LLC"
+SPDX-License-Identifier = "MIT"
+
+# Documentation files
+[[annotations]]
+path = [
+  "CHANGELOG.md",
+  "**/README.md",
+  "docs/CNAME",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 hexaTune LLC"
+SPDX-License-Identifier = "MIT"
+
+# Git hooks and GitHub workflows
+[[annotations]]
+path = [
+  ".husky/**",
+  ".github/**",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 hexaTune LLC"
+SPDX-License-Identifier = "MIT"
+
+# Node.js files (for tooling)
+[[annotations]]
+path = [
+  "**/package.json",
+  "**/package-lock.json",
+  "**/pnpm-lock.yaml",
+  "**/.prettierrc",
+]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2025 hexaTune LLC"
 SPDX-License-Identifier = "MIT"

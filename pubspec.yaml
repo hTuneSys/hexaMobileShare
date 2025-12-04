@@ -1,0 +1,64 @@
+# SPDX-FileCopyrightText: 2025 hexaTune LLC
+# SPDX-License-Identifier: MIT
+
+name: hexamobileshare_workspace
+description: "Flutter mobile kit monorepo - collection of 11 reusable kits for cross-platform mobile development"
+publish_to: none
+environment:
+  sdk: ^3.10.1
+workspace:
+  - packages/analytics_kit
+  - packages/auth_kit
+  - packages/core_kit
+  - packages/data_kit
+  - packages/forms_kit
+  - packages/localization_kit
+  - packages/media_kit
+  - packages/monetization_kit
+  - packages/navigation_kit
+  - packages/notifications_kit
+  - packages/storage_kit
+  - widgetbook_kit
+dev_dependencies:
+  melos: ^7.3.0
+melos:
+  name: hexaMobileShare
+  command:
+    bootstrap:
+      usePubspecOverrides: true
+  scripts:
+    analyze:
+      run: flutter analyze
+      description: Run analyze for all Dart/Flutter packages in monorepo.
+    format:
+      run: dart format .
+      description: Format all Dart files in the repository.
+    test:
+      exec: flutter test
+      description: Run all tests for all packages.
+      packageFilters:
+        dirExists: test
+    clean:
+      exec: flutter clean
+      description: Clean build folders for every package.
+    pub_get:
+      exec: flutter pub get
+      description: Run flutter pub get for all packages.
+    widgetbook:web:
+      exec: flutter run -d chrome
+      description: Run Widgetbook in Chrome for rapid UI development.
+      packageFilters:
+        scope: widgetbook_kit
+    widgetbook:build_web:
+      exec: flutter build web
+      description: Build the widgetbook web output.
+      packageFilters:
+        scope: widgetbook_kit
+    core:analyze:
+      exec: flutter analyze
+      description: Analyze only the core_kit package.
+      packageFilters:
+        scope: core_kit
+    docs:
+      exec: dart doc
+      description: Generate dartdocs for all public packages.
