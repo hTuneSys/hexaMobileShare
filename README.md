@@ -15,7 +15,7 @@ SPDX-License-Identifier: MIT
 [![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart)](https://dart.dev)
 
-[**Documentation**](docs/SUMMARY.md) • [**Getting Started**](docs/GETTING_STARTED.md) • [**Contributing**](docs/CONTRIBUTING.md) • [**Widgetbook**](widgetbook_kit/)
+[**Documentation**](docs/SUMMARY.md) • [**Getting Started**](docs/GETTING_STARTED.md) • [**Contributing**](docs/CONTRIBUTING.md) • [**Widgetbook**](https://story.mobile.dev.hexatune.com)
 
 </div>
 
@@ -29,7 +29,7 @@ SPDX-License-Identifier: MIT
 
 - 📦 **11 Modular Kits** – Analytics, Auth, Core UI, Data, Forms, Localization, Media, Monetization, Navigation, Notifications, Storage
 - 🎨 **Material Design 3** – Beautiful, themeable widgets following Material Design 3 guidelines
-- 📖 **Widgetbook Integration** – Interactive component catalog with 218 story files (1-to-1 mapping)
+- 📖 **Widgetbook Integration** – Interactive component catalog with 218 story files ([Live Preview](https://story.mobile.dev.hexatune.com))
 - 🔐 **Type-Safe** – Leveraging Dart's strong type system
 - ♿ **Accessibility-First** – Built with screen readers and inclusive design in mind
 - 🚀 **Production-Ready** – Tested, documented, and optimized for performance
@@ -63,7 +63,7 @@ The monorepo contains 11 specialized kits organized for maximum modularity:
 
 | Tool | Description |
 |------|-------------|
-| **[widgetbook_kit](widgetbook_kit/)** | Interactive component catalog with 218 stories for rapid UI development and documentation |
+| **[widgetbook_kit](widgetbook_kit/)** | Interactive component catalog with 218 stories ([Live Preview](https://story.mobile.dev.hexatune.com)) |
 
 ---
 
@@ -102,6 +102,8 @@ The monorepo contains 11 specialized kits organized for maximum modularity:
    pnpm storybook
    ```
    Opens at [http://localhost:8080](http://localhost:8080)
+   
+   **Live Preview:** [https://story.mobile.dev.hexatune.com](https://story.mobile.dev.hexatune.com)
 
 ### Installation (As a Dependency)
 
@@ -281,6 +283,7 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory:
 - [**Architecture**](docs/ARCHITECTURE.md) – System design, widget architecture, technology stack
 - [**Project Structure**](docs/PROJECT_STRUCTURE.md) – Directory organization, file layout
 - [**Configuration**](docs/CONFIGURATION.md) – Configuration files and settings
+- [**Widgetbook Deployment**](docs/WIDGETBOOK_DEPLOYMENT.md) – GitHub Pages deployment guide
 
 ### Development
 - [**Development Guide**](docs/DEVELOPMENT_GUIDE.md) – Workflow, best practices, tooling
@@ -359,7 +362,7 @@ cd packages/auth_kit && flutter test
 
 - ✅ **REUSE Compliant** – All 912 files have proper SPDX licensing
 - ✅ **CI/CD Pipeline** – Automated testing, formatting, analysis, and builds
-- ✅ **Widgetbook Integration** – 218 interactive component stories
+- ✅ **Widgetbook Integration** – 218 interactive component stories ([Live Preview](https://story.mobile.dev.hexatune.com))
 - ✅ **Comprehensive Documentation** – 20+ documentation files
 - 🚧 **Active Development** – New kits and features in progress
 
