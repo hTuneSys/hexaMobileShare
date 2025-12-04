@@ -20,29 +20,16 @@ class HexaWidgetbookApp extends StatelessWidget {
           themes: [
             WidgetbookTheme(
               name: 'Light',
-              data: ThemeData(
-                brightness: Brightness.light,
-                useMaterial3: true,
-              ),
+              data: ThemeData(brightness: Brightness.light, useMaterial3: true),
             ),
             WidgetbookTheme(
               name: 'Dark',
-              data: ThemeData(
-                brightness: Brightness.dark,
-                useMaterial3: true,
-              ),
+              data: ThemeData(brightness: Brightness.dark, useMaterial3: true),
             ),
           ],
         ),
-        DeviceFrameAddon(
-          devices: [
-            Devices.ios.iPhoneSE,
-            Devices.ios.iPhone13,
-          ],
-        ),
-        TextScaleAddon(
-          scales: [1.0, 1.2, 1.5],
-        ),
+        DeviceFrameAddon(devices: [Devices.ios.iPhoneSE, Devices.ios.iPhone13]),
+        TextScaleAddon(scales: [1.0, 1.2, 1.5]),
       ],
     );
   }
