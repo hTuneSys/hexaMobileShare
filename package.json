@@ -22,7 +22,7 @@
     "ci:format": "dart format --set-exit-if-changed .",
     "ci:analyze": "pnpm bootstrap && pnpm analyze",
     "ci:test": "pnpm bootstrap && pnpm test",
-    "ci:local": "pnpm ci:format && pnpm ci:analyze"
+    "ci:local": "pnpm ci:format && pnpm ci:analyze && pnpm ci:test"
   },
   "repository": {
     "type": "git",
