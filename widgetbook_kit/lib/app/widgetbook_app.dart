@@ -28,8 +28,6 @@ class HexaWidgetbookApp extends StatelessWidget {
             ),
           ],
         ),
-        DeviceFrameAddon(devices: [Devices.ios.iPhoneSE, Devices.ios.iPhone13]),
-        TextScaleAddon(scales: [1.0, 1.2, 1.5]),
       ],
     );
   }
