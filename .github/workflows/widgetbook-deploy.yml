@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: MIT
 
 name: 📚 Deploy Widgetbook to GitHub Pages
-
 on:
   push:
     branches:
@@ -11,58 +10,45 @@ on:
       - 'widgetbook_kit/**'
       - 'packages/**'      
       - '.github/workflows/widgetbook-deploy.yml'
-
+  workflow_dispatch:
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
-
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
 jobs:
   # Build job
   build:
     name: Build Widgetbook (hexaMobileShare)
     runs-on: ubuntu-latest
-    # Only run on merged PRs or manual workflow dispatch
-    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true)
     timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: develop
-
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.x'
           channel: 'stable'
           cache: true
-
       - name: Install Melos
         run: dart pub global activate melos
-
       - name: Bootstrap packages
         run: melos bootstrap
-
       - name: Build Widgetbook for web
         working-directory: widgetbook_kit
         run: flutter build web --release --base-href "/hexaMobileShare/"
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: widgetbook_kit/build/web
-
   # Deployment job
   deploy:
     name: Deploy to GitHub Pages (hexaMobileShare)
@@ -75,7 +61,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
       - name: Deployment summary
         run: |
           echo "### 🎉 Widgetbook Deployment Successful!" >> $GITHUB_STEP_SUMMARY
