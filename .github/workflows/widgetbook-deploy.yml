@@ -4,15 +4,13 @@
 name: 📚 Deploy Widgetbook to GitHub Pages
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - develop
     paths:
       - 'widgetbook_kit/**'
-      - 'packages/**'
+      - 'packages/**'      
       - '.github/workflows/widgetbook-deploy.yml'
-  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -29,7 +27,7 @@ concurrency:
 jobs:
   # Build job
   build:
-    name: Build Widgetbook
+    name: Build Widgetbook (hexaMobileShare)
     runs-on: ubuntu-latest
     # Only run on merged PRs or manual workflow dispatch
     if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true)
@@ -37,6 +35,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: develop
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -65,7 +65,7 @@ jobs:
 
   # Deployment job
   deploy:
-    name: Deploy to GitHub Pages
+    name: Deploy to GitHub Pages (hexaMobileShare)
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
