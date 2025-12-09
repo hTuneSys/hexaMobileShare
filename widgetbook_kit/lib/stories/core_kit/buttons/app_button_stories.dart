@@ -214,3 +214,223 @@ Widget loadingProcessingPayment(BuildContext context) {
     onPressed: () {},
   );
 }
+
+// Comprehensive Interactive Stories
+
+@widgetbook.UseCase(name: 'All Variants Comparison', type: AppButton)
+Widget allVariantsComparison(BuildContext context) {
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const Text(
+        'All Button Variants',
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+      const SizedBox(height: 16),
+      const Text('Filled (High Emphasis)'),
+      const SizedBox(height: 8),
+      AppButton.filled(label: 'Continue', onPressed: () {}),
+      const SizedBox(height: 16),
+      const Text('Outlined (Medium Emphasis)'),
+      const SizedBox(height: 8),
+      AppButton.outlined(label: 'Continue', onPressed: () {}),
+      const SizedBox(height: 16),
+      const Text('Text (Low Emphasis)'),
+      const SizedBox(height: 8),
+      AppButton.text(label: 'Continue', onPressed: () {}),
+      const SizedBox(height: 16),
+      const Text('Elevated (Special Emphasis)'),
+      const SizedBox(height: 8),
+      AppButton.elevated(label: 'Continue', onPressed: () {}),
+    ],
+  );
+}
+
+@widgetbook.UseCase(name: 'All Variants with Icons', type: AppButton)
+Widget allVariantsWithIcons(BuildContext context) {
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      AppButton.filled(
+        label: 'Add to Cart',
+        icon: Icons.shopping_cart,
+        onPressed: () {},
+      ),
+      const SizedBox(height: 12),
+      AppButton.outlined(
+        label: 'Add to Cart',
+        icon: Icons.shopping_cart,
+        onPressed: () {},
+      ),
+      const SizedBox(height: 12),
+      AppButton.text(
+        label: 'Add to Cart',
+        icon: Icons.shopping_cart,
+        onPressed: () {},
+      ),
+      const SizedBox(height: 12),
+      AppButton.elevated(
+        label: 'Add to Cart',
+        icon: Icons.shopping_cart,
+        onPressed: () {},
+      ),
+    ],
+  );
+}
+
+@widgetbook.UseCase(name: 'States Comparison', type: AppButton)
+Widget statesComparison(BuildContext context) {
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const Text('Enabled State'),
+      const SizedBox(height: 8),
+      AppButton.filled(label: 'Enabled', onPressed: () {}),
+      const SizedBox(height: 16),
+      const Text('Disabled State'),
+      const SizedBox(height: 8),
+      const AppButton.filled(label: 'Disabled', onPressed: null),
+      const SizedBox(height: 16),
+      const Text('Loading State'),
+      const SizedBox(height: 8),
+      AppButton.filled(label: 'Loading', isLoading: true, onPressed: () {}),
+    ],
+  );
+}
+
+@widgetbook.UseCase(name: 'Long Text Handling', type: AppButton)
+Widget longTextHandling(BuildContext context) {
+  return SizedBox(
+    width: 300,
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Text('Normal Width Container (300px)'),
+        const SizedBox(height: 8),
+        AppButton.filled(
+          label: 'This is a very long button label that might wrap or overflow',
+          onPressed: () {},
+        ),
+        const SizedBox(height: 16),
+        AppButton.outlined(
+          label: 'Another extremely long label to test text overflow behavior',
+          icon: Icons.info,
+          onPressed: () {},
+        ),
+        const SizedBox(height: 16),
+        AppButton.filled(
+          label: 'Very long text with full width enabled to see how it behaves',
+          fullWidth: true,
+          onPressed: () {},
+        ),
+      ],
+    ),
+  );
+}
+
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppButton)
+Widget interactivePlayground(BuildContext context) {
+  final label = context.knobs.string(
+    label: 'Button Label',
+    initialValue: 'Click Me',
+  );
+
+  final variantIndex = context.knobs.list(
+    label: 'Variant',
+    options: ['Filled', 'Outlined', 'Text', 'Elevated'],
+    labelBuilder: (value) => value,
+  );
+
+  final iconOptions = [
+    'None',
+    'Check',
+    'Add',
+    'Remove',
+    'ShoppingCart',
+    'Download',
+    'Upload',
+    'Login',
+    'Logout',
+  ];
+
+  final selectedIcon = context.knobs.list(
+    label: 'Icon',
+    options: iconOptions,
+    labelBuilder: (value) => value,
+  );
+
+  IconData? icon;
+  switch (selectedIcon) {
+    case 'Check':
+      icon = Icons.check;
+    case 'Add':
+      icon = Icons.add;
+    case 'Remove':
+      icon = Icons.remove;
+    case 'ShoppingCart':
+      icon = Icons.shopping_cart;
+    case 'Download':
+      icon = Icons.download;
+    case 'Upload':
+      icon = Icons.upload;
+    case 'Login':
+      icon = Icons.login;
+    case 'Logout':
+      icon = Icons.logout;
+    default:
+      icon = null;
+  }
+
+  final fullWidth = context.knobs.boolean(
+    label: 'Full Width',
+    initialValue: false,
+  );
+
+  final isLoading = context.knobs.boolean(
+    label: 'Loading State',
+    initialValue: false,
+  );
+
+  final enabled = context.knobs.boolean(label: 'Enabled', initialValue: true);
+
+  final VoidCallback? onPressed = enabled ? () {} : null;
+
+  switch (variantIndex) {
+    case 'Outlined':
+      return AppButton.outlined(
+        label: label,
+        icon: icon,
+        fullWidth: fullWidth,
+        isLoading: isLoading,
+        onPressed: onPressed,
+      );
+    case 'Text':
+      return AppButton.text(
+        label: label,
+        icon: icon,
+        fullWidth: fullWidth,
+        isLoading: isLoading,
+        onPressed: onPressed,
+      );
+    case 'Elevated':
+      return AppButton.elevated(
+        label: label,
+        icon: icon,
+        fullWidth: fullWidth,
+        isLoading: isLoading,
+        onPressed: onPressed,
+      );
+    default:
+      return AppButton.filled(
+        label: label,
+        icon: icon,
+        fullWidth: fullWidth,
+        isLoading: isLoading,
+        onPressed: onPressed,
+      );
+  }
+}
