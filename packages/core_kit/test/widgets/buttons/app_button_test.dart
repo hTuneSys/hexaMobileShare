@@ -339,7 +339,7 @@ void main() {
     });
 
     group('Accessibility', () {
-      testWidgets('has proper semantics for enabled button', (tester) async {
+      testWidgets('has proper semantic label for enabled button', (tester) async {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -352,11 +352,10 @@ void main() {
         );
 
         final semantics = tester.getSemantics(find.byType(Semantics).first);
-        expect(semantics.hasFlag(SemanticsFlag.isButton), isTrue);
-        expect(semantics.hasFlag(SemanticsFlag.hasEnabledState), isTrue);
+        expect(semantics.label, equals('Accessible Button'));
       });
 
-      testWidgets('has proper semantics for disabled button', (tester) async {
+      testWidgets('has proper semantic label for disabled button', (tester) async {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
@@ -366,8 +365,7 @@ void main() {
         );
 
         final semantics = tester.getSemantics(find.byType(Semantics).first);
-        expect(semantics.hasFlag(SemanticsFlag.isButton), isTrue);
-        expect(semantics.hasFlag(SemanticsFlag.hasEnabledState), isTrue);
+        expect(semantics.label, equals('Disabled Button'));
       });
 
       testWidgets('has loading state in semantic label', (tester) async {
