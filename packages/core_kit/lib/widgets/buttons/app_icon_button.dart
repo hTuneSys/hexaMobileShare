@@ -60,7 +60,7 @@ class AppIconButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback? onPressed;
   final String tooltip;
-  final double? iconSize;
+  final double iconSize;
   final Color? color;
   final EdgeInsetsGeometry? padding;
   final ButtonStyle? style;
@@ -78,11 +78,7 @@ class AppIconButton extends StatelessWidget {
       selected: isSelected,
       enabled: onPressed != null,
       label: tooltip,
-      child: SizedBox(
-        width: 48,
-        height: 48,
-        child: child,
-      ),
+      child: SizedBox(width: 48, height: 48, child: child),
     );
   }
 
@@ -90,7 +86,7 @@ class AppIconButton extends StatelessWidget {
     final ColorScheme cs = Theme.of(context).colorScheme;
 
     // Icon color defaults per variant using MD3 tokens.
-    final Color? defaultIconColor = switch (_variant) {
+    final Color defaultIconColor = switch (_variant) {
       _AppIconButtonVariant.standard => cs.onSurfaceVariant,
       _AppIconButtonVariant.filled => cs.onPrimary,
       _AppIconButtonVariant.filledTonal => cs.onSecondaryContainer,
@@ -100,32 +96,32 @@ class AppIconButton extends StatelessWidget {
     final ButtonStyle baseStyle = switch (_variant) {
       _AppIconButtonVariant.standard => const ButtonStyle(),
       _AppIconButtonVariant.filled => ButtonStyle(
-          backgroundColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.disabled)) {
-              return cs.onSurface.withOpacity(0.12);
-            }
-            return cs.primary;
-          }),
-        ),
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return cs.onSurface.withValues(alpha: 0.12);
+          }
+          return cs.primary;
+        }),
+      ),
       _AppIconButtonVariant.filledTonal => ButtonStyle(
-          backgroundColor: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.disabled)) {
-              return cs.onSurface.withOpacity(0.12);
-            }
-            return cs.secondaryContainer;
-          }),
-        ),
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return cs.onSurface.withValues(alpha: 0.12);
+          }
+          return cs.secondaryContainer;
+        }),
+      ),
       _AppIconButtonVariant.outlined => ButtonStyle(
-          side: WidgetStateProperty.resolveWith((states) {
-            final Color outline = cs.outline;
-            final Color disabledOutline = outline.withOpacity(0.12);
-            return BorderSide(
-              color: states.contains(WidgetState.disabled)
-                  ? disabledOutline
-                  : outline,
-            );
-          }),
-        ),
+        side: WidgetStateProperty.resolveWith((states) {
+          final Color outline = cs.outline;
+          final Color disabledOutline = outline.withValues(alpha: 0.12);
+          return BorderSide(
+            color: states.contains(WidgetState.disabled)
+                ? disabledOutline
+                : outline,
+          );
+        }),
+      ),
     };
 
     final ButtonStyle mergedStyle = baseStyle.merge(style);
@@ -135,7 +131,7 @@ class AppIconButton extends StatelessWidget {
 
     final Icon iconWidget = Icon(
       icon,
-      size: iconSize ?? 24.0,
+      size: iconSize,
       color: color ?? defaultIconColor,
     );
 
@@ -144,44 +140,44 @@ class AppIconButton extends StatelessWidget {
         ? Icon(
             iconWidget.icon,
             size: iconWidget.size,
-            color: (color ?? defaultIconColor)?.withOpacity(1.0),
+            color: (color ?? defaultIconColor).withValues(alpha: 1.0),
           )
         : iconWidget;
 
     // Choose base IconButton class by variant for MD3 behavior.
     return switch (_variant) {
       _AppIconButtonVariant.standard => IconButton(
-          icon: effectiveIcon,
-          tooltip: tooltip,
-          isSelected: isSelected,
-          onPressed: onPressed,
-          style: mergedStyle,
-          padding: effectivePadding,
-        ),
+        icon: effectiveIcon,
+        tooltip: tooltip,
+        isSelected: isSelected,
+        onPressed: onPressed,
+        style: mergedStyle,
+        padding: effectivePadding,
+      ),
       _AppIconButtonVariant.filled => IconButton.filled(
-          icon: effectiveIcon,
-          tooltip: tooltip,
-          isSelected: isSelected,
-          onPressed: onPressed,
-          style: mergedStyle,
-          padding: effectivePadding,
-        ),
+        icon: effectiveIcon,
+        tooltip: tooltip,
+        isSelected: isSelected,
+        onPressed: onPressed,
+        style: mergedStyle,
+        padding: effectivePadding,
+      ),
       _AppIconButtonVariant.filledTonal => IconButton.filledTonal(
-          icon: effectiveIcon,
-          tooltip: tooltip,
-          isSelected: isSelected,
-          onPressed: onPressed,
-          style: mergedStyle,
-          padding: effectivePadding,
-        ),
+        icon: effectiveIcon,
+        tooltip: tooltip,
+        isSelected: isSelected,
+        onPressed: onPressed,
+        style: mergedStyle,
+        padding: effectivePadding,
+      ),
       _AppIconButtonVariant.outlined => IconButton.outlined(
-          icon: effectiveIcon,
-          tooltip: tooltip,
-          isSelected: isSelected,
-          onPressed: onPressed,
-          style: mergedStyle,
-          padding: effectivePadding,
-        ),
+        icon: effectiveIcon,
+        tooltip: tooltip,
+        isSelected: isSelected,
+        onPressed: onPressed,
+        style: mergedStyle,
+        padding: effectivePadding,
+      ),
     };
   }
 }
