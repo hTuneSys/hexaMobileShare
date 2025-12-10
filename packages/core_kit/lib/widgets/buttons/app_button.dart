@@ -247,7 +247,7 @@ class AppButton extends StatelessWidget {
     // Build appropriate button variant
     final button = switch (variant) {
       AppButtonVariant.filled =>
-        icon != null
+        icon != null && !isLoading
             ? FilledButton.icon(
                 onPressed: isLoading ? null : onPressed,
                 icon: Icon(icon),
@@ -258,7 +258,7 @@ class AppButton extends StatelessWidget {
                 child: child,
               ),
       AppButtonVariant.outlined =>
-        icon != null
+        icon != null && !isLoading
             ? OutlinedButton.icon(
                 onPressed: isLoading ? null : onPressed,
                 icon: Icon(icon),
@@ -269,7 +269,7 @@ class AppButton extends StatelessWidget {
                 child: child,
               ),
       AppButtonVariant.text =>
-        icon != null
+        icon != null && !isLoading
             ? TextButton.icon(
                 onPressed: isLoading ? null : onPressed,
                 icon: Icon(icon),
@@ -277,7 +277,7 @@ class AppButton extends StatelessWidget {
               )
             : TextButton(onPressed: isLoading ? null : onPressed, child: child),
       AppButtonVariant.elevated =>
-        icon != null
+        icon != null && !isLoading
             ? ElevatedButton.icon(
                 onPressed: isLoading ? null : onPressed,
                 icon: Icon(icon),

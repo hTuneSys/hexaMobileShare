@@ -13,6 +13,8 @@
 import 'package:widgetbook/widgetbook.dart' as _widgetbook;
 import 'package:widgetbook_kit/stories/core_kit/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_buttons_app_button_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_button_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories;
 
 final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
@@ -24,6 +26,12 @@ final directories = <_widgetbook.WidgetbookNode>[
           _widgetbook.WidgetbookComponent(
             name: 'AppButton',
             useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'All Variants',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
+                        .appButtonAllVariants,
+              ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Default',
                 builder:
@@ -37,6 +45,12 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .dialogActions,
               ),
               _widgetbook.WidgetbookUseCase(
+                name: 'Dialog Actions Example',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
+                        .dialogActionsExample,
+              ),
+              _widgetbook.WidgetbookUseCase(
                 name: 'Disabled',
                 builder:
                     _widgetbook_kit_stories_core_kit_buttons_app_button_stories
@@ -47,6 +61,18 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_buttons_app_button_stories
                         .ecommerceAddToCart,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'E-commerce Example',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
+                        .ecommerceExample,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Edge Cases',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
+                        .appButtonEdgeCases,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Elevated Default',
@@ -85,6 +111,12 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .filledButtonFullWidth,
               ),
               _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
+                        .appButtonPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
                 name: 'Loading Processing Payment',
                 builder:
                     _widgetbook_kit_stories_core_kit_buttons_app_button_stories
@@ -95,6 +127,12 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_buttons_app_button_stories
                         .filledButtonLoading,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Login Form Example',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
+                        .loginFormExample,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Login Form Submit',
@@ -133,6 +171,18 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .outlinedButtonWithIcon,
               ),
               _widgetbook.WidgetbookUseCase(
+                name: 'Sizes',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
+                        .appButtonSizes,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
+                        .appButtonStates,
+              ),
+              _widgetbook.WidgetbookUseCase(
                 name: 'Text Default',
                 builder:
                     _widgetbook_kit_stories_core_kit_buttons_app_button_stories
@@ -157,10 +207,22 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .textButtonWithIcon,
               ),
               _widgetbook.WidgetbookUseCase(
+                name: 'Theme Variations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
+                        .appButtonThemeVariations,
+              ),
+              _widgetbook.WidgetbookUseCase(
                 name: 'With Icon',
                 builder:
                     _widgetbook_kit_stories_core_kit_buttons_app_button_stories
                         .filledButtonWithIcon,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icons',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
+                        .appButtonWithIcons,
               ),
             ],
           ),

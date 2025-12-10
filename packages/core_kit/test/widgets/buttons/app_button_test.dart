@@ -240,6 +240,114 @@ void main() {
       });
     });
 
+    group('Icon + Loading Combination', () {
+      testWidgets(
+        'shows loading indicator instead of icon when loading (filled)',
+        (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: Scaffold(
+                body: AppButton.filled(
+                  label: 'Loading',
+                  icon: Icons.add,
+                  isLoading: true,
+                  onPressed: () {},
+                ),
+              ),
+            ),
+          );
+
+          expect(find.byType(CircularProgressIndicator), findsOneWidget);
+          expect(find.byIcon(Icons.add), findsNothing);
+        },
+      );
+
+      testWidgets(
+        'shows loading indicator instead of icon when loading (outlined)',
+        (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: Scaffold(
+                body: AppButton.outlined(
+                  label: 'Loading',
+                  icon: Icons.download,
+                  isLoading: true,
+                  onPressed: () {},
+                ),
+              ),
+            ),
+          );
+
+          expect(find.byType(CircularProgressIndicator), findsOneWidget);
+          expect(find.byIcon(Icons.download), findsNothing);
+        },
+      );
+
+      testWidgets(
+        'shows loading indicator instead of icon when loading (text)',
+        (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: Scaffold(
+                body: AppButton.text(
+                  label: 'Loading',
+                  icon: Icons.save,
+                  isLoading: true,
+                  onPressed: () {},
+                ),
+              ),
+            ),
+          );
+
+          expect(find.byType(CircularProgressIndicator), findsOneWidget);
+          expect(find.byIcon(Icons.save), findsNothing);
+        },
+      );
+
+      testWidgets(
+        'shows loading indicator instead of icon when loading (elevated)',
+        (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: Scaffold(
+                body: AppButton.elevated(
+                  label: 'Loading',
+                  icon: Icons.upload,
+                  isLoading: true,
+                  onPressed: () {},
+                ),
+              ),
+            ),
+          );
+
+          expect(find.byType(CircularProgressIndicator), findsOneWidget);
+          expect(find.byIcon(Icons.upload), findsNothing);
+        },
+      );
+
+      testWidgets(
+        'shows icon when not loading',
+        (tester) async {
+          await tester.pumpWidget(
+            MaterialApp(
+              home: Scaffold(
+                body: AppButton.filled(
+                  label: 'Not Loading',
+                  icon: Icons.check,
+                  isLoading: false,
+                  onPressed: () {},
+                ),
+              ),
+            ),
+          );
+
+          expect(find.byIcon(Icons.check), findsOneWidget);
+          expect(find.byType(CircularProgressIndicator), findsNothing);
+        },
+      );
+    });
+
+
     group('Full Width', () {
       testWidgets('expands to fill parent width when fullWidth is true', (
         tester,
