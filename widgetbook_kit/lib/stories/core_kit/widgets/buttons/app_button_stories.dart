@@ -21,7 +21,11 @@ Widget appButtonPlayground(BuildContext context) {
           const SizedBox(height: 8),
           AppButton.filled(label: 'Default', onPressed: () {}),
           const SizedBox(height: 8),
-          AppButton.filled(label: 'With Icon', icon: Icons.add, onPressed:() {}),
+          AppButton.filled(
+            label: 'With Icon',
+            icon: Icons.add,
+            onPressed: () {},
+          ),
           const SizedBox(height: 8),
           const AppButton.filled(label: 'Disabled', onPressed: null),
           const SizedBox(height: 8),
@@ -140,11 +144,7 @@ Widget appButtonWithIcons(BuildContext context) {
           style: TextStyle(fontStyle: FontStyle.italic),
         ),
         const SizedBox(height: 16),
-        AppButton.filled(
-          label: 'Add Item',
-          icon: Icons.add,
-          onPressed: () {},
-        ),
+        AppButton.filled(label: 'Add Item', icon: Icons.add, onPressed: () {}),
         const SizedBox(height: 8),
         AppButton.outlined(
           label: 'Download',
@@ -223,13 +223,12 @@ Widget appButtonSizes(BuildContext context) {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text('Normal Width', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 8),
-        AppButton.filled(
-          label: 'Normal',
-          fullWidth: false,
-          onPressed: () {},
+        const Text(
+          'Normal Width',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        const SizedBox(height: 8),
+        AppButton.filled(label: 'Normal', fullWidth: false, onPressed: () {}),
         const SizedBox(height: 16),
         const Text('Full Width', style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 8),
@@ -303,7 +302,10 @@ Widget appButtonEdgeCases(BuildContext context) {
           ),
         ),
         const SizedBox(height: 16),
-        const Text('Empty Label', style: TextStyle(fontWeight: FontWeight.bold)),
+        const Text(
+          'Empty Label',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 8),
         AppButton.filled(label: '', onPressed: () {}),
         const SizedBox(height: 16),

@@ -325,28 +325,24 @@ void main() {
         },
       );
 
-      testWidgets(
-        'shows icon when not loading',
-        (tester) async {
-          await tester.pumpWidget(
-            MaterialApp(
-              home: Scaffold(
-                body: AppButton.filled(
-                  label: 'Not Loading',
-                  icon: Icons.check,
-                  isLoading: false,
-                  onPressed: () {},
-                ),
+      testWidgets('shows icon when not loading', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: AppButton.filled(
+                label: 'Not Loading',
+                icon: Icons.check,
+                isLoading: false,
+                onPressed: () {},
               ),
             ),
-          );
+          ),
+        );
 
-          expect(find.byIcon(Icons.check), findsOneWidget);
-          expect(find.byType(CircularProgressIndicator), findsNothing);
-        },
-      );
+        expect(find.byIcon(Icons.check), findsOneWidget);
+        expect(find.byType(CircularProgressIndicator), findsNothing);
+      });
     });
-
 
     group('Full Width', () {
       testWidgets('expands to fill parent width when fullWidth is true', (
