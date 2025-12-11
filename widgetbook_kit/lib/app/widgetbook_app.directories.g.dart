@@ -15,10 +15,16 @@ import 'package:widgetbook_kit/stories/core_kit/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_buttons_app_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories;
-import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_checkbox_stories.dart'
-    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_icon_button_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_buttons_app_icon_button_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_outlined_button_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_text_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_checkbox_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_switch_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories;
 
 final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
@@ -231,6 +237,100 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
+            name: 'AppIconButton',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'All Variants',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_icon_button_stories
+                        .appIconButtonAllVariants,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Common Icons',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_icon_button_stories
+                        .appIconButtonCommonIcons,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_icon_button_stories
+                        .appIconButtonDefault,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_icon_button_stories
+                        .appIconButtonPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Sizes',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_icon_button_stories
+                        .appIconButtonSizes,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_icon_button_stories
+                        .appIconButtonStates,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Theme Variations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_icon_button_stories
+                        .appIconButtonTheme,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Toggle Button',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_icon_button_stories
+                        .appIconButtonToggle,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppOutlinedButton',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Comparison',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
+                        .appOutlinedButtonComparison,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
+                        .appOutlinedButtonDefault,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Sizes',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
+                        .appOutlinedButtonSizes,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
+                        .appOutlinedButtonStates,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Theme Variations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
+                        .appOutlinedButtonTheme,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
+                        .appOutlinedButtonWithIcon,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
             name: 'AppTextButton',
             useCases: [
               _widgetbook.WidgetbookUseCase(
@@ -362,6 +462,53 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
                         .appCheckboxThemeVariations,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppSwitch',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'All States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchStates,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchDefault,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Real-World Examples',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchExamples,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Settings List',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchSettingsList,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Theme Variations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchThemeVariations,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icons',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchIcons,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Labels',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchLabels,
               ),
             ],
           ),
