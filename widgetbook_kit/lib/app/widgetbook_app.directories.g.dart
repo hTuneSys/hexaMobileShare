@@ -15,6 +15,8 @@ import 'package:widgetbook_kit/stories/core_kit/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_buttons_app_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_text_button_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories;
 
 final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
@@ -223,6 +225,53 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
                         .appButtonWithIcons,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppTextButton',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Button Hierarchy',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
+                        .appTextButtonHierarchy,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Common Use Cases',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
+                        .appTextButtonUseCases,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
+                        .appTextButtonDefault,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Inline Usage',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
+                        .appTextButtonInlineUsage,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
+                        .appTextButtonStates,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Theme Variations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
+                        .appTextButtonThemeVariations,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
+                        .appTextButtonWithIcon,
               ),
             ],
           ),
