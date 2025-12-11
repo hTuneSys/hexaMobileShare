@@ -15,6 +15,8 @@ import 'package:widgetbook_kit/stories/core_kit/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_buttons_app_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_checkbox_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories;
 
 final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
@@ -223,6 +225,94 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
                         .appButtonWithIcons,
+              ),
+            ],
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'inputs',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AppCheckbox',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'All States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxAllStates,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Checked',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxChecked,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxDefault,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled Checked',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxDisabledChecked,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled Unchecked',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxDisabledUnchecked,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Error State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxError,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Form Example',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxFormExample,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Indeterminate',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxIndeterminate,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'List Integration',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxListIntegration,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Long Label',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxLongLabel,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'No Label',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxNoLabel,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Short Label',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxShortLabel,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Theme Variations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxThemeVariations,
               ),
             ],
           ),
