@@ -12,4 +12,5 @@ export 'theme/app_shadows.dart';
 // Widget exports
 export 'widgets/buttons/app_button.dart';
 export 'widgets/inputs/app_checkbox.dart';
+export 'widgets/inputs/app_radio_group.dart';
 export 'widgets/buttons/app_text_button.dart';
