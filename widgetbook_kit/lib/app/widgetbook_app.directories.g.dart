@@ -23,8 +23,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_text_button_
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_checkbox_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories;
-import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_list_tile_stories.dart'
-    as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories;
 
 final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
@@ -471,73 +471,49 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'surfaces',
         children: [
           _widgetbook.WidgetbookComponent(
-            name: 'AppListTile',
+            name: 'AppCard',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Common Patterns',
+                name: 'All Variants',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTilePatterns,
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardVariants,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Content Types',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardContentTypes,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Styling',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardCustom,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Default',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileDefault,
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardDefault,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Dense Mode',
+                name: 'Elevation Levels',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileDense,
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardElevations,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardInteractive,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTilePlayground,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Leading Widgets',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileLeading,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'One Line',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileOneLine,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'States',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileStates,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Theme Variations',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileThemes,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Three Line',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileThreeLine,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Trailing Widgets',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileTrailing,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Two Line',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileTwoLine,
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardPlayground,
               ),
             ],
           ),
