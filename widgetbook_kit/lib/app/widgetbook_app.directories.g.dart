@@ -25,6 +25,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_checkbox_stor
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_list_tile_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories;
 
 final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
@@ -538,6 +540,49 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
                         .appListTileTwoLine,
+            name: 'AppCard',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'All Variants',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardVariants,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Content Types',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardContentTypes,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Styling',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardCustom,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardDefault,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Elevation Levels',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardElevations,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardInteractive,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .appCardPlayground,
               ),
             ],
           ),
