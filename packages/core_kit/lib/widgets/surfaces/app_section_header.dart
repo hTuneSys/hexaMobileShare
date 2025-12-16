@@ -252,7 +252,7 @@ class AppSectionHeader extends StatelessWidget {
     // Wrap with semantics for accessibility
     return Semantics(
       header: true,
-      label: subtitle != null ? '$title, $subtitle' : title,
+      label: subtitle != null ? '$displayTitle, $subtitle' : displayTitle,
       child: content,
     );
   }

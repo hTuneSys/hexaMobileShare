@@ -159,7 +159,7 @@ Widget appSectionHeaderSettingsList(BuildContext context) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const AppSectionHeader(title: 'ACCOUNT', isUpperCase: true),
+        const AppSectionHeader(title: 'Account', isUpperCase: true),
         ListTile(
           leading: const Icon(Icons.person),
           title: const Text('Profile'),
@@ -177,7 +177,7 @@ Widget appSectionHeaderSettingsList(BuildContext context) {
           onTap: () {},
         ),
         const SizedBox(height: AppSpacing.sm),
-        const AppSectionHeader(title: 'PRIVACY & SECURITY', isUpperCase: true),
+        const AppSectionHeader(title: 'Privacy & Security', isUpperCase: true),
         ListTile(
           leading: const Icon(Icons.lock),
           title: const Text('Password'),
@@ -195,7 +195,7 @@ Widget appSectionHeaderSettingsList(BuildContext context) {
           onTap: () {},
         ),
         const SizedBox(height: AppSpacing.sm),
-        const AppSectionHeader(title: 'NOTIFICATIONS', isUpperCase: true),
+        const AppSectionHeader(title: 'Notifications', isUpperCase: true),
         ListTile(
           leading: const Icon(Icons.notifications),
           title: const Text('Push notifications'),
