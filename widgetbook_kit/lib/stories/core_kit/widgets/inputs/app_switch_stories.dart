@@ -373,66 +373,89 @@ class _SettingsListDemoState extends State<_SettingsListDemo> {
   }
 }
 
-// 6. Theme Variations - Light, dark, and custom colors (Static - for comparison)
+// 6. Theme Variations - Light, dark, and custom colors (Interactive)
 @widgetbook.UseCase(name: 'Theme Variations', type: AppSwitch)
 Widget appSwitchThemeVariations(BuildContext context) {
-  return SingleChildScrollView(
-    child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text(
-            'Toggle theme in Widgetbook to see variations',
-            style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12),
-          ),
-          SizedBox(height: 16),
-          Text('Default Colors', style: TextStyle(fontWeight: FontWeight.bold)),
-          SizedBox(height: 8),
-          AppSwitch(
-            value: true,
-            label: 'On (uses primary color)',
-            onChanged: null,
-          ),
-          SizedBox(height: 8),
-          AppSwitch(
-            value: false,
-            label: 'Off (uses surface color)',
-            onChanged: null,
-          ),
-          SizedBox(height: 24),
-          Text(
-            'Custom Brand Colors',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 8),
-          AppSwitch(
-            value: true,
-            label: 'Green switch',
-            activeColor: Colors.white,
-            activeTrackColor: Colors.green,
-            onChanged: null,
-          ),
-          SizedBox(height: 8),
-          AppSwitch(
-            value: true,
-            label: 'Orange switch',
-            activeColor: Colors.white,
-            activeTrackColor: Colors.deepOrange,
-            onChanged: null,
-          ),
-          SizedBox(height: 8),
-          AppSwitch(
-            value: true,
-            label: 'Blue switch',
-            activeColor: Colors.white,
-            activeTrackColor: Colors.blue,
-            onChanged: null,
-          ),
-        ],
+  return const _ThemeVariationsDemo();
+}
+
+class _ThemeVariationsDemo extends StatefulWidget {
+  const _ThemeVariationsDemo();
+
+  @override
+  State<_ThemeVariationsDemo> createState() => _ThemeVariationsDemoState();
+}
+
+class _ThemeVariationsDemoState extends State<_ThemeVariationsDemo> {
+  bool _defaultOn = true;
+  bool _defaultOff = false;
+  bool _greenSwitch = true;
+  bool _orangeSwitch = true;
+  bool _blueSwitch = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Toggle theme in Widgetbook to see variations',
+              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Default Colors',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            AppSwitch(
+              value: _defaultOn,
+              label: 'On (uses primary color)',
+              onChanged: (value) => setState(() => _defaultOn = value),
+            ),
+            const SizedBox(height: 8),
+            AppSwitch(
+              value: _defaultOff,
+              label: 'Off (uses surface color)',
+              onChanged: (value) => setState(() => _defaultOff = value),
+            ),
+            const SizedBox(height: 24),
+            const Text(
+              'Custom Brand Colors',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            AppSwitch(
+              value: _greenSwitch,
+              label: 'Green switch',
+              activeColor: Colors.white,
+              activeTrackColor: Colors.green,
+              onChanged: (value) => setState(() => _greenSwitch = value),
+            ),
+            const SizedBox(height: 8),
+            AppSwitch(
+              value: _orangeSwitch,
+              label: 'Orange switch',
+              activeColor: Colors.white,
+              activeTrackColor: Colors.deepOrange,
+              onChanged: (value) => setState(() => _orangeSwitch = value),
+            ),
+            const SizedBox(height: 8),
+            AppSwitch(
+              value: _blueSwitch,
+              label: 'Blue switch',
+              activeColor: Colors.white,
+              activeTrackColor: Colors.blue,
+              onChanged: (value) => setState(() => _blueSwitch = value),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 // 7. Real-World Examples (Interactive)
