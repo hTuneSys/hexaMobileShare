@@ -155,60 +155,91 @@ Widget appSectionHeaderWithDivider(BuildContext context) {
 
 @widgetbook.UseCase(name: 'Settings List Example', type: AppSectionHeader)
 Widget appSectionHeaderSettingsList(BuildContext context) {
-  return SingleChildScrollView(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const AppSectionHeader(title: 'Account', isUpperCase: true),
-        ListTile(
-          leading: const Icon(Icons.person),
-          title: const Text('Profile'),
-          subtitle: const Text('john.doe@example.com'),
-          onTap: () {},
-        ),
-        ListTile(
-          leading: const Icon(Icons.email),
-          title: const Text('Email'),
-          onTap: () {},
-        ),
-        ListTile(
-          leading: const Icon(Icons.phone),
-          title: const Text('Phone number'),
-          onTap: () {},
-        ),
-        const SizedBox(height: AppSpacing.sm),
-        const AppSectionHeader(title: 'Privacy & Security', isUpperCase: true),
-        ListTile(
-          leading: const Icon(Icons.lock),
-          title: const Text('Password'),
-          subtitle: const Text('Last changed 30 days ago'),
-          onTap: () {},
-        ),
-        ListTile(
-          leading: const Icon(Icons.fingerprint),
-          title: const Text('Biometric login'),
-          trailing: Switch(value: true, onChanged: (_) {}),
-        ),
-        ListTile(
-          leading: const Icon(Icons.security),
-          title: const Text('Two-factor authentication'),
-          onTap: () {},
-        ),
-        const SizedBox(height: AppSpacing.sm),
-        const AppSectionHeader(title: 'Notifications', isUpperCase: true),
-        ListTile(
-          leading: const Icon(Icons.notifications),
-          title: const Text('Push notifications'),
-          trailing: Switch(value: true, onChanged: (_) {}),
-        ),
-        ListTile(
-          leading: const Icon(Icons.mail_outline),
-          title: const Text('Email notifications'),
-          trailing: Switch(value: false, onChanged: (_) {}),
-        ),
-      ],
-    ),
-  );
+  return const _SettingsListContent();
+}
+
+/// Stateful widget for Settings List Example to demonstrate realistic usage
+class _SettingsListContent extends StatefulWidget {
+  const _SettingsListContent();
+
+  @override
+  State<_SettingsListContent> createState() => _SettingsListContentState();
+}
+
+class _SettingsListContentState extends State<_SettingsListContent> {
+  bool _biometricLogin = true;
+  bool _pushNotifications = true;
+  bool _emailNotifications = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const AppSectionHeader(title: 'Account', isUpperCase: true),
+          ListTile(
+            leading: const Icon(Icons.person),
+            title: const Text('Profile'),
+            subtitle: const Text('john.doe@example.com'),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.email),
+            title: const Text('Email'),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.phone),
+            title: const Text('Phone number'),
+            onTap: () {},
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          const AppSectionHeader(
+            title: 'Privacy & Security',
+            isUpperCase: true,
+          ),
+          ListTile(
+            leading: const Icon(Icons.lock),
+            title: const Text('Password'),
+            subtitle: const Text('Last changed 30 days ago'),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(Icons.fingerprint),
+            title: const Text('Biometric login'),
+            trailing: Switch(
+              value: _biometricLogin,
+              onChanged: (value) => setState(() => _biometricLogin = value),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.security),
+            title: const Text('Two-factor authentication'),
+            onTap: () {},
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          const AppSectionHeader(title: 'Notifications', isUpperCase: true),
+          ListTile(
+            leading: const Icon(Icons.notifications),
+            title: const Text('Push notifications'),
+            trailing: Switch(
+              value: _pushNotifications,
+              onChanged: (value) => setState(() => _pushNotifications = value),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.mail_outline),
+            title: const Text('Email notifications'),
+            trailing: Switch(
+              value: _emailNotifications,
+              onChanged: (value) => setState(() => _emailNotifications = value),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 @widgetbook.UseCase(name: 'Theme Variations', type: AppSectionHeader)
