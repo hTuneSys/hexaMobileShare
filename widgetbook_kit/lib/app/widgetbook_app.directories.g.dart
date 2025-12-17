@@ -29,6 +29,12 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_switch_storie
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_search_field_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_section_header_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_list_tile_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories;
 
@@ -525,49 +531,55 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
-            name: 'AppSwitch',
+            name: 'AppSearchField',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'All States',
+                name: 'Auto Focus',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchStates,
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .autoFocusSearchField,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Default',
+                name: 'Basic',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchDefault,
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .basicSearchField,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Real-World Examples',
+                name: 'Custom Hint',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchExamples,
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .customHintSearchField,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Settings List',
+                name: 'Disabled',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchSettingsList,
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .disabledSearchField,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Theme Variations',
+                name: 'Loading State',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchThemeVariations,
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .loadingSearchField,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Icons',
+                name: 'Submit Action',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchIcons,
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .submitActionSearchField,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Labels',
+                name: 'With Clear Button',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchLabels,
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .searchFieldWithClearButton,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Results',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .searchFieldWithResults,
               ),
             ],
           ),
