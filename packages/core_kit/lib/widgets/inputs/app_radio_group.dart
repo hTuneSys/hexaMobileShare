@@ -175,6 +175,7 @@ typedef RadioOptionBuilder<T> =
 /// See also:
 /// - [Material Design 3 Radio](https://m3.material.io/components/radio-button)
 /// - [Radio] - Flutter's base radio button widget
+/// - [RadioGroup] - Flutter 3.32+ grouping widget for radio buttons
 class AppRadioGroup<T> extends StatelessWidget {
   /// Creates a Material Design 3 radio button group.
   ///
@@ -398,15 +399,18 @@ class AppRadioGroup<T> extends StatelessWidget {
               const SizedBox(width: 8),
             ],
 
-            // Radio button
-            SizedBox(
-              width: 48,
-              height: 48,
-              child: Radio<T>.adaptive(
-                value: option.value,
-                toggleable: false,
-                activeColor: activeColor,
-                materialTapTargetSize: MaterialTapTargetSize.padded,
+            // Radio button - wrapped in IgnorePointer to prevent double-trigger
+            // since InkWell handles the tap and RadioGroup manages the state
+            IgnorePointer(
+              child: SizedBox(
+                width: 48,
+                height: 48,
+                child: Radio<T>.adaptive(
+                  value: option.value,
+                  toggleable: false,
+                  activeColor: activeColor,
+                  materialTapTargetSize: MaterialTapTargetSize.padded,
+                ),
               ),
             ),
 
