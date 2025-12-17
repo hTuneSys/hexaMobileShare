@@ -106,12 +106,16 @@ class _PasswordConfirmationExampleState
               padding: const EdgeInsets.only(top: 8.0, left: 12.0),
               child: Row(
                 children: [
-                  Icon(Icons.check_circle, size: 16, color: Colors.green),
+                  Icon(
+                    Icons.check_circle,
+                    size: 16,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     'Passwords match',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Colors.green,
+                      color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -252,7 +256,7 @@ class _ValidationErrorExampleState extends State<_ValidationErrorExample> {
             isValid ? Icons.check_circle : Icons.circle_outlined,
             size: 16,
             color: isValid
-                ? Colors.green
+                ? Theme.of(context).colorScheme.primary
                 : Theme.of(context).colorScheme.outline,
           ),
           const SizedBox(width: 8),
@@ -260,7 +264,7 @@ class _ValidationErrorExampleState extends State<_ValidationErrorExample> {
             text,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: isValid
-                  ? Colors.green
+                  ? Theme.of(context).colorScheme.primary
                   : Theme.of(context).colorScheme.onSurfaceVariant,
               decoration: isValid ? TextDecoration.lineThrough : null,
             ),

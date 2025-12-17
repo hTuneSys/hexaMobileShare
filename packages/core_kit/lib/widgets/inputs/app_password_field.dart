@@ -26,6 +26,15 @@ enum PasswordStrength {
 /// - Integration with password validators
 /// - Accessibility support for screen readers
 ///
+/// Security Best Practices:
+/// - Use [preventCopyPaste] carefully: while it enhances security by
+///   preventing clipboard access, it may impact user experience,
+///   especially for users relying on password managers. Consider
+///   disabling it for login forms and enabling it only for critical
+///   operations like password creation or admin actions.
+/// - Enable [showStrengthIndicator] for password creation flows to
+///   guide users toward creating stronger passwords.
+///
 /// Example:
 /// ```dart
 /// AppPasswordField(
@@ -174,9 +183,9 @@ class _AppPasswordFieldState extends State<AppPasswordField> {
       case PasswordStrength.weak:
         return colorScheme.error;
       case PasswordStrength.medium:
-        return Colors.amber;
+        return colorScheme.tertiary;
       case PasswordStrength.strong:
-        return Colors.green;
+        return colorScheme.primary;
     }
   }
 

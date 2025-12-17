@@ -566,8 +566,8 @@ void main() {
         await tester.enterText(find.byType(TextField), 'ValidPass123');
         await tester.pumpAndSettle();
 
-        // Error should be cleared (check by trying to find it)
-        // Note: Since we're in a test, the error might still show until rebuild
+        // Error should be cleared
+        expect(find.text('Password is too short'), findsNothing);
       });
     });
   });
