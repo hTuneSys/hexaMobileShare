@@ -25,18 +25,18 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_text_button_
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_checkbox_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_dropdown_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_search_field_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_switch_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories;
-import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_search_field_stories.dart'
-    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories;
-import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
-    as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories;
-import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_section_header_stories.dart'
-    as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_list_tile_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_section_header_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories;
 
 final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
@@ -531,6 +531,65 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
+            name: 'AppDropdown',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic String Dropdown',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .basicStringDropdown,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Objects Dropdown',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .customObjectsDropdown,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled Dropdown',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .disabledDropdown,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Dropdown with Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .dropdownWithError,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Dropdown with Icons',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .dropdownWithIcons,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Dropdown with Placeholder',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .dropdownWithPlaceholder,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Dropdown with Search',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .dropdownWithSearch,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Large List Dropdown',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .largeListDropdown,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Rich Items Dropdown',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .richItemsDropdown,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
             name: 'AppSearchField',
             useCases: [
               _widgetbook.WidgetbookUseCase(
@@ -580,6 +639,53 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
                         .searchFieldWithResults,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppSwitch',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'All States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchStates,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchDefault,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Real-World Examples',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchExamples,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Settings List',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchSettingsList,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Theme Variations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchThemeVariations,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icons',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchIcons,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Labels',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchLabels,
               ),
             ],
           ),
@@ -703,6 +809,59 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
                         .appListTileTwoLine,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppSectionHeader',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
+                        .appSectionHeaderDefault,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
+                        .appSectionHeaderPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Settings List Example',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
+                        .appSectionHeaderSettingsList,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Theme Variations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
+                        .appSectionHeaderThemeVariations,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Divider',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
+                        .appSectionHeaderWithDivider,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Leading',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
+                        .appSectionHeaderWithLeading,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Subtitle',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
+                        .appSectionHeaderWithSubtitle,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Trailing',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
+                        .appSectionHeaderWithTrailing,
               ),
             ],
           ),
