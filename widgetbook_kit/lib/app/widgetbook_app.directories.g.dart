@@ -25,10 +25,14 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_text_button_
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_checkbox_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_search_field_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_section_header_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_list_tile_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories;
 
 final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookFolder(
@@ -522,6 +526,59 @@ final directories = <_widgetbook.WidgetbookNode>[
               ),
             ],
           ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppSearchField',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Auto Focus',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .autoFocusSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .basicSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Hint',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .customHintSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .disabledSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .loadingSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Submit Action',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .submitActionSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Clear Button',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .searchFieldWithClearButton,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Results',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .searchFieldWithResults,
+              ),
+            ],
+          ),
         ],
       ),
       _widgetbook.WidgetbookFolder(
@@ -575,55 +632,73 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
-            name: 'AppSectionHeader',
+            name: 'AppListTile',
             useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Common Patterns',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .appListTilePatterns,
+              ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Default',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderDefault,
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .appListTileDefault,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Dense Mode',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .appListTileDense,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderPlayground,
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .appListTilePlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Settings List Example',
+                name: 'Leading Widgets',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderSettingsList,
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .appListTileLeading,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'One Line',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .appListTileOneLine,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .appListTileStates,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Theme Variations',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderThemeVariations,
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .appListTileThemes,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Divider',
+                name: 'Three Line',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderWithDivider,
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .appListTileThreeLine,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Leading',
+                name: 'Trailing Widgets',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderWithLeading,
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .appListTileTrailing,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Subtitle',
+                name: 'Two Line',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderWithSubtitle,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'With Trailing',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderWithTrailing,
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .appListTileTwoLine,
               ),
             ],
           ),
