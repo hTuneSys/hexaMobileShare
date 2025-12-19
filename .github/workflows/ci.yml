@@ -35,6 +35,12 @@ jobs:
           channel: 'stable'
           cache: true
 
+      - name: Install Melos
+        run: dart pub global activate melos
+
+      - name: Bootstrap packages
+        run: melos bootstrap
+
       - name: Check Dart formatting
         run: dart format --set-exit-if-changed .
 
