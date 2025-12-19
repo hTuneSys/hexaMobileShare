@@ -159,7 +159,7 @@ mixin ScreenTrackingMixin<T extends StatefulWidget> on State<T> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    
+
     // Track screen view when dependencies change (first time widget is built)
     if (_screenEntryTime != null) {
       _trackScreenView();

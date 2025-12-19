@@ -41,18 +41,11 @@ class _BasicTrackingScreenState extends State<BasicTrackingScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.analytics_outlined,
-              size: 80,
-              color: Colors.blue,
-            ),
+            const Icon(Icons.analytics_outlined, size: 80, color: Colors.blue),
             const SizedBox(height: 24),
             const Text(
               'Basic Screen Tracking',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             const Padding(
@@ -110,18 +103,11 @@ class _CustomNameScreenState extends State<CustomNameScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.edit_note,
-              size: 80,
-              color: Colors.orange,
-            ),
+            const Icon(Icons.edit_note, size: 80, color: Colors.orange),
             const SizedBox(height: 24),
             const Text(
               'Custom Screen Name',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             const Padding(
@@ -185,11 +171,11 @@ class _ParametersTrackingScreenState extends State<ParametersTrackingScreen>
 
   @override
   Map<String, dynamic> get screenParameters => {
-        'user_id': widget.userId,
-        'category': widget.category,
-        'filter': _selectedFilter,
-        'timestamp': DateTime.now().toIso8601String(),
-      };
+    'user_id': widget.userId,
+    'category': widget.category,
+    'filter': _selectedFilter,
+    'timestamp': DateTime.now().toIso8601String(),
+  };
 
   @override
   bool get enableDebugLogging => true;
@@ -206,18 +192,11 @@ class _ParametersTrackingScreenState extends State<ParametersTrackingScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.tune,
-              size: 80,
-              color: Colors.purple,
-            ),
+            const Icon(Icons.tune, size: 80, color: Colors.purple),
             const SizedBox(height: 24),
             const Text(
               'Screen Parameters Tracking',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             const Padding(
@@ -306,9 +285,7 @@ class _NavigationDemoScreenState extends State<NavigationDemoScreen>
   String get screenName => 'navigation_demo';
 
   @override
-  Map<String, dynamic> get screenParameters => {
-        'visit_count': _visitCount,
-      };
+  Map<String, dynamic> get screenParameters => {'visit_count': _visitCount};
 
   @override
   bool get enableDebugLogging => true;
@@ -331,18 +308,11 @@ class _NavigationDemoScreenState extends State<NavigationDemoScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.navigation,
-              size: 80,
-              color: Colors.blue,
-            ),
+            const Icon(Icons.navigation, size: 80, color: Colors.blue),
             const SizedBox(height: 24),
             const Text(
               'Navigation Demo',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             const Padding(
@@ -403,9 +373,7 @@ class _NavigationDemoScreenState extends State<NavigationDemoScreen>
             const SizedBox(height: 24),
             Text(
               'Visit count: $_visitCount',
-              style: TextStyle(
-                color: Colors.grey[600],
-              ),
+              style: TextStyle(color: Colors.grey[600]),
             ),
           ],
         ),
@@ -418,26 +386,17 @@ class _NavigationDemoScreenState extends State<NavigationDemoScreen>
 // Widgetbook Use Cases
 // ============================================================================
 
-@widgetbook.UseCase(
-  name: 'Basic Usage',
-  type: BasicTrackingScreen,
-)
+@widgetbook.UseCase(name: 'Basic Usage', type: BasicTrackingScreen)
 Widget basicUsageUseCase(BuildContext context) {
   return const BasicTrackingScreen();
 }
 
-@widgetbook.UseCase(
-  name: 'Custom Screen Name',
-  type: CustomNameScreen,
-)
+@widgetbook.UseCase(name: 'Custom Screen Name', type: CustomNameScreen)
 Widget customNameUseCase(BuildContext context) {
   return const CustomNameScreen();
 }
 
-@widgetbook.UseCase(
-  name: 'With Parameters',
-  type: ParametersTrackingScreen,
-)
+@widgetbook.UseCase(name: 'With Parameters', type: ParametersTrackingScreen)
 Widget parametersUseCase(BuildContext context) {
   return const ParametersTrackingScreen(
     userId: 'demo_user_456',
@@ -445,10 +404,7 @@ Widget parametersUseCase(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(
-  name: 'Navigation Demo',
-  type: NavigationDemoScreen,
-)
+@widgetbook.UseCase(name: 'Navigation Demo', type: NavigationDemoScreen)
 Widget navigationDemoUseCase(BuildContext context) {
   return const NavigationDemoScreen();
 }
