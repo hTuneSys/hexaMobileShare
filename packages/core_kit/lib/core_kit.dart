@@ -20,3 +20,4 @@ export 'widgets/inputs/app_dropdown.dart';
 export 'widgets/inputs/app_search_field.dart';
 export 'widgets/surfaces/app_list_tile.dart';
 export 'widgets/inputs/app_radio_group.dart';
+export 'widgets/inputs/app_slider.dart';
