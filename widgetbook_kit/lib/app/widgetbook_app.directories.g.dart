@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: 2025 hexaTune LLC
-// SPDX-License-Identifier: MIT
-
 // dart format width=80
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -28,8 +25,18 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_text_button_
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_checkbox_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_dropdown_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_password_field_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_radio_group_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_search_field_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_switch_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_text_field_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_list_tile_stories.dart'
@@ -530,6 +537,65 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
+            name: 'AppDropdown',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic String Dropdown',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .basicStringDropdown,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Objects Dropdown',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .customObjectsDropdown,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled Dropdown',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .disabledDropdown,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Dropdown with Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .dropdownWithError,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Dropdown with Icons',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .dropdownWithIcons,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Dropdown with Placeholder',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .dropdownWithPlaceholder,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Dropdown with Search',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .dropdownWithSearch,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Large List Dropdown',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .largeListDropdown,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Rich Items Dropdown',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .richItemsDropdown,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
             name: 'AppPasswordField',
             useCases: [
               _widgetbook.WidgetbookUseCase(
@@ -579,6 +645,218 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories
                         .passwordFieldWithError,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppRadioGroup',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'All States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
+                        .appRadioGroupAllStates,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
+                        .appRadioGroupDefault,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
+                        .appRadioGroupDisabled,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Error State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
+                        .appRadioGroupError,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Horizontal Layout',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
+                        .appRadioGroupHorizontal,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Pre-selected',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
+                        .appRadioGroupPreselected,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Descriptions',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
+                        .appRadioGroupWithDescriptions,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icons',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
+                        .appRadioGroupWithIcons,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppSearchField',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Auto Focus',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .autoFocusSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .basicSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Hint',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .customHintSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .disabledSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .loadingSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Submit Action',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .submitActionSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Clear Button',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .searchFieldWithClearButton,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Results',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .searchFieldWithResults,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppSwitch',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'All States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchStates,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchDefault,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Real-World Examples',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchExamples,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Settings List',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchSettingsList,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Theme Variations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchThemeVariations,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icons',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchIcons,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Labels',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchLabels,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppTextField',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldBasicUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Character Counter & Max Length',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldCharacterCounterUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Email & URL Input',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldEmailUrlUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Multiline (Text Area)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldMultilineUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Numeric Input with Formatter',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldNumericUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Search Field Variant',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldSearchUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'States (Disabled & Read-only)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldStatesUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icons',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldWithIconsUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Validation Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldErrorUseCase,
               ),
             ],
           ),
