@@ -16,7 +16,7 @@ Widget numericBadgeOnIcon(BuildContext context) {
     max: 150,
   );
 
-  final icon = context.knobs.list(
+  final icon = context.knobs.object.dropdown(
     label: 'Icon',
     options: const [
       Icons.notifications,
@@ -43,7 +43,7 @@ Widget dotBadge(BuildContext context) {
     initialValue: Colors.green,
   );
 
-  final childType = context.knobs.list(
+  final childType = context.knobs.object.dropdown(
     label: 'Child type',
     options: const ['avatar', 'icon', 'navigation_tab'],
     labelBuilder: (type) => type.replaceAll('_', ' '),
@@ -79,7 +79,7 @@ Widget dotBadge(BuildContext context) {
 // 3. Badge with custom position offset
 @widgetbook.UseCase(name: 'Custom Position', type: AppBadge)
 Widget customPosition(BuildContext context) {
-  final position = context.knobs.list(
+  final position = context.knobs.object.dropdown(
     label: 'Position',
     options: [
       BadgePosition.topEnd,
@@ -211,7 +211,7 @@ Widget customColors(BuildContext context) {
     max: 99,
   );
 
-  final colorScheme = context.knobs.list(
+  final colorScheme = context.knobs.object.dropdown(
     label: 'Quick color schemes',
     options: const ['success', 'warning', 'error', 'info', 'custom'],
     labelBuilder: (scheme) => scheme,
@@ -287,7 +287,7 @@ Widget autoHideBehavior(BuildContext context) {
 // 8. Multiple badges on different elements
 @widgetbook.UseCase(name: 'Multiple Badges', type: AppBadge)
 Widget multipleBadges(BuildContext context) {
-  final badgeType = context.knobs.list(
+  final badgeType = context.knobs.object.dropdown(
     label: 'Badge type',
     options: const ['notifications', 'messages', 'cart', 'user_status'],
     labelBuilder: (type) => type.replaceAll('_', ' '),
