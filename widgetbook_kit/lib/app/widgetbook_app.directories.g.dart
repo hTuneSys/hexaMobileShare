@@ -11,6 +11,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _widgetbook;
+import 'package:widgetbook_kit/stories/analytics_kit/analytics/screen_tracking_mixin_stories.dart'
+    as _widgetbook_kit_stories_analytics_kit_analytics_screen_tracking_mixin_stories;
 import 'package:widgetbook_kit/stories/core_kit/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_buttons_app_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_button_stories.dart'
@@ -35,8 +37,12 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_radio_group_s
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_search_field_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_slider_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_switch_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_text_field_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_list_tile_stories.dart'
@@ -45,6 +51,65 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_section_hea
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories;
 
 final directories = <_widgetbook.WidgetbookNode>[
+  _widgetbook.WidgetbookFolder(
+    name: 'stories',
+    children: [
+      _widgetbook.WidgetbookFolder(
+        name: 'analytics_kit',
+        children: [
+          _widgetbook.WidgetbookFolder(
+            name: 'analytics',
+            children: [
+              _widgetbook.WidgetbookComponent(
+                name: 'BasicTrackingScreen',
+                useCases: [
+                  _widgetbook.WidgetbookUseCase(
+                    name: 'Basic Usage',
+                    builder:
+                        _widgetbook_kit_stories_analytics_kit_analytics_screen_tracking_mixin_stories
+                            .basicUsageUseCase,
+                  ),
+                ],
+              ),
+              _widgetbook.WidgetbookComponent(
+                name: 'CustomNameScreen',
+                useCases: [
+                  _widgetbook.WidgetbookUseCase(
+                    name: 'Custom Screen Name',
+                    builder:
+                        _widgetbook_kit_stories_analytics_kit_analytics_screen_tracking_mixin_stories
+                            .customNameUseCase,
+                  ),
+                ],
+              ),
+              _widgetbook.WidgetbookComponent(
+                name: 'NavigationDemoScreen',
+                useCases: [
+                  _widgetbook.WidgetbookUseCase(
+                    name: 'Navigation Demo',
+                    builder:
+                        _widgetbook_kit_stories_analytics_kit_analytics_screen_tracking_mixin_stories
+                            .navigationDemoUseCase,
+                  ),
+                ],
+              ),
+              _widgetbook.WidgetbookComponent(
+                name: 'ParametersTrackingScreen',
+                useCases: [
+                  _widgetbook.WidgetbookUseCase(
+                    name: 'With Parameters',
+                    builder:
+                        _widgetbook_kit_stories_analytics_kit_analytics_screen_tracking_mixin_stories
+                            .parametersUseCase,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    ],
+  ),
   _widgetbook.WidgetbookFolder(
     name: 'widgets',
     children: [
@@ -813,6 +878,59 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
+            name: 'AppSlider',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic Continuous',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
+                        .appSliderBasicContinuous,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Formatter',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
+                        .appSliderCustomFormatter,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
+                        .appSliderDisabled,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Discrete with Divisions',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
+                        .appSliderDiscrete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Range Slider',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
+                        .appSliderRange,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Real-World Examples',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
+                        .appSliderRealWorld,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Min/Max Indicators',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
+                        .appSliderMinMaxIndicators,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Value Labels',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
+                        .appSliderValueLabels,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
             name: 'AppSwitch',
             useCases: [
               _widgetbook.WidgetbookUseCase(
@@ -856,6 +974,65 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
                         .appSwitchLabels,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppTextField',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldBasicUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Character Counter & Max Length',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldCharacterCounterUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Email & URL Input',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldEmailUrlUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Multiline (Text Area)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldMultilineUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Numeric Input with Formatter',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldNumericUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Search Field Variant',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldSearchUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'States (Disabled & Read-only)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldStatesUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icons',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldWithIconsUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Validation Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .buildAppTextFieldErrorUseCase,
               ),
             ],
           ),
