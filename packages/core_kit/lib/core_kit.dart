@@ -11,6 +11,7 @@ export 'theme/app_shadows.dart';
 
 // Widget exports
 export 'widgets/buttons/app_button.dart';
+export 'widgets/inputs/app_autocomplete_field.dart';
 export 'widgets/inputs/app_checkbox.dart';
 export 'widgets/inputs/app_password_field.dart';
 export 'widgets/inputs/app_text_field.dart';
