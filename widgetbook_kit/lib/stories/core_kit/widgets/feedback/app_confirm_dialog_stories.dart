@@ -306,7 +306,7 @@ class _AsyncLoadingDemoState extends State<_AsyncLoadingDemo> {
             context: context,
             barrierDismissible: !_isLoading,
             builder: (dialogContext) => StatefulBuilder(
-              builder: (context, setDialogState) {
+              builder: (builderContext, setDialogState) {
                 return AppConfirmDialog(
                   title: 'Delete Account?',
                   message:
@@ -317,9 +317,9 @@ class _AsyncLoadingDemoState extends State<_AsyncLoadingDemo> {
                   barrierDismissible: !_isLoading,
                   onConfirm: () async {
                     await _simulateAsyncOperation();
-                    if (mounted) {
+                    if (mounted && builderContext.mounted) {
                       Navigator.pop(dialogContext);
-                      ScaffoldMessenger.of(context).showSnackBar(
+                      ScaffoldMessenger.of(builderContext).showSnackBar(
                         const SnackBar(
                           content: Text('Account deleted successfully'),
                         ),
@@ -350,16 +350,9 @@ Widget customButtonLabelsStory(BuildContext context) {
 class _CustomButtonLabelsDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final labelPreset = context.knobs.list(
+    final labelPreset = context.knobs.string(
       label: 'Label Preset',
-      options: [
-        'English (Default)',
-        'Yes/No',
-        'Proceed/Go Back',
-        'Accept/Reject',
-        'Continue/Stop',
-      ],
-      initialOption: 'English (Default)',
+      initialValue: 'English (Default)',
     );
 
     String confirmLabel;
