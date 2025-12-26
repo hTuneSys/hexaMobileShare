@@ -371,7 +371,7 @@ void main() {
         of: find.byType(DraggableScrollableSheet),
         matching: find.byType(Container),
       );
-      
+
       expect(containers, findsWidgets);
       // Custom background color is applied (test passes if no exception)
     });

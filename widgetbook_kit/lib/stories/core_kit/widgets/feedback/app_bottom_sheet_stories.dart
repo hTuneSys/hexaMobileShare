@@ -88,8 +88,9 @@ Widget appBottomSheetScrollable(BuildContext context) {
     initialValue: false,
   );
 
-  final initialHeight =
-      useFullHeight ? AppBottomSheetHeight.full : AppBottomSheetHeight.half;
+  final initialHeight = useFullHeight
+      ? AppBottomSheetHeight.full
+      : AppBottomSheetHeight.half;
 
   return Center(
     child: ElevatedButton(
