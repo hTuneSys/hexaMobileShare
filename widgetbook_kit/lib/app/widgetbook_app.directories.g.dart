@@ -577,6 +577,65 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'inputs',
         children: [
           _widgetbook.WidgetbookComponent(
+            name: 'AppAutocompleteField',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Async API',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .asyncAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .basicAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Items',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .customItemAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Email Autocomplete',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .emailAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Empty State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .emptyStateAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Filter Strategies',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .filterStrategiesAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Free Text',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .freeTextAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .loadingStateAutocomplete,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
             name: 'AppCheckbox',
             useCases: [
               _widgetbook.WidgetbookUseCase(
