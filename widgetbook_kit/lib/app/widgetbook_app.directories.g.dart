@@ -516,6 +516,70 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookFolder(
+        name: 'chips',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AppFilterChip',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic Unselected',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .basicFilterChip,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Colors',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .filterChipCustomColors,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .disabledFilterChip,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Filter Group Demo',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .filterChipGroup,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .filterChipPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Selected State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .selectedFilterChip,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Avatar',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .filterChipWithAvatar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .filterChipWithIcon,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Tooltip',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .withTooltipChip,
+              ),
+            ],
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
         name: 'inputs',
         children: [
           _widgetbook.WidgetbookComponent(
