@@ -25,8 +25,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_outlined_but
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_text_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories;
-import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_confirm_dialog_stories.dart'
-    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_chip_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_checkbox_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_dropdown_stories.dart'
@@ -516,58 +516,58 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookFolder(
-        name: 'feedback',
+        name: 'chips',
         children: [
           _widgetbook.WidgetbookComponent(
-            name: 'AppConfirmDialog',
+            name: 'AppChip',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Async with Loading',
+                name: 'Assist Chips',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .asyncLoadingStory,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .assistChips,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Basic Confirmation',
+                name: 'Chip Group',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .basicConfirmationStory,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .chipGroup,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Custom Button Labels',
+                name: 'Custom Colors',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .customButtonLabelsStory,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .customColorChips,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Destructive Action',
+                name: 'Disabled State',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .destructiveActionStory,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .disabledChips,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Discard Changes',
+                name: 'Filter Chips',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .discardChangesStory,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .filterChips,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Don\'t Ask Again',
+                name: 'Input Chips',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .dontAskAgainStory,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .inputChips,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Non-Dismissible (Critical)',
+                name: 'Interactive Playground',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .nonDismissibleStory,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .interactivePlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Sign Out Confirmation',
+                name: 'Suggestion Chips',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .signOutConfirmationStory,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .suggestionChips,
               ),
             ],
           ),
@@ -576,6 +576,65 @@ final directories = <_widgetbook.WidgetbookNode>[
       _widgetbook.WidgetbookFolder(
         name: 'inputs',
         children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AppAutocompleteField',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Async API',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .asyncAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .basicAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Items',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .customItemAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Email Autocomplete',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .emailAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Empty State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .emptyStateAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Filter Strategies',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .filterStrategiesAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Free Text',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .freeTextAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .loadingStateAutocomplete,
+              ),
+            ],
+          ),
           _widgetbook.WidgetbookComponent(
             name: 'AppCheckbox',
             useCases: [
