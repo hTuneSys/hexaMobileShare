@@ -25,8 +25,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_outlined_but
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_text_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories;
-import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_badge_stories.dart'
-    as _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_chip_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_checkbox_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_dropdown_stories.dart'
@@ -519,55 +519,55 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'chips',
         children: [
           _widgetbook.WidgetbookComponent(
-            name: 'AppBadge',
+            name: 'AppChip',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Auto-Hide Behavior',
+                name: 'Assist Chips',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .autoHideBehavior,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .assistChips,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Chip Group',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .chipGroup,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Custom Colors',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .customColors,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .customColorChips,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Custom Position',
+                name: 'Disabled State',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .customPosition,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .disabledChips,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Dot Badge',
+                name: 'Filter Chips',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .dotBadge,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .filterChips,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Max Count Overflow',
+                name: 'Input Chips',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .maxCountOverflow,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .inputChips,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Multiple Badges',
+                name: 'Interactive Playground',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .multipleBadges,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .interactivePlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Numeric Badge on Icon',
+                name: 'Suggestion Chips',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .numericBadgeOnIcon,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Size Variants',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .sizeVariants,
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .suggestionChips,
               ),
             ],
           ),
@@ -576,6 +576,65 @@ final directories = <_widgetbook.WidgetbookNode>[
       _widgetbook.WidgetbookFolder(
         name: 'inputs',
         children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AppAutocompleteField',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Async API',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .asyncAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .basicAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Items',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .customItemAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Email Autocomplete',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .emailAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Empty State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .emptyStateAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Filter Strategies',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .filterStrategiesAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Free Text',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .freeTextAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .loadingStateAutocomplete,
+              ),
+            ],
+          ),
           _widgetbook.WidgetbookComponent(
             name: 'AppCheckbox',
             useCases: [
