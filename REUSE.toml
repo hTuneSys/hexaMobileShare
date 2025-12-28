@@ -1,5 +1,12 @@
 version = 1
 
+# Dart source files
+[[annotations]]
+path = ["**/*.dart"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 hexaTune LLC"
+SPDX-License-Identifier = "MIT"
+
 # Flutter/Dart auto-generated and build artifacts
 [[annotations]]
 path = [
@@ -17,7 +24,7 @@ path = [
   "**/*.freezed.dart",
   "**/*.mocks.dart",
 ]
-precedence = "aggregate"
+precedence = "override"
 SPDX-FileCopyrightText = "2025 hexaTune LLC"
 SPDX-License-Identifier = "MIT"
 
