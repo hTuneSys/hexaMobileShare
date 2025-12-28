@@ -428,7 +428,7 @@ class AppErrorState extends StatelessWidget {
       AppErrorType.network => colorScheme.error,
       AppErrorType.server => colorScheme.error,
       AppErrorType.notFound => colorScheme.primary,
-      AppErrorType.permission => const Color(0xFFFFA726), // Amber for warning
+      AppErrorType.permission => colorScheme.tertiary, // Warning color
       AppErrorType.generic => colorScheme.error,
     };
   }
@@ -460,7 +460,7 @@ enum AppErrorType {
   /// Permission and authorization errors (403).
   ///
   /// Icon: block
-  /// Color: warning (amber)
+  /// Color: tertiary (warning)
   permission,
 
   /// Generic or unknown errors.

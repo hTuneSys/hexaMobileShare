@@ -110,6 +110,69 @@ widgetbook_kit/
 └── test/
 ```
 
+### Widgetbook Story Requirements
+
+**IMPORTANT**: Every Widgetbook story file must follow these strict requirements:
+
+1. **Single Component Per Variant**
+   - Each variant (use case) must display **only one component instance**
+   - Do NOT show multiple instances, variations, or examples in a single variant
+   - Each variant should represent a specific state or configuration of the component
+
+2. **Interactive Playground Variant (MANDATORY)**
+   - Every story file **MUST** include an "Interactive Playground" variant
+   - This variant must expose **all component props as knobs**
+   - Users should be able to modify any property in real-time and see instant visual feedback
+   - Use appropriate knob types:
+     - `context.knobs.boolean()` for boolean props
+     - `context.knobs.string()` for string props
+     - `context.knobs.number()` for numeric props
+     - `context.knobs.list()` for enum/option props
+     - `context.knobs.colorOrNull()` for color props (returns nullable Color)
+   - The Interactive Playground should be the first variant in the story
+
+**Example Story Structure**:
+```dart
+@WidgetbookUseCase(name: 'Interactive Playground', type: MyButton)
+Widget interactivePlayground(BuildContext context) {
+  return MyButton(
+    label: context.knobs.string(label: 'Label', initialValue: 'Click Me'),
+    isEnabled: context.knobs.boolean(label: 'Enabled', initialValue: true),
+    variant: context.knobs.list(
+      label: 'Variant',
+      options: ['primary', 'secondary', 'outlined'],
+      initialOption: 'primary',
+    ),
+    size: context.knobs.number(label: 'Size', initialValue: 48).toDouble(),
+    onPressed: () {},
+  );
+}
+
+@WidgetbookUseCase(name: 'Primary Button', type: MyButton)
+Widget primaryButton(BuildContext context) {
+  return MyButton(
+    label: 'Primary',
+    variant: 'primary',
+    onPressed: () {},
+  );
+}
+
+@WidgetbookUseCase(name: 'Disabled State', type: MyButton)
+Widget disabledState(BuildContext context) {
+  return MyButton(
+    label: 'Disabled',
+    isEnabled: false,
+    onPressed: () {},
+  );
+}
+```
+
+**Key Points**:
+- Each variant shows ONE component in a specific state
+- Interactive Playground allows real-time exploration of all props
+- Other variants demonstrate specific use cases or states
+- Keep variants focused and purposeful
+
 ---
 
 ## Development Standards
@@ -309,27 +372,101 @@ Before approving a PR, verify:
 - Extract complex widgets into separate files
 - Follow Material Design 3 guidelines for UI consistency
 
-### 2. **State Management**
+### 2. **Material Design 3 - STRICT REQUIREMENTS**
+
+**⚠️ ABSOLUTE REQUIREMENT:** All UI components MUST strictly follow Material Design 3 guidelines. Custom styling outside of Material Design 3 is **PROHIBITED**.
+
+**DO NOT use:**
+- ❌ Custom CSS (Flutter doesn't use CSS)
+- ❌ Custom colors outside of Material Design 3 ColorScheme
+- ❌ Custom fonts outside of Material Design 3 Typography
+- ❌ Custom styling that contradicts Material Design 3 specifications
+- ❌ Arbitrary padding, margin, or spacing values
+- ❌ Custom elevation values outside Material Design 3 standards
+- ❌ Custom border radius values outside Material Design 3 standards
+
+**MUST use:**
+- ✅ Material Design 3 ColorScheme (`Theme.of(context).colorScheme`)
+- ✅ Material Design 3 TextTheme (`Theme.of(context).textTheme`)
+- ✅ Material Design 3 component variants (filled, outlined, text, etc.)
+- ✅ Material Design 3 spacing system (`AppSpacing` from core_kit)
+- ✅ Material Design 3 radius system (`AppRadius` from core_kit)
+- ✅ Material Design 3 elevation system (0, 1, 2, 3, 4, 6, 8, 12, 16, 24)
+- ✅ Material Design 3 motion and animation guidelines
+
+**Example - Correct Usage:**
+```dart
+// ✅ CORRECT - Using Material Design 3 ColorScheme
+Container(
+  color: Theme.of(context).colorScheme.primaryContainer,
+  child: Text(
+    'Hello',
+    style: Theme.of(context).textTheme.bodyLarge,
+  ),
+)
+
+// ✅ CORRECT - Using core_kit spacing
+Padding(
+  padding: EdgeInsets.all(AppSpacing.md),
+  child: child,
+)
+```
+
+**Example - Incorrect Usage:**
+```dart
+// ❌ WRONG - Custom colors
+Container(
+  color: Color(0xFF123456), // Custom hex color
+  child: child,
+)
+
+// ❌ WRONG - Custom font sizes
+Text(
+  'Hello',
+  style: TextStyle(fontSize: 17.5), // Arbitrary font size
+)
+
+// ❌ WRONG - Arbitrary spacing
+Padding(
+  padding: EdgeInsets.all(13.5), // Non-standard spacing
+  child: child,
+)
+```
+
+**Rationale:**
+- Ensures visual consistency across the entire application
+- Maintains accessibility standards (contrast, font scaling, etc.)
+- Enables automatic theme switching (light/dark mode)
+- Reduces maintenance burden
+- Follows industry best practices
+- Improves developer experience with predictable components
+
+**Resources:**
+- Material Design 3: https://m3.material.io
+- Flutter Material 3: https://docs.flutter.dev/ui/design/material
+- hexaMobileShare core_kit: Use components from `core_kit` package
+
+### 3. **State Management**
 
 - Use appropriate state management for the use case
 - Prefer immutability
 - Document state flow in complex features
 
-### 3. **Error Handling**
+### 4. **Error Handling**
 
 - Use typed exceptions (e.g., `AuthException`, `NetworkException`)
 - Provide meaningful error messages
 - Log errors appropriately (use `analytics_kit`)
 - Handle edge cases gracefully
 
-### 4. **Performance**
+### 5. **Performance**
 
 - Avoid rebuilding widgets unnecessarily
 - Use `ListView.builder` for long lists
 - Lazy-load data when appropriate
 - Profile performance-critical code
 
-### 5. **Accessibility**
+### 6. **Accessibility**
 
 - Use semantic labels for screen readers
 - Ensure sufficient color contrast
