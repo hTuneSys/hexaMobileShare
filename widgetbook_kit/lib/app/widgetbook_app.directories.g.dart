@@ -37,6 +37,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_bottom_shee
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_confirm_dialog_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_dialog_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_snackbar_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_autocomplete_field_stories.dart'
@@ -860,6 +862,65 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
                         .signOutConfirmationStory,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppDialog',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic Alert',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .basicAlert,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Confirmation Dialog',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .confirmationDialog,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Content',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .customContent,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Form Dialog',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .formDialog,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Full Screen',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .fullScreen,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Multi Action',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .multiAction,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Scrolling Content',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .scrollingContent,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .withIcon,
               ),
             ],
           ),
