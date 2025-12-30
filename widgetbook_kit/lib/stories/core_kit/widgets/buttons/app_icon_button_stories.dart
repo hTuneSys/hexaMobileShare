@@ -188,7 +188,7 @@ Widget appIconButtonToggle(BuildContext context) {
 @widgetbook.UseCase(name: 'Theme Variations', type: AppIconButton)
 Widget appIconButtonTheme(BuildContext context) {
   final dark = context.knobs.boolean(label: 'Dark mode', initialValue: false);
-  final colorOverride = context.knobs.color(label: 'Custom icon color');
+  final colorOverride = context.knobs.colorOrNull(label: 'Custom icon color');
   final ThemeData theme = dark
       ? ThemeData.dark(useMaterial3: true)
       : ThemeData.light(useMaterial3: true);
@@ -248,7 +248,7 @@ Widget appIconButtonPlayground(BuildContext context) {
     min: 16,
     max: 40,
   );
-  final color = context.knobs.color(label: 'Icon color');
+  final color = context.knobs.colorOrNull(label: 'Icon color');
   final icon = context.knobs.object.dropdown(
     label: 'Icon',
     options: const [
