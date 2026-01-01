@@ -105,9 +105,6 @@ void main() {
         ),
       );
 
-      final sizedBoxFinder = find.byType(SizedBox).first;
-      final Size size = tester.getSize(sizedBoxFinder);
-
       // We expect the first SizedBox (wrapping the illustration) to be 120x120
       // Note: The structure is Column -> [SizedBox(illustration), SizedBox(gap)...]
       // Getting the specific SizedBox might be tricky by type alone depending on impl details.
