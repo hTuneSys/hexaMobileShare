@@ -23,5 +23,6 @@ export 'widgets/surfaces/app_list_tile.dart';
 export 'widgets/surfaces/app_section_header.dart';
 export 'widgets/feedback/app_snackbar.dart';
 export 'widgets/navigation/app_app_bar.dart';
+export 'widgets/navigation/app_drawer.dart';
 export 'widgets/chips/app_badge.dart';
 export 'widgets/chips/app_chip.dart';

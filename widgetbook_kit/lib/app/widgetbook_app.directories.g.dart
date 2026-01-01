@@ -59,6 +59,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_text_field_st
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/navigation/app_app_bar_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/navigation/app_drawer_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_list_tile_stories.dart'
@@ -1513,6 +1515,65 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
                         .withTabs,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppDrawer',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic Drawer',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerBasic,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerInteractivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'RTL Support',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerRTL,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Selection States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerSelectionStates,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Badges',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithBadges,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Expandable Sections',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithExpandableSections,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Footer',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithFooter,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Profile Header',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithHeader,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Sections',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithSections,
               ),
             ],
           ),
