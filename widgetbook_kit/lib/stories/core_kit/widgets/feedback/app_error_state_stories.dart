@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import 'package:flutter/material.dart';
+import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:core_kit/core_kit.dart';
 
@@ -92,7 +93,6 @@ Widget genericErrorStory(BuildContext context) {
 @widgetbook.UseCase(name: 'Full-Screen Variant', type: AppErrorState)
 Widget fullScreenVariantStory(BuildContext context) {
   return Scaffold(
-    appBar: AppBar(title: const Text('Full-Screen Error')),
     body: AppErrorState.network(
       variant: AppErrorStateVariant.fullScreen,
       onRetry: () {
@@ -106,7 +106,6 @@ Widget fullScreenVariantStory(BuildContext context) {
 @widgetbook.UseCase(name: 'Compact Variant', type: AppErrorState)
 Widget compactVariantStory(BuildContext context) {
   return Scaffold(
-    appBar: AppBar(title: const Text('Compact Error')),
     body: SingleChildScrollView(
       child: Column(
         children: [
@@ -208,103 +207,102 @@ Widget authenticationErrorStory(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'All Error Types Comparison', type: AppErrorState)
-Widget allErrorTypesStory(BuildContext context) {
+// Interactive Playground - Experiment with all properties
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppErrorState)
+Widget interactivePlaygroundStory(BuildContext context) {
   return Scaffold(
-    appBar: AppBar(title: const Text('Error Types Comparison')),
-    body: SingleChildScrollView(
-      child: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              'Compare all error types side by side',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          ),
-          _buildErrorTypeCard(
-            context,
-            'Network',
-            AppErrorState(
-              title: 'Network Error',
-              description: 'No connection available.',
-              errorType: AppErrorType.network,
-              variant: AppErrorStateVariant.compact,
-              onRetry: () {},
-            ),
-          ),
-          _buildErrorTypeCard(
-            context,
-            'Server',
-            AppErrorState(
-              title: 'Server Error',
-              description: 'Internal server error.',
-              errorType: AppErrorType.server,
-              variant: AppErrorStateVariant.compact,
-              onRetry: () {},
-            ),
-          ),
-          _buildErrorTypeCard(
-            context,
-            'Not Found',
-            AppErrorState(
-              title: 'Not Found',
-              description: 'Resource not found.',
-              errorType: AppErrorType.notFound,
-              variant: AppErrorStateVariant.compact,
-              onRetry: () {},
-            ),
-          ),
-          _buildErrorTypeCard(
-            context,
-            'Permission',
-            AppErrorState(
-              title: 'Permission Denied',
-              description: 'Access not allowed.',
-              errorType: AppErrorType.permission,
-              variant: AppErrorStateVariant.compact,
-              onRetry: () {},
-            ),
-          ),
-          _buildErrorTypeCard(
-            context,
-            'Generic',
-            AppErrorState(
-              title: 'Generic Error',
-              description: 'Something went wrong.',
-              errorType: AppErrorType.generic,
-              variant: AppErrorStateVariant.compact,
-              onRetry: () {},
-            ),
-          ),
-        ],
+    body: AppErrorState(
+      title: context.knobs.string(
+        label: 'Title',
+        initialValue: 'Something went wrong',
+        description: 'Error title displayed to the user',
       ),
-    ),
-  );
-}
-
-Widget _buildErrorTypeCard(
-  BuildContext context,
-  String label,
-  Widget errorState,
-) {
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-    padding: const EdgeInsets.all(16.0),
-    decoration: BoxDecoration(
-      border: Border.all(color: Colors.grey.shade300),
-      borderRadius: BorderRadius.circular(8),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-        ),
-        const SizedBox(height: 8),
-        errorState,
-      ],
+      description: context.knobs.string(
+        label: 'Description',
+        initialValue: 'An unexpected error occurred. Please try again.',
+        description: 'Detailed error description',
+      ),
+      errorType: context.knobs.list(
+        label: 'Error Type',
+        options: [
+          AppErrorType.network,
+          AppErrorType.server,
+          AppErrorType.notFound,
+          AppErrorType.permission,
+          AppErrorType.generic,
+        ],
+        labelBuilder: (type) {
+          switch (type) {
+            case AppErrorType.network:
+              return 'Network';
+            case AppErrorType.server:
+              return 'Server';
+            case AppErrorType.notFound:
+              return 'Not Found';
+            case AppErrorType.permission:
+              return 'Permission';
+            case AppErrorType.generic:
+              return 'Generic';
+          }
+        },
+        description: 'Semantic error type (affects icon and color)',
+      ),
+      variant: context.knobs.list(
+        label: 'Variant',
+        options: [
+          AppErrorStateVariant.fullScreen,
+          AppErrorStateVariant.compact,
+        ],
+        labelBuilder: (variant) {
+          switch (variant) {
+            case AppErrorStateVariant.fullScreen:
+              return 'Full Screen';
+            case AppErrorStateVariant.compact:
+              return 'Compact';
+          }
+        },
+        description: 'Display variant (full-screen or inline)',
+      ),
+      errorCode: context.knobs.stringOrNull(
+        label: 'Error Code',
+        initialValue: 'ERR_001',
+        description: 'Optional error code for debugging',
+      ),
+      onRetry:
+          context.knobs.boolean(
+            label: 'Show Retry Button',
+            initialValue: true,
+            description: 'Display retry action button',
+          )
+          ? () {
+              debugPrint('Retry button tapped');
+            }
+          : null,
+      retryButtonLabel: context.knobs.string(
+        label: 'Retry Button Label',
+        initialValue: 'Retry',
+        description: 'Custom label for retry button',
+      ),
+      onSecondaryAction:
+          context.knobs.boolean(
+            label: 'Show Secondary Button',
+            initialValue: false,
+            description: 'Display secondary action button',
+          )
+          ? () {
+              debugPrint('Secondary button tapped');
+            }
+          : null,
+      secondaryButtonLabel: context.knobs.string(
+        label: 'Secondary Button Label',
+        initialValue: 'Go Back',
+        description: 'Custom label for secondary button',
+      ),
+      showStackTrace: context.knobs.boolean(
+        label: 'Show Stack Trace',
+        initialValue: false,
+        description: 'Display stack trace (debug mode only)',
+      ),
     ),
   );
 }

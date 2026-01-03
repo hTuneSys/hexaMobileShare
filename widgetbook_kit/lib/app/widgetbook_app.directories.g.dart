@@ -37,6 +37,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_bottom_shee
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_confirm_dialog_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_error_state_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_snackbar_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_autocomplete_field_stories.dart'
@@ -860,6 +862,77 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
                         .signOutConfirmationStory,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppErrorState',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Authentication Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .authenticationErrorStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Compact Variant',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .compactVariantStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Full-Screen Variant',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .fullScreenVariantStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Generic Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .genericErrorStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .interactivePlaygroundStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Network Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .networkErrorStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Not Found (404)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .notFoundErrorStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Permission Denied',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .permissionDeniedStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Server Error (500)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .serverErrorStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Timeout Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .timeoutErrorStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Stack Trace (Debug)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .errorWithStackTraceStory,
               ),
             ],
           ),

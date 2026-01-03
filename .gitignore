@@ -40,3 +40,7 @@ android/local.properties
 **/windows/flutter/ephemeral/
 
 .vscode/
+
+# Test output files
+**/test_output*
+test_output.txt
