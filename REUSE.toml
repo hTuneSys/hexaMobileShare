@@ -23,9 +23,8 @@ path = [
   "**/*.g.dart",
   "**/*.freezed.dart",
   "**/*.mocks.dart",
-  "**/test_output*",
 ]
-precedence = "override"
+precedence = "aggregate"
 SPDX-FileCopyrightText = "2025 hexaTune LLC"
 SPDX-License-Identifier = "MIT"
 
