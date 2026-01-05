@@ -15,6 +15,8 @@ import 'package:widgetbook_kit/stories/analytics_kit/analytics/screen_tracking_m
     as _widgetbook_kit_stories_analytics_kit_analytics_screen_tracking_mixin_stories;
 import 'package:widgetbook_kit/stories/core_kit/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_buttons_app_button_stories;
+import 'package:widgetbook_kit/stories/core_kit/feedback/app_empty_state_stories.dart'
+    as _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_fab_stories.dart'
@@ -39,6 +41,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_confirm_dia
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_error_state_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_dialog_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_snackbar_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_autocomplete_field_stories.dart'
@@ -61,6 +65,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_text_field_st
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/navigation/app_app_bar_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/navigation/app_drawer_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_list_tile_stories.dart'
@@ -866,73 +872,61 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
-            name: 'AppErrorState',
+            name: 'AppDialog',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Authentication Error',
+                name: 'Basic Alert',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .authenticationErrorStory,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .basicAlert,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Compact Variant',
+                name: 'Confirmation Dialog',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .compactVariantStory,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .confirmationDialog,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Full-Screen Variant',
+                name: 'Custom Content',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .fullScreenVariantStory,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .customContent,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Generic Error',
+                name: 'Form Dialog',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .genericErrorStory,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .formDialog,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Full Screen',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .fullScreen,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .interactivePlaygroundStory,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .interactivePlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Network Error',
+                name: 'Multi Action',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .networkErrorStory,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .multiAction,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Not Found (404)',
+                name: 'Scrolling Content',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .notFoundErrorStory,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .scrollingContent,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Permission Denied',
+                name: 'With Icon',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .permissionDeniedStory,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Server Error (500)',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .serverErrorStory,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Timeout Error',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .timeoutErrorStory,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'With Stack Trace (Debug)',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .errorWithStackTraceStory,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .withIcon,
               ),
             ],
           ),
@@ -1586,6 +1580,65 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
                         .withTabs,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppDrawer',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic Drawer',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerBasic,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerInteractivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'RTL Support',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerRTL,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Selection States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerSelectionStates,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Badges',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithBadges,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Expandable Sections',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithExpandableSections,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Footer',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithFooter,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Profile Header',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithHeader,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Sections',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithSections,
               ),
             ],
           ),
