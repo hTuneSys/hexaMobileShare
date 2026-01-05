@@ -33,6 +33,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_chip_stories.d
     as _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_filter_chip_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_input_chip_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_tag_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_bottom_sheet_stories.dart'
@@ -41,6 +43,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_confirm_dia
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_dialog_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_loading_state_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_snackbar_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_autocomplete_field_stories.dart'
@@ -706,6 +710,65 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
+            name: 'AppInputChip',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Chip Group',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipGroup,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Colors',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipCustomColors,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipDisabled,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Email Recipients',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipEmailRecipients,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'File Attachment',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipFileAttachment,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Selected State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipSelected,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Avatar and Label',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipWithAvatar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Delete Button',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipWithDelete,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
             name: 'AppTag',
             useCases: [
               _widgetbook.WidgetbookUseCase(
@@ -925,6 +988,112 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
                         .withIcon,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppEmptyState',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Compact Mode',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .compactMode,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default (Title Only)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .defaultAppEmptyState,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Full Actions (Shopping Cart)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .fullActions,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Description',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .withDescription,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .withIcon,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Illustration',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .withIllustration,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppLoadingState',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Circular Spinner (Indeterminate)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .circularSpinner,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Full-Screen Loading Overlay',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .fullScreenOverlay,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Inline Loading (Within Button)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .inlineLoading,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Linear Progress Bar (Determinate)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .linearProgressBar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading with Cancel Button',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .loadingWithCancel,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading with Custom Message',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .loadingWithMessage,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading with Progress Percentage',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .loadingWithPercentage,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Skeleton Screen (List Items)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .skeletonScreen,
               ),
             ],
           ),
