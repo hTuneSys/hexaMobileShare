@@ -222,9 +222,12 @@ Widget interactivePlaygroundStory(BuildContext context) {
         initialValue: 'An unexpected error occurred. Please try again.',
         description: 'Detailed error description',
       ),
-      errorType: context.knobs.list(
+
+      // ✅ REPLACED: context.knobs.list -> context.knobs.object.dropdown
+      errorType: context.knobs.object.dropdown<AppErrorType>(
         label: 'Error Type',
-        options: [
+        initialValue: AppErrorType.network,
+        options: const [
           AppErrorType.network,
           AppErrorType.server,
           AppErrorType.notFound,
@@ -247,9 +250,12 @@ Widget interactivePlaygroundStory(BuildContext context) {
         },
         description: 'Semantic error type (affects icon and color)',
       ),
-      variant: context.knobs.list(
+
+      // ✅ REPLACED: context.knobs.list -> context.knobs.object.dropdown
+      variant: context.knobs.object.dropdown<AppErrorStateVariant>(
         label: 'Variant',
-        options: [
+        initialValue: AppErrorStateVariant.fullScreen,
+        options: const [
           AppErrorStateVariant.fullScreen,
           AppErrorStateVariant.compact,
         ],
@@ -263,35 +269,30 @@ Widget interactivePlaygroundStory(BuildContext context) {
         },
         description: 'Display variant (full-screen or inline)',
       ),
+
       errorCode: context.knobs.stringOrNull(
         label: 'Error Code',
         initialValue: 'ERR_001',
         description: 'Optional error code for debugging',
       ),
-      onRetry:
-          context.knobs.boolean(
-            label: 'Show Retry Button',
-            initialValue: true,
-            description: 'Display retry action button',
-          )
-          ? () {
-              debugPrint('Retry button tapped');
-            }
+      onRetry: context.knobs.boolean(
+        label: 'Show Retry Button',
+        initialValue: true,
+        description: 'Display retry action button',
+      )
+          ? () => debugPrint('Retry button tapped')
           : null,
       retryButtonLabel: context.knobs.string(
         label: 'Retry Button Label',
         initialValue: 'Retry',
         description: 'Custom label for retry button',
       ),
-      onSecondaryAction:
-          context.knobs.boolean(
-            label: 'Show Secondary Button',
-            initialValue: false,
-            description: 'Display secondary action button',
-          )
-          ? () {
-              debugPrint('Secondary button tapped');
-            }
+      onSecondaryAction: context.knobs.boolean(
+        label: 'Show Secondary Button',
+        initialValue: false,
+        description: 'Display secondary action button',
+      )
+          ? () => debugPrint('Secondary button tapped')
           : null,
       secondaryButtonLabel: context.knobs.string(
         label: 'Secondary Button Label',
