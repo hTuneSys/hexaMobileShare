@@ -33,6 +33,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_chip_stories.d
     as _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_filter_chip_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_input_chip_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_tag_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_bottom_sheet_stories.dart'
@@ -63,6 +65,8 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_text_field_st
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/navigation/app_app_bar_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/navigation/app_bottom_navigation_bar_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/navigation/app_drawer_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
@@ -706,6 +710,65 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
+            name: 'AppInputChip',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Chip Group',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipGroup,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Colors',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipCustomColors,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipDisabled,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Email Recipients',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipEmailRecipients,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'File Attachment',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipFileAttachment,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Selected State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipSelected,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Avatar and Label',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipWithAvatar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Delete Button',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipWithDelete,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
             name: 'AppTag',
             useCases: [
               _widgetbook.WidgetbookUseCase(
@@ -925,6 +988,53 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
                         .withIcon,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppEmptyState',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Compact Mode',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .compactMode,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default (Title Only)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .defaultAppEmptyState,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Full Actions (Shopping Cart)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .fullActions,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Description',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .withDescription,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .withIcon,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Illustration',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .withIllustration,
               ),
             ],
           ),
@@ -1578,6 +1688,59 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
                         .withTabs,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppBottomNavigationBar',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: '3 Destinations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .threeDestinations,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: '5 Destinations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .fiveDestinations,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Colors',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .customColors,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Icon Only (No Labels)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .iconOnly,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Count Badges',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .withCountBadges,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Dot Badges',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .withDotBadges,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Page Controller',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .withPageController,
               ),
             ],
           ),
