@@ -223,10 +223,9 @@ Widget interactivePlaygroundStory(BuildContext context) {
         description: 'Detailed error description',
       ),
 
-      // ✅ REPLACED: context.knobs.list -> context.knobs.object.dropdown
       errorType: context.knobs.object.dropdown<AppErrorType>(
         label: 'Error Type',
-        initialValue: AppErrorType.network,
+        initialOption: AppErrorType.network,
         options: const [
           AppErrorType.network,
           AppErrorType.server,
@@ -248,13 +247,10 @@ Widget interactivePlaygroundStory(BuildContext context) {
               return 'Generic';
           }
         },
-        description: 'Semantic error type (affects icon and color)',
       ),
-
-      // ✅ REPLACED: context.knobs.list -> context.knobs.object.dropdown
       variant: context.knobs.object.dropdown<AppErrorStateVariant>(
         label: 'Variant',
-        initialValue: AppErrorStateVariant.fullScreen,
+        initialOption: AppErrorStateVariant.fullScreen,
         options: const [
           AppErrorStateVariant.fullScreen,
           AppErrorStateVariant.compact,
@@ -267,9 +263,7 @@ Widget interactivePlaygroundStory(BuildContext context) {
               return 'Compact';
           }
         },
-        description: 'Display variant (full-screen or inline)',
       ),
-
       errorCode: context.knobs.stringOrNull(
         label: 'Error Code',
         initialValue: 'ERR_001',
