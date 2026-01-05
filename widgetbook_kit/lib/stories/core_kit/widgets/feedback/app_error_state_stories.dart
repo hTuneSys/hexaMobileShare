@@ -275,11 +275,12 @@ Widget interactivePlaygroundStory(BuildContext context) {
         initialValue: 'ERR_001',
         description: 'Optional error code for debugging',
       ),
-      onRetry: context.knobs.boolean(
-        label: 'Show Retry Button',
-        initialValue: true,
-        description: 'Display retry action button',
-      )
+      onRetry:
+          context.knobs.boolean(
+            label: 'Show Retry Button',
+            initialValue: true,
+            description: 'Display retry action button',
+          )
           ? () => debugPrint('Retry button tapped')
           : null,
       retryButtonLabel: context.knobs.string(
@@ -287,11 +288,12 @@ Widget interactivePlaygroundStory(BuildContext context) {
         initialValue: 'Retry',
         description: 'Custom label for retry button',
       ),
-      onSecondaryAction: context.knobs.boolean(
-        label: 'Show Secondary Button',
-        initialValue: false,
-        description: 'Display secondary action button',
-      )
+      onSecondaryAction:
+          context.knobs.boolean(
+            label: 'Show Secondary Button',
+            initialValue: false,
+            description: 'Display secondary action button',
+          )
           ? () => debugPrint('Secondary button tapped')
           : null,
       secondaryButtonLabel: context.knobs.string(
