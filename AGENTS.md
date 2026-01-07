@@ -114,14 +114,22 @@ widgetbook_kit/
 
 **IMPORTANT**: Every Widgetbook story file must follow these strict requirements:
 
-1. **Single Component Per Variant**
+1. **Required Number of Variants**
+   - Each component story **MUST** have between **5-10 variants** (use cases)
+   - This ensures comprehensive coverage of component states and configurations
+   - Include common use cases, edge cases, and different visual states
+
+2. **Single Component Per Variant**
    - Each variant (use case) must display **only one component instance**
    - Do NOT show multiple instances, variations, or examples in a single variant
    - Each variant should represent a specific state or configuration of the component
 
-2. **Interactive Playground Variant (MANDATORY)**
+3. **Interactive Playground Variant (MANDATORY)**
    - Every story file **MUST** include an "Interactive Playground" variant
-   - This variant must expose **all component props as knobs**
+   - This variant must be the **first variant** in the story
+   - This variant must display **only ONE component instance**
+   - This variant must expose **ALL component props as knobs**
+   - Every single property of the component must be adjustable via knobs
    - Users should be able to modify any property in real-time and see instant visual feedback
    - Use appropriate knob types:
      - `context.knobs.boolean()` for boolean props
@@ -129,7 +137,8 @@ widgetbook_kit/
      - `context.knobs.number()` for numeric props
      - `context.knobs.list()` for enum/option props
      - `context.knobs.colorOrNull()` for color props (returns nullable Color)
-   - The Interactive Playground should be the first variant in the story
+   - **CRITICAL**: Do NOT show multiple component instances in Interactive Playground
+   - **CRITICAL**: ALL component properties must have corresponding knobs
 
 **Example Story Structure**:
 ```dart

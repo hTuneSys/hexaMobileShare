@@ -41,14 +41,14 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_bottom_shee
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_confirm_dialog_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories;
-import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_error_state_stories.dart'
-    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_dialog_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories;
-import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_loading_state_stories.dart'
-    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_error_state_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_snackbar_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_toast_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_autocomplete_field_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_checkbox_stories.dart'
@@ -1045,61 +1045,73 @@ final directories = <_widgetbook.WidgetbookNode>[
             ],
           ),
           _widgetbook.WidgetbookComponent(
-            name: 'AppLoadingState',
+            name: 'AppErrorState',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Circular Spinner (Indeterminate)',
+                name: 'Authentication Error',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
-                        .circularSpinner,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .authenticationErrorStory,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Full-Screen Loading Overlay',
+                name: 'Compact Variant',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
-                        .fullScreenOverlay,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .compactVariantStory,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Inline Loading (Within Button)',
+                name: 'Full-Screen Variant',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
-                        .inlineLoading,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .fullScreenVariantStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Generic Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .genericErrorStory,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
-                        .interactivePlayground,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .interactivePlaygroundStory,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Linear Progress Bar (Determinate)',
+                name: 'Network Error',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
-                        .linearProgressBar,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .networkErrorStory,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Loading with Cancel Button',
+                name: 'Not Found (404)',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
-                        .loadingWithCancel,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .notFoundErrorStory,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Loading with Custom Message',
+                name: 'Permission Denied',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
-                        .loadingWithMessage,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .permissionDeniedStory,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Loading with Progress Percentage',
+                name: 'Server Error (500)',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
-                        .loadingWithPercentage,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .serverErrorStory,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Skeleton Screen (List Items)',
+                name: 'Timeout Error',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
-                        .skeletonScreen,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .timeoutErrorStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Stack Trace (Debug)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
+                        .errorWithStackTraceStory,
               ),
             ],
           ),
@@ -1171,6 +1183,77 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
                         .appSnackbarWithIcon,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppToast',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic Toast',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
+                        .appToastBasic,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Copied to Clipboard',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
+                        .appToastCopied,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Duration Variants',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
+                        .appToastDuration,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Error Toast',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
+                        .appToastError,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Info Toast',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
+                        .appToastInfo,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
+                        .appToastPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Long Message Toast',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
+                        .appToastLongMessage,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Success Toast',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
+                        .appToastSuccess,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Toast Queue',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
+                        .appToastQueue,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Warning Toast',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
+                        .appToastWarning,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Custom Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
+                        .appToastWithIcon,
               ),
             ],
           ),
