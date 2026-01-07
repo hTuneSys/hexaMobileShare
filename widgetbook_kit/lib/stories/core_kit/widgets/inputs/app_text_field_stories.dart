@@ -1,374 +1,249 @@
 // SPDX-FileCopyrightText: 2025 hexaTune LLC
 // SPDX-License-Identifier: MIT
 
-import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+import 'package:core_kit/core_kit.dart';
 
 /// Widgetbook stories for [AppTextField] component.
 ///
-/// Demonstrates various configurations and use cases for the Material Design 3
-/// text field component, including basic fields, validation states, specialized
-/// input types, and interactive features.
+/// A Material Design 3 text input component with consistent styling and theming.
 
-@widgetbook.UseCase(name: 'Basic', type: AppTextField)
-Widget buildAppTextFieldBasicUseCase(BuildContext context) {
+/// Interactive Playground - explore all AppTextField properties with knobs
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppTextField)
+Widget appTextFieldPlayground(BuildContext context) {
+  final hasLabel = context.knobs.boolean(
+    label: 'Has Label',
+    initialValue: true,
+  );
+  final hasHint = context.knobs.boolean(label: 'Has Hint', initialValue: true);
+  final hasHelperText = context.knobs.boolean(
+    label: 'Has Helper Text',
+    initialValue: false,
+  );
+  final hasError = context.knobs.boolean(
+    label: 'Has Error',
+    initialValue: false,
+  );
+  final hasPrefixIcon = context.knobs.boolean(
+    label: 'Has Prefix Icon',
+    initialValue: false,
+  );
+  final hasSuffixIcon = context.knobs.boolean(
+    label: 'Has Suffix Icon',
+    initialValue: false,
+  );
+  final obscureText = context.knobs.boolean(
+    label: 'Obscure Text',
+    initialValue: false,
+  );
+  final enabled = context.knobs.boolean(label: 'Enabled', initialValue: true);
+  final readOnly = context.knobs.boolean(
+    label: 'Read Only',
+    initialValue: false,
+  );
+  final hasMaxLength = context.knobs.boolean(
+    label: 'Has Max Length',
+    initialValue: false,
+  );
+
+  final label = hasLabel
+      ? context.knobs.string(label: 'Label', initialValue: 'Label text')
+      : null;
+  final hint = hasHint
+      ? context.knobs.string(label: 'Hint', initialValue: 'Enter text here')
+      : null;
+  final helperText = hasHelperText
+      ? context.knobs.string(
+          label: 'Helper Text',
+          initialValue: 'Helper text goes here',
+        )
+      : null;
+  final errorText = hasError
+      ? context.knobs.string(
+          label: 'Error Text',
+          initialValue: 'This field has an error',
+        )
+      : null;
+  final maxLength = hasMaxLength
+      ? context.knobs.int.slider(
+          label: 'Max Length',
+          initialValue: 50,
+          min: 10,
+          max: 200,
+        )
+      : null;
+
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AppTextField(
-            label: 'Full Name',
-            hint: 'Enter your full name',
-            helperText: 'Your first and last name',
-            onChanged: (value) => debugPrint('Name: $value'),
-          ),
-          const SizedBox(height: 24),
-          AppTextField(
-            label: 'Bio',
-            hint: 'Tell us about yourself',
-            helperText: 'Optional',
-            textCapitalization: TextCapitalization.sentences,
-          ),
-        ],
+      child: AppTextField(
+        label: label,
+        hint: hint,
+        helperText: helperText,
+        errorText: errorText,
+        prefixIcon: hasPrefixIcon ? Icons.text_fields : null,
+        suffixIcon: hasSuffixIcon ? Icons.clear : null,
+        obscureText: obscureText,
+        enabled: enabled,
+        readOnly: readOnly,
+        maxLength: maxLength,
+        onChanged: (_) {},
       ),
     ),
   );
 }
 
-@widgetbook.UseCase(name: 'With Validation Error', type: AppTextField)
-Widget buildAppTextFieldErrorUseCase(BuildContext context) {
-  final emailController = TextEditingController(text: 'invalid-email');
-  final passwordController = TextEditingController(text: '123');
-
-  return Center(
+/// Default - Basic text field
+@widgetbook.UseCase(name: 'Default', type: AppTextField)
+Widget appTextFieldDefault(BuildContext context) {
+  return const Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AppTextField(
-            controller: emailController,
-            label: 'Email',
-            hint: 'example@email.com',
-            errorText: 'Please enter a valid email address',
-            keyboardType: TextInputType.emailAddress,
-          ),
-          const SizedBox(height: 24),
-          AppTextField(
-            controller: passwordController,
-            label: 'Password',
-            hint: 'Enter password',
-            errorText: 'Password must be at least 8 characters',
-            obscureText: true,
-          ),
-        ],
+      padding: EdgeInsets.all(16.0),
+      child: AppTextField(
+        label: 'Full Name',
+        hint: 'Enter your full name',
+        helperText: 'Your first and last name',
       ),
     ),
   );
 }
 
-@widgetbook.UseCase(name: 'Multiline (Text Area)', type: AppTextField)
-Widget buildAppTextFieldMultilineUseCase(BuildContext context) {
-  return Center(
+/// With Error - Text field with validation error
+@widgetbook.UseCase(name: 'With Error', type: AppTextField)
+Widget appTextFieldWithError(BuildContext context) {
+  return const Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AppTextField.multiline(
-            label: 'Description',
-            hint: 'Enter a detailed description...',
-            helperText: 'Maximum 500 characters',
-            maxLength: 500,
-            maxLines: 5,
-            minLines: 3,
-          ),
-          const SizedBox(height: 24),
-          AppTextField.multiline(
-            label: 'Comments',
-            hint: 'Share your thoughts',
-            maxLines: 8,
-            minLines: 4,
-          ),
-        ],
+      padding: EdgeInsets.all(16.0),
+      child: AppTextField(
+        label: 'Email',
+        hint: 'example@email.com',
+        errorText: 'Please enter a valid email address',
       ),
     ),
   );
 }
 
-@widgetbook.UseCase(name: 'With Icons', type: AppTextField)
-Widget buildAppTextFieldWithIconsUseCase(BuildContext context) {
-  final searchController = TextEditingController();
-  final passwordController = TextEditingController();
-
-  return Center(
+/// Multiline - Text area with multiple lines
+@widgetbook.UseCase(name: 'Multiline', type: AppTextField)
+Widget appTextFieldMultiline(BuildContext context) {
+  return const Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AppTextField(
-            controller: searchController,
-            label: 'Search',
-            hint: 'Search for items...',
-            prefixIcon: Icons.search,
-            suffixIcon: Icons.clear,
-            onSuffixIconTap: () {
-              searchController.clear();
-              debugPrint('Search cleared');
-            },
-          ),
-          const SizedBox(height: 24),
-          AppTextField(
-            controller: passwordController,
-            label: 'Password',
-            hint: 'Enter your password',
-            prefixIcon: Icons.lock_outline,
-            suffixIcon: Icons.visibility_off,
-            obscureText: true,
-            onSuffixIconTap: () {
-              debugPrint('Toggle password visibility');
-            },
-          ),
-          const SizedBox(height: 24),
-          AppTextField(
-            label: 'Email',
-            hint: 'your.email@example.com',
-            prefixIcon: Icons.email_outlined,
-            keyboardType: TextInputType.emailAddress,
-          ),
-        ],
+      padding: EdgeInsets.all(16.0),
+      child: AppTextField.multiline(
+        label: 'Description',
+        hint: 'Enter a detailed description...',
+        helperText: 'Maximum 500 characters',
+        maxLength: 500,
+        maxLines: 5,
+        minLines: 3,
       ),
     ),
   );
 }
 
-@widgetbook.UseCase(name: 'States (Disabled & Read-only)', type: AppTextField)
-Widget buildAppTextFieldStatesUseCase(BuildContext context) {
-  final disabledController = TextEditingController(text: 'Disabled content');
-  final readOnlyController = TextEditingController(
+/// With Prefix Icon - Text field with leading icon
+@widgetbook.UseCase(name: 'With Prefix Icon', type: AppTextField)
+Widget appTextFieldWithPrefixIcon(BuildContext context) {
+  return const Center(
+    child: Padding(
+      padding: EdgeInsets.all(16.0),
+      child: AppTextField(
+        label: 'Email',
+        hint: 'your.email@example.com',
+        prefixIcon: Icons.email_outlined,
+      ),
+    ),
+  );
+}
+
+/// With Suffix Icon - Text field with trailing icon
+@widgetbook.UseCase(name: 'With Suffix Icon', type: AppTextField)
+Widget appTextFieldWithSuffixIcon(BuildContext context) {
+  final controller = TextEditingController(text: 'Some text');
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppTextField(
+        controller: controller,
+        label: 'Search',
+        hint: 'Search for items...',
+        prefixIcon: Icons.search,
+        suffixIcon: Icons.clear,
+        onSuffixIconTap: () => controller.clear(),
+      ),
+    ),
+  );
+}
+
+/// Disabled - Non-editable text field
+@widgetbook.UseCase(name: 'Disabled', type: AppTextField)
+Widget appTextFieldDisabled(BuildContext context) {
+  final controller = TextEditingController(text: 'Disabled content');
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppTextField(
+        controller: controller,
+        label: 'Disabled Field',
+        hint: 'Cannot type here',
+        helperText: 'This field is disabled',
+        enabled: false,
+      ),
+    ),
+  );
+}
+
+/// Read Only - Selectable but not editable
+@widgetbook.UseCase(name: 'Read Only', type: AppTextField)
+Widget appTextFieldReadOnly(BuildContext context) {
+  final controller = TextEditingController(
     text: 'Read-only content that can be selected',
   );
-
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const AppTextField(
-            label: 'Enabled Field',
-            hint: 'You can type here',
-            helperText: 'This field is enabled',
-          ),
-          const SizedBox(height: 24),
-          AppTextField(
-            controller: disabledController,
-            label: 'Disabled Field',
-            hint: 'Cannot type here',
-            helperText: 'This field is disabled',
-            enabled: false,
-          ),
-          const SizedBox(height: 24),
-          AppTextField(
-            controller: readOnlyController,
-            label: 'Read-only Field',
-            hint: 'Can select but not edit',
-            helperText: 'This field is read-only',
-            readOnly: true,
-          ),
-        ],
+      child: AppTextField(
+        controller: controller,
+        label: 'Read-only Field',
+        hint: 'Can select but not edit',
+        helperText: 'This field is read-only',
+        readOnly: true,
       ),
     ),
   );
 }
 
-@widgetbook.UseCase(name: 'Numeric Input with Formatter', type: AppTextField)
-Widget buildAppTextFieldNumericUseCase(BuildContext context) {
-  return Center(
+/// Email Input - Text field optimized for email
+@widgetbook.UseCase(name: 'Email Input', type: AppTextField)
+Widget appTextFieldEmail(BuildContext context) {
+  return const Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AppTextField.numeric(
-            label: 'Age',
-            hint: 'Enter your age',
-            maxLength: 3,
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          ),
-          const SizedBox(height: 24),
-          AppTextField.phone(
-            label: 'Phone Number',
-            hint: '(123) 456-7890',
-            prefixIcon: Icons.phone_outlined,
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-              LengthLimitingTextInputFormatter(10),
-              _PhoneNumberFormatter(),
-            ],
-          ),
-          const SizedBox(height: 24),
-          AppTextField.numeric(
-            label: 'Quantity',
-            hint: '0',
-            prefixIcon: Icons.shopping_cart_outlined,
-            helperText: 'Enter quantity to purchase',
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          ),
-        ],
+      padding: EdgeInsets.all(16.0),
+      child: AppTextField.email(
+        label: 'Email Address',
+        hint: 'your.email@example.com',
+        prefixIcon: Icons.email_outlined,
+        helperText: 'We will never share your email',
       ),
     ),
   );
 }
 
-@widgetbook.UseCase(name: 'Email & URL Input', type: AppTextField)
-Widget buildAppTextFieldEmailUrlUseCase(BuildContext context) {
+/// Numeric Input - Text field for numbers
+@widgetbook.UseCase(name: 'Numeric Input', type: AppTextField)
+Widget appTextFieldNumeric(BuildContext context) {
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AppTextField.email(
-            label: 'Email Address',
-            hint: 'your.email@example.com',
-            prefixIcon: Icons.email_outlined,
-            helperText: 'We will never share your email',
-          ),
-          const SizedBox(height: 24),
-          AppTextField.url(
-            label: 'Website',
-            hint: 'https://example.com',
-            prefixIcon: Icons.link,
-            helperText: 'Enter your website URL',
-          ),
-          const SizedBox(height: 24),
-          AppTextField.email(
-            label: 'Confirm Email',
-            hint: 'Re-enter your email',
-            prefixIcon: Icons.email_outlined,
-          ),
-        ],
+      child: AppTextField.numeric(
+        label: 'Age',
+        hint: 'Enter your age',
+        maxLength: 3,
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       ),
     ),
   );
-}
-
-@widgetbook.UseCase(name: 'Search Field Variant', type: AppTextField)
-Widget buildAppTextFieldSearchUseCase(BuildContext context) {
-  final searchController = TextEditingController();
-
-  return Center(
-    child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AppTextField(
-            controller: searchController,
-            hint: 'Search products...',
-            prefixIcon: Icons.search,
-            suffixIcon: Icons.clear,
-            onSuffixIconTap: () {
-              searchController.clear();
-            },
-            textInputAction: TextInputAction.search,
-            onSubmitted: (value) {
-              debugPrint('Search submitted: $value');
-            },
-          ),
-          const SizedBox(height: 24),
-          AppTextField(
-            hint: 'Search locations...',
-            prefixIcon: Icons.location_on_outlined,
-            suffixIcon: Icons.my_location,
-            textInputAction: TextInputAction.search,
-            onSuffixIconTap: () {
-              debugPrint('Use current location');
-            },
-          ),
-          const SizedBox(height: 24),
-          AppTextField(
-            hint: 'Search users...',
-            prefixIcon: Icons.person_search,
-            textInputAction: TextInputAction.search,
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-@widgetbook.UseCase(name: 'Character Counter & Max Length', type: AppTextField)
-Widget buildAppTextFieldCharacterCounterUseCase(BuildContext context) {
-  return Center(
-    child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const AppTextField(
-            label: 'Username',
-            hint: 'Choose a username',
-            helperText: 'Must be between 3-20 characters',
-            maxLength: 20,
-          ),
-          const SizedBox(height: 24),
-          AppTextField.multiline(
-            label: 'Tweet',
-            hint: 'What\'s happening?',
-            maxLength: 280,
-            maxLines: 4,
-            minLines: 2,
-          ),
-          const SizedBox(height: 24),
-          const AppTextField(
-            label: 'Bio',
-            hint: 'Tell us about yourself',
-            maxLength: 150,
-            showCharacterCounter: true,
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-/// Custom phone number formatter
-class _PhoneNumberFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    final text = newValue.text;
-
-    if (text.isEmpty) {
-      return newValue;
-    }
-
-    final buffer = StringBuffer();
-    for (int i = 0; i < text.length && i < 10; i++) {
-      if (i == 0) {
-        buffer.write('(');
-      }
-      buffer.write(text[i]);
-      if (i == 2) {
-        buffer.write(') ');
-      } else if (i == 5) {
-        buffer.write('-');
-      }
-    }
-
-    final formatted = buffer.toString();
-    return TextEditingValue(
-      text: formatted,
-      selection: TextSelection.collapsed(offset: formatted.length),
-    );
-  }
 }

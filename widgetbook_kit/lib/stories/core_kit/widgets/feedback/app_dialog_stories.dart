@@ -6,151 +6,98 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-/// Interactive Playground - All features combined with full knob control
-@widgetbook.UseCase(name: 'Interactive Playground', type: AppDialog)
-Widget interactivePlayground(BuildContext context) {
-  final title = context.knobs.object.dropdown(
-    label: 'Title',
-    options: [
-      'Dialog Title',
-      'Confirm Action',
-      'Warning',
-      'Success',
-      'Error',
-      'Information',
-    ],
-    initialOption: 'Dialog Title',
-  );
+/// Widgetbook stories for [AppDialog] component.
+///
+/// Demonstrates various configurations and use cases for the Material Design 3
+/// dialog component, including basic alerts, confirmations, forms, and custom content.
 
-  final hasIcon = context.knobs.boolean(
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppDialog)
+Widget appDialogPlayground(BuildContext context) {
+  final title = context.knobs.stringOrNull(
+    label: 'Title',
+    initialValue: 'Dialog Title',
+  );
+  final showIcon = context.knobs.boolean(
     label: 'Show Icon',
     initialValue: false,
   );
-
-  final iconType = context.knobs.object.dropdown(
-    label: 'Icon Type',
-    options: ['Info', 'Warning', 'Error', 'Success'],
-    initialOption: 'Info',
-  );
-
-  final contentType = context.knobs.object.dropdown(
-    label: 'Content Type',
-    options: ['Text', 'Long Text', 'Custom'],
-    initialOption: 'Text',
-  );
-
-  final textContent = context.knobs.object.dropdown(
-    label: 'Content Text',
-    options: [
-      'This is the dialog content.',
-      'Are you sure you want to continue?',
-      'This action cannot be undone.',
-      'Your changes have been saved successfully.',
-      'An error occurred. Please try again.',
+  final iconType = context.knobs.object.dropdown<IconData>(
+    label: 'Icon',
+    options: const [
+      Icons.info_outline,
+      Icons.warning_amber_outlined,
+      Icons.error_outline,
+      Icons.check_circle_outline,
     ],
-    initialOption: 'This is the dialog content.',
+    labelBuilder: (icon) {
+      if (icon == Icons.info_outline) {
+        return 'Info';
+      }
+      if (icon == Icons.warning_amber_outlined) {
+        return 'Warning';
+      }
+      if (icon == Icons.error_outline) {
+        return 'Error';
+      }
+      if (icon == Icons.check_circle_outline) {
+        return 'Success';
+      }
+      return 'Info';
+    },
   );
-
-  final actionCount = context.knobs.object.dropdown(
-    label: 'Number of Actions',
-    options: ['1', '2', '3'],
-    initialOption: '2',
+  final contentText = context.knobs.string(
+    label: 'Content',
+    initialValue: 'This is the dialog content.',
   );
-
   final isDismissible = context.knobs.boolean(
     label: 'Dismissible',
     initialValue: true,
   );
-
   final isFullScreen = context.knobs.boolean(
     label: 'Full Screen',
     initialValue: false,
   );
-
   final scrollable = context.knobs.boolean(
     label: 'Scrollable',
     initialValue: true,
   );
-
-  final showBarrier = context.knobs.boolean(
-    label: 'Custom Barrier Color',
+  final showPrimaryAction = context.knobs.boolean(
+    label: 'Show Primary Action',
+    initialValue: true,
+  );
+  final showSecondaryAction = context.knobs.boolean(
+    label: 'Show Secondary Action',
+    initialValue: true,
+  );
+  final showDestructiveAction = context.knobs.boolean(
+    label: 'Show Destructive Action',
     initialValue: false,
   );
 
-  Widget? icon;
-  if (hasIcon) {
-    icon = Icon(
-      iconType == 'Info'
-          ? Icons.info_outline
-          : iconType == 'Warning'
-          ? Icons.warning_amber_outlined
-          : iconType == 'Error'
-          ? Icons.error_outline
-          : Icons.check_circle_outline,
-    );
-  }
-
-  String? content;
-  Widget Function(BuildContext)? contentBuilder;
-
-  if (contentType == 'Long Text') {
-    content = '''$textContent
-
-This is a longer text that demonstrates scrolling behavior in the dialog. When content exceeds the maximum height, it becomes scrollable automatically.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.''';
-  } else if (contentType == 'Custom') {
-    contentBuilder = (context) => Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(textContent),
-        const SizedBox(height: 16),
-        TextField(
-          decoration: const InputDecoration(
-            labelText: 'Enter your name',
-            border: OutlineInputBorder(),
-          ),
-        ),
-      ],
-    );
-  } else {
-    content = textContent;
-  }
-
-  final numActions = int.parse(actionCount);
   final actions = <AppDialogAction>[];
-
-  if (numActions >= 1) {
+  if (showSecondaryAction) {
     actions.add(
       AppDialogAction(
         label: 'Cancel',
         isSecondary: true,
-        onPressed: () {
-          Navigator.of(context, rootNavigator: true).pop();
-        },
+        onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
       ),
     );
   }
-  if (numActions >= 2) {
-    actions.add(
-      AppDialogAction(
-        label: 'Confirm',
-        onPressed: () {
-          Navigator.of(context, rootNavigator: true).pop(true);
-        },
-      ),
-    );
-  }
-  if (numActions >= 3) {
+  if (showDestructiveAction) {
     actions.add(
       AppDialogAction(
         label: 'Delete',
         isDestructive: true,
-        onPressed: () {
-          Navigator.of(context, rootNavigator: true).pop(true);
-        },
+        onPressed: () => Navigator.of(context, rootNavigator: true).pop(true),
+      ),
+    );
+  }
+  if (showPrimaryAction) {
+    actions.add(
+      AppDialogAction(
+        label: 'Confirm',
+        onPressed: () => Navigator.of(context, rootNavigator: true).pop(true),
       ),
     );
   }
@@ -161,14 +108,12 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
         AppDialog.show(
           context: context,
           title: title,
-          icon: icon,
-          content: content,
-          contentBuilder: contentBuilder,
+          icon: showIcon ? Icon(iconType) : null,
+          content: contentText,
           actions: actions,
           isDismissible: isDismissible,
           isFullScreen: isFullScreen,
           scrollable: scrollable,
-          barrierColor: showBarrier ? Colors.blue.withValues(alpha: 0.3) : null,
         );
       },
       child: const Text('Show Dialog'),
@@ -176,9 +121,8 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   );
 }
 
-/// Basic alert dialog with title, message, and OK button
 @widgetbook.UseCase(name: 'Basic Alert', type: AppDialog)
-Widget basicAlert(BuildContext context) {
+Widget appDialogBasicAlert(BuildContext context) {
   return Center(
     child: ElevatedButton(
       onPressed: () {
@@ -189,9 +133,7 @@ Widget basicAlert(BuildContext context) {
           actions: [
             AppDialogAction(
               label: 'OK',
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop();
-              },
+              onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
             ),
           ],
         );
@@ -201,9 +143,8 @@ Widget basicAlert(BuildContext context) {
   );
 }
 
-/// Confirmation dialog with Cancel and Confirm actions
 @widgetbook.UseCase(name: 'Confirmation Dialog', type: AppDialog)
-Widget confirmationDialog(BuildContext context) {
+Widget appDialogConfirmation(BuildContext context) {
   return Center(
     child: ElevatedButton(
       onPressed: () {
@@ -216,16 +157,14 @@ Widget confirmationDialog(BuildContext context) {
             AppDialogAction(
               label: 'Cancel',
               isSecondary: true,
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop(false);
-              },
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop(false),
             ),
             AppDialogAction(
               label: 'Delete',
               isDestructive: true,
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop(true);
-              },
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop(true),
             ),
           ],
         );
@@ -235,9 +174,8 @@ Widget confirmationDialog(BuildContext context) {
   );
 }
 
-/// Dialog with scrollable long content
 @widgetbook.UseCase(name: 'Scrolling Content', type: AppDialog)
-Widget scrollingContent(BuildContext context) {
+Widget appDialogScrolling(BuildContext context) {
   return Center(
     child: ElevatedButton(
       onPressed: () {
@@ -254,36 +192,34 @@ By accessing and using this application, you accept and agree to be bound by the
 Permission is granted to temporarily download one copy of the materials on our application for personal, non-commercial transitory viewing only.
 
 3. Disclaimer
-The materials on our application are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim and negate all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+The materials on our application are provided on an 'as is' basis. We make no warranties, expressed or implied.
 
 4. Limitations
-In no event shall our company or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on our application.
+In no event shall our company or its suppliers be liable for any damages arising out of the use or inability to use the materials on our application.
 
 5. Accuracy of Materials
-The materials appearing on our application could include technical, typographical, or photographic errors. We do not warrant that any of the materials on its website are accurate, complete or current.
+The materials appearing on our application could include technical, typographical, or photographic errors.
 
 6. Links
 We have not reviewed all of the sites linked to our application and are not responsible for the contents of any such linked site.
 
 7. Modifications
-We may revise these terms of service for its application at any time without notice. By using this application you are agreeing to be bound by the then current version of these terms of service.
+We may revise these terms of service for its application at any time without notice.
 
 8. Governing Law
-These terms and conditions are governed by and construed in accordance with the laws and you irrevocably submit to the exclusive jurisdiction of the courts in that location.
+These terms and conditions are governed by and construed in accordance with the laws.
 ''',
           actions: [
             AppDialogAction(
               label: 'Decline',
               isSecondary: true,
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop(false);
-              },
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop(false),
             ),
             AppDialogAction(
               label: 'Accept',
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop(true);
-              },
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop(true),
             ),
           ],
           scrollable: true,
@@ -294,9 +230,8 @@ These terms and conditions are governed by and construed in accordance with the 
   );
 }
 
-/// Dialog with form inputs
 @widgetbook.UseCase(name: 'Form Dialog', type: AppDialog)
-Widget formDialog(BuildContext context) {
+Widget appDialogForm(BuildContext context) {
   return Center(
     child: ElevatedButton(
       onPressed: () {
@@ -338,15 +273,12 @@ Widget formDialog(BuildContext context) {
             AppDialogAction(
               label: 'Cancel',
               isSecondary: true,
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop();
-              },
+              onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
             ),
             AppDialogAction(
               label: 'Add',
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop(true);
-              },
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop(true),
             ),
           ],
           scrollable: true,
@@ -357,9 +289,8 @@ Widget formDialog(BuildContext context) {
   );
 }
 
-/// Dialog with custom content layout
 @widgetbook.UseCase(name: 'Custom Content', type: AppDialog)
-Widget customContent(BuildContext context) {
+Widget appDialogCustomContent(BuildContext context) {
   return Center(
     child: ElevatedButton(
       onPressed: () {
@@ -386,32 +317,18 @@ Widget customContent(BuildContext context) {
                 ],
                 isSelected: false,
               ),
-              const SizedBox(height: 16),
-              _PlanCard(
-                title: 'Enterprise',
-                price: 'Custom',
-                features: [
-                  'Everything in Pro',
-                  'Custom Storage',
-                  'Dedicated Support',
-                ],
-                isSelected: false,
-              ),
             ],
           ),
           actions: [
             AppDialogAction(
               label: 'Cancel',
               isSecondary: true,
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop();
-              },
+              onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
             ),
             AppDialogAction(
               label: 'Continue',
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop(true);
-              },
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop(true),
             ),
           ],
           scrollable: true,
@@ -422,9 +339,8 @@ Widget customContent(BuildContext context) {
   );
 }
 
-/// Full-screen dialog variant for mobile devices
 @widgetbook.UseCase(name: 'Full Screen', type: AppDialog)
-Widget fullScreen(BuildContext context) {
+Widget appDialogFullScreen(BuildContext context) {
   return Center(
     child: ElevatedButton(
       onPressed: () {
@@ -472,17 +388,6 @@ Widget fullScreen(BuildContext context) {
                   ),
                   maxLines: 4,
                 ),
-                const SizedBox(height: 16),
-                DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
-                    labelText: 'Country',
-                    border: OutlineInputBorder(),
-                  ),
-                  items: ['United States', 'United Kingdom', 'Canada', 'Other']
-                      .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                      .toList(),
-                  onChanged: (value) {},
-                ),
               ],
             ),
           ),
@@ -490,15 +395,12 @@ Widget fullScreen(BuildContext context) {
             AppDialogAction(
               label: 'Cancel',
               isSecondary: true,
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop();
-              },
+              onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
             ),
             AppDialogAction(
               label: 'Save',
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop(true);
-              },
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop(true),
             ),
           ],
         );
@@ -508,9 +410,8 @@ Widget fullScreen(BuildContext context) {
   );
 }
 
-/// Dialog with icon/illustration
 @widgetbook.UseCase(name: 'With Icon', type: AppDialog)
-Widget withIcon(BuildContext context) {
+Widget appDialogWithIcon(BuildContext context) {
   return Center(
     child: ElevatedButton(
       onPressed: () {
@@ -519,21 +420,19 @@ Widget withIcon(BuildContext context) {
           title: 'Warning',
           icon: const Icon(Icons.warning_amber_outlined),
           content:
-              'This action will permanently delete all your data. Please make sure you have backed up your information before proceeding.',
+              'This action will permanently delete all your data. Please make sure you have backed up your information.',
           actions: [
             AppDialogAction(
               label: 'Cancel',
               isSecondary: true,
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop(false);
-              },
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop(false),
             ),
             AppDialogAction(
               label: 'I Understand',
               isDestructive: true,
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop(true);
-              },
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop(true),
             ),
           ],
         );
@@ -543,9 +442,8 @@ Widget withIcon(BuildContext context) {
   );
 }
 
-/// Dialog with three action buttons
 @widgetbook.UseCase(name: 'Multi Action', type: AppDialog)
-Widget multiAction(BuildContext context) {
+Widget appDialogMultiAction(BuildContext context) {
   return Center(
     child: ElevatedButton(
       onPressed: () {
@@ -559,22 +457,19 @@ Widget multiAction(BuildContext context) {
             AppDialogAction(
               label: 'Discard',
               isDestructive: true,
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop('discard');
-              },
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop('discard'),
             ),
             AppDialogAction(
               label: 'Cancel',
               isSecondary: true,
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop('cancel');
-              },
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop('cancel'),
             ),
             AppDialogAction(
               label: 'Save',
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop('save');
-              },
+              onPressed: () =>
+                  Navigator.of(context, rootNavigator: true).pop('save'),
             ),
           ],
         );
@@ -584,7 +479,6 @@ Widget multiAction(BuildContext context) {
   );
 }
 
-/// Helper widget for plan card in custom content example
 class _PlanCard extends StatelessWidget {
   const _PlanCard({
     required this.title,

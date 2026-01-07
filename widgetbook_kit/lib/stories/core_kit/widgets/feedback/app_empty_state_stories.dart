@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import 'package:flutter/material.dart';
+import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:core_kit/core_kit.dart';
 
@@ -11,13 +12,99 @@ import 'package:core_kit/core_kit.dart';
 /// empty state component, including basic states, with icons, with illustrations,
 /// with actions, and compact mode.
 
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppEmptyState)
+Widget appEmptyStatePlayground(BuildContext context) {
+  final title = context.knobs.string(
+    label: 'Title',
+    initialValue: 'No Items Found',
+  );
+  final description = context.knobs.stringOrNull(
+    label: 'Description',
+    initialValue: 'Start adding items to your collection.',
+  );
+  final compact = context.knobs.boolean(label: 'Compact', initialValue: false);
+  final showIcon = context.knobs.boolean(
+    label: 'Show Icon',
+    initialValue: true,
+  );
+  final iconOption = context.knobs.object.dropdown(
+    label: 'Icon',
+    options: const [
+      Icons.inbox_outlined,
+      Icons.search_off,
+      Icons.shopping_cart_outlined,
+      Icons.wifi_off_rounded,
+      Icons.notifications_off_outlined,
+    ],
+    labelBuilder: (value) {
+      if (value == Icons.inbox_outlined) {
+        return 'inbox_outlined';
+      }
+      if (value == Icons.search_off) {
+        return 'search_off';
+      }
+      if (value == Icons.shopping_cart_outlined) {
+        return 'shopping_cart_outlined';
+      }
+      if (value == Icons.wifi_off_rounded) {
+        return 'wifi_off_rounded';
+      }
+      if (value == Icons.notifications_off_outlined) {
+        return 'notifications_off_outlined';
+      }
+      return 'inbox_outlined';
+    },
+  );
+  final showPrimaryButton = context.knobs.boolean(
+    label: 'Show Primary Button',
+    initialValue: true,
+  );
+  final primaryButtonText = context.knobs.string(
+    label: 'Primary Button Text',
+    initialValue: 'Add Item',
+  );
+  final showSecondaryButton = context.knobs.boolean(
+    label: 'Show Secondary Button',
+    initialValue: false,
+  );
+  final secondaryButtonText = context.knobs.string(
+    label: 'Secondary Button Text',
+    initialValue: 'View Details',
+  );
+
+  return Center(
+    child: AppEmptyState(
+      title: title,
+      description: description,
+      icon: showIcon ? iconOption : null,
+      compact: compact,
+      primaryButtonText: showPrimaryButton ? primaryButtonText : null,
+      onPrimaryPressed: showPrimaryButton
+          ? () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('$primaryButtonText pressed!')),
+              );
+            }
+          : null,
+      secondaryButtonText: showSecondaryButton ? secondaryButtonText : null,
+      onSecondaryPressed: showSecondaryButton
+          ? () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('$secondaryButtonText pressed!')),
+              );
+            }
+          : null,
+    ),
+  );
+}
+
 @widgetbook.UseCase(name: 'Default (Title Only)', type: AppEmptyState)
-Widget buildAppEmptyStateDefaultUseCase(BuildContext context) {
+Widget appEmptyStateDefault(BuildContext context) {
   return const Center(child: AppEmptyState(title: 'No Items Found'));
 }
 
 @widgetbook.UseCase(name: 'With Description', type: AppEmptyState)
-Widget buildAppEmptyStateWithDescriptionUseCase(BuildContext context) {
+Widget appEmptyStateWithDescription(BuildContext context) {
   return const Center(
     child: AppEmptyState(
       title: 'Your Cart is Empty',
@@ -27,7 +114,7 @@ Widget buildAppEmptyStateWithDescriptionUseCase(BuildContext context) {
 }
 
 @widgetbook.UseCase(name: 'With Icon', type: AppEmptyState)
-Widget buildAppEmptyStateWithIconUseCase(BuildContext context) {
+Widget appEmptyStateWithIcon(BuildContext context) {
   return const Center(
     child: AppEmptyState(
       title: 'No Connection',
@@ -37,19 +124,8 @@ Widget buildAppEmptyStateWithIconUseCase(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'With Illustration', type: AppEmptyState)
-Widget buildAppEmptyStateWithIllustrationUseCase(BuildContext context) {
-  return const Center(
-    child: AppEmptyState(
-      title: 'Order Success!',
-      description: 'Your order has been placed successfully.',
-      illustration: Icon(Icons.check_circle, size: 100, color: Colors.green),
-    ),
-  );
-}
-
 @widgetbook.UseCase(name: 'With Primary Action', type: AppEmptyState)
-Widget buildAppEmptyStateWithPrimaryActionUseCase(BuildContext context) {
+Widget appEmptyStateWithPrimaryAction(BuildContext context) {
   return Center(
     child: AppEmptyState(
       title: 'No Items Found',
@@ -65,8 +141,8 @@ Widget buildAppEmptyStateWithPrimaryActionUseCase(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Full Actions (Shopping Cart)', type: AppEmptyState)
-Widget buildAppEmptyStateFullActionsUseCase(BuildContext context) {
+@widgetbook.UseCase(name: 'With Both Actions', type: AppEmptyState)
+Widget appEmptyStateWithBothActions(BuildContext context) {
   return Center(
     child: AppEmptyState(
       title: 'Your Cart is Empty',
@@ -89,7 +165,7 @@ Widget buildAppEmptyStateFullActionsUseCase(BuildContext context) {
 }
 
 @widgetbook.UseCase(name: 'Compact Mode', type: AppEmptyState)
-Widget buildAppEmptyStateCompactUseCase(BuildContext context) {
+Widget appEmptyStateCompact(BuildContext context) {
   return Center(
     child: SizedBox(
       width: 300,
@@ -113,7 +189,7 @@ Widget buildAppEmptyStateCompactUseCase(BuildContext context) {
 }
 
 @widgetbook.UseCase(name: 'No Connection Error', type: AppEmptyState)
-Widget buildAppEmptyStateNoConnectionUseCase(BuildContext context) {
+Widget appEmptyStateNoConnection(BuildContext context) {
   return Center(
     child: AppEmptyState(
       title: 'No Internet Connection',
@@ -131,7 +207,7 @@ Widget buildAppEmptyStateNoConnectionUseCase(BuildContext context) {
 }
 
 @widgetbook.UseCase(name: 'Search No Results', type: AppEmptyState)
-Widget buildAppEmptyStateSearchNoResultsUseCase(BuildContext context) {
+Widget appEmptyStateSearchNoResults(BuildContext context) {
   return const Center(
     child: AppEmptyState(
       title: 'No Results Found',

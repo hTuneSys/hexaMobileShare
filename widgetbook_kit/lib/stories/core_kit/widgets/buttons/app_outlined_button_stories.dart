@@ -5,112 +5,134 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:core_kit/widgets/buttons/app_outlined_button.dart';
-import 'package:core_kit/widgets/buttons/app_button.dart';
 
-// ...existing code...
-@widgetbook.UseCase(name: 'Default', type: AppOutlinedButton)
-Widget appOutlinedButtonDefault(BuildContext context) {
+/// Interactive Playground - Expose ALL AppOutlinedButton properties as knobs
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppOutlinedButton)
+Widget appOutlinedButtonPlayground(BuildContext context) {
+  final label = context.knobs.string(
+    label: 'Label',
+    initialValue: 'Outlined Button',
+  );
+
+  final hasIcon = context.knobs.boolean(label: 'Has Icon', initialValue: false);
+
+  final icon = hasIcon
+      ? context.knobs.object.dropdown(
+          label: 'Icon',
+          options: const [
+            Icons.download,
+            Icons.upload,
+            Icons.share,
+            Icons.add,
+            Icons.edit,
+          ],
+          labelBuilder: (icon) => icon.toString(),
+        )
+      : null;
+
+  final isEnabled = context.knobs.boolean(label: 'Enabled', initialValue: true);
+
+  final isLoading = context.knobs.boolean(
+    label: 'Loading',
+    initialValue: false,
+  );
+
+  final fullWidth = context.knobs.boolean(
+    label: 'Full Width',
+    initialValue: false,
+  );
+
   return Center(
-    child: AppOutlinedButton(
-      label: context.knobs.string(label: 'Label', initialValue: 'Button'),
-      onPressed: () {},
-    ),
-  );
-}
-
-// ...existing code...
-@widgetbook.UseCase(name: 'With Icon', type: AppOutlinedButton)
-Widget appOutlinedButtonWithIcon(BuildContext context) {
-  return Center(
-    child: AppOutlinedButton(
-      icon: Icons.download,
-      label: context.knobs.string(label: 'Label', initialValue: 'Download'),
-      onPressed: () {},
-    ),
-  );
-}
-
-// ...existing code...
-@widgetbook.UseCase(name: 'States', type: AppOutlinedButton)
-Widget appOutlinedButtonStates(BuildContext context) {
-  final label = context.knobs.string(label: 'Label', initialValue: 'Submit');
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      AppOutlinedButton(label: '$label (enabled)', onPressed: () {}),
-      const SizedBox(height: 12),
-      const AppOutlinedButton(label: 'Disabled'),
-      const SizedBox(height: 12),
-      const AppOutlinedButton(label: 'Loading', isLoading: true),
-      const SizedBox(height: 12),
-      AppOutlinedButton(label: 'Hover/Pressed demo', onPressed: () {}),
-    ],
-  );
-}
-
-// ...existing code...
-@widgetbook.UseCase(name: 'Sizes', type: AppOutlinedButton)
-Widget appOutlinedButtonSizes(BuildContext context) {
-  final longText = context.knobs.boolean(
-    label: 'Use long text',
-    initialValue: true,
-  );
-  return Padding(
-    padding: const EdgeInsets.all(16),
-    child: Column(
-      children: [
-        AppOutlinedButton(
-          label: longText
-              ? 'This is a very long button label to test wrapping and overflow'
-              : 'Normal',
-          onPressed: () {},
-        ),
-        const SizedBox(height: 12),
-        const AppOutlinedButton(label: 'Full width', fullWidth: true),
-      ],
-    ),
-  );
-}
-
-// ...existing code...
-@widgetbook.UseCase(name: 'Theme Variations', type: AppOutlinedButton)
-Widget appOutlinedButtonTheme(BuildContext context) {
-  final dark = context.knobs.boolean(label: 'Dark mode', initialValue: false);
-  final toggledTheme = dark
-      ? ThemeData.from(colorScheme: const ColorScheme.dark())
-      : ThemeData.from(colorScheme: const ColorScheme.light());
-
-  return Theme(
-    data: toggledTheme,
-    child: Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          AppOutlinedButton(label: 'Outlined'),
-          SizedBox(width: 12),
-          AppButton.filled(label: 'Filled'),
-        ],
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppOutlinedButton(
+        label: label,
+        icon: icon,
+        onPressed: isEnabled ? () {} : null,
+        isLoading: isLoading,
+        fullWidth: fullWidth,
       ),
     ),
   );
 }
 
-// ...existing code...
-@widgetbook.UseCase(name: 'Comparison', type: AppOutlinedButton)
-Widget appOutlinedButtonComparison(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(16),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        AppButton.text(label: 'Text'),
-        SizedBox(width: 12),
-        AppOutlinedButton(label: 'Outlined'),
-        SizedBox(width: 12),
-        AppButton.filled(label: 'Filled'),
-      ],
+/// Default Outlined Button - Basic outlined button
+@widgetbook.UseCase(name: 'Default', type: AppOutlinedButton)
+Widget appOutlinedButtonDefault(BuildContext context) {
+  return Center(
+    child: AppOutlinedButton(label: 'Outlined Button', onPressed: () {}),
+  );
+}
+
+/// With Icon - Outlined button with leading icon
+@widgetbook.UseCase(name: 'With Icon', type: AppOutlinedButton)
+Widget appOutlinedButtonWithIcon(BuildContext context) {
+  return Center(
+    child: AppOutlinedButton(
+      label: 'Download',
+      icon: Icons.download,
+      onPressed: () {},
     ),
   );
 }
 
-// ...existing code...
+/// Disabled State - Outlined button with null onPressed
+@widgetbook.UseCase(name: 'Disabled State', type: AppOutlinedButton)
+Widget appOutlinedButtonDisabled(BuildContext context) {
+  return const Center(
+    child: AppOutlinedButton(label: 'Disabled', onPressed: null),
+  );
+}
+
+/// Loading State - Outlined button showing loading indicator
+@widgetbook.UseCase(name: 'Loading State', type: AppOutlinedButton)
+Widget appOutlinedButtonLoading(BuildContext context) {
+  return Center(
+    child: AppOutlinedButton(
+      label: 'Processing',
+      isLoading: true,
+      onPressed: () {},
+    ),
+  );
+}
+
+/// Full Width - Outlined button that expands to fill parent width
+@widgetbook.UseCase(name: 'Full Width', type: AppOutlinedButton)
+Widget appOutlinedButtonFullWidth(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: AppOutlinedButton(
+      label: 'Full Width Outlined Button',
+      fullWidth: true,
+      onPressed: () {},
+    ),
+  );
+}
+
+/// Long Label - Outlined button with long text to test wrapping
+@widgetbook.UseCase(name: 'Long Label', type: AppOutlinedButton)
+Widget appOutlinedButtonLongLabel(BuildContext context) {
+  return Center(
+    child: SizedBox(
+      width: 200,
+      child: AppOutlinedButton(
+        label:
+            'This is a very long button label that might wrap to multiple lines',
+        onPressed: () {},
+      ),
+    ),
+  );
+}
+
+/// With Icon and Loading - Demonstrates loading state with icon
+@widgetbook.UseCase(name: 'Icon + Loading State', type: AppOutlinedButton)
+Widget appOutlinedButtonIconLoading(BuildContext context) {
+  return Center(
+    child: AppOutlinedButton(
+      label: 'Uploading',
+      icon: Icons.upload,
+      isLoading: true,
+      onPressed: () {},
+    ),
+  );
+}

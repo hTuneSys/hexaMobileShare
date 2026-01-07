@@ -6,9 +6,13 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:core_kit/widgets/feedback/app_bottom_sheet.dart';
 
-// Story 1: Modal Action List - Demonstrates basic modal bottom sheet with action items
-@widgetbook.UseCase(name: 'Modal Action List', type: AppBottomSheet)
-Widget appBottomSheetActionList(BuildContext context) {
+/// Widgetbook stories for [AppBottomSheet] component.
+///
+/// Demonstrates various configurations and use cases for the Material Design 3
+/// bottom sheet component, including modal, persistent, scrollable, and form variants.
+
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppBottomSheet)
+Widget appBottomSheetPlayground(BuildContext context) {
   final isDismissible = context.knobs.boolean(
     label: 'Is Dismissible',
     initialValue: true,
@@ -21,9 +25,33 @@ Widget appBottomSheetActionList(BuildContext context) {
     label: 'Enable Drag',
     initialValue: true,
   );
-  final barrierColor = context.knobs.colorOrNull(
-    label: 'Barrier Color',
-    initialValue: Colors.black54,
+  final useSafeArea = context.knobs.boolean(
+    label: 'Use Safe Area',
+    initialValue: true,
+  );
+  final initialHeight = context.knobs.object.dropdown<AppBottomSheetHeight>(
+    label: 'Initial Height',
+    options: const [
+      AppBottomSheetHeight.auto,
+      AppBottomSheetHeight.half,
+      AppBottomSheetHeight.full,
+    ],
+    labelBuilder: (height) {
+      switch (height) {
+        case AppBottomSheetHeight.auto:
+          return 'Auto';
+        case AppBottomSheetHeight.half:
+          return 'Half';
+        case AppBottomSheetHeight.full:
+          return 'Full';
+      }
+    },
+  );
+  final itemCount = context.knobs.int.slider(
+    label: 'Item Count',
+    initialValue: 5,
+    min: 3,
+    max: 10,
   );
 
   return Center(
@@ -34,7 +62,43 @@ Widget appBottomSheetActionList(BuildContext context) {
           isDismissible: isDismissible,
           showDragHandle: showDragHandle,
           enableDrag: enableDrag,
-          barrierColor: barrierColor,
+          useSafeArea: useSafeArea,
+          initialHeight: initialHeight,
+          builder: (context) => Container(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'Interactive Bottom Sheet',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                ...List.generate(
+                  itemCount,
+                  (index) => ListTile(
+                    leading: Icon(Icons.star, color: Colors.amber[700]),
+                    title: Text('Item ${index + 1}'),
+                    onTap: () => Navigator.pop(context),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+      child: const Text('Show Bottom Sheet'),
+    ),
+  );
+}
+
+@widgetbook.UseCase(name: 'Modal Action List', type: AppBottomSheet)
+Widget appBottomSheetActionList(BuildContext context) {
+  return Center(
+    child: ElevatedButton(
+      onPressed: () {
+        AppBottomSheet.show(
+          context: context,
           initialHeight: AppBottomSheetHeight.auto,
           builder: (context) => Container(
             padding: const EdgeInsets.symmetric(vertical: 8),
@@ -73,35 +137,18 @@ Widget appBottomSheetActionList(BuildContext context) {
   );
 }
 
-// Story 2: Scrollable Content - Demonstrates bottom sheet with scrollable list
 @widgetbook.UseCase(name: 'Scrollable Content', type: AppBottomSheet)
 Widget appBottomSheetScrollable(BuildContext context) {
-  final itemCount = context.knobs.int.slider(
-    label: 'Item Count',
-    initialValue: 20,
-    min: 10,
-    max: 50,
-  );
-
-  final useFullHeight = context.knobs.boolean(
-    label: 'Use Full Height (vs Half)',
-    initialValue: false,
-  );
-
-  final initialHeight = useFullHeight
-      ? AppBottomSheetHeight.full
-      : AppBottomSheetHeight.half;
-
   return Center(
     child: ElevatedButton(
       onPressed: () {
         AppBottomSheet.show(
           context: context,
-          initialHeight: initialHeight,
+          initialHeight: AppBottomSheetHeight.half,
           snapPoints: const [0.5, 0.9],
           builder: (context) => ListView.builder(
             shrinkWrap: true,
-            itemCount: itemCount,
+            itemCount: 20,
             itemBuilder: (context, index) => ListTile(
               leading: CircleAvatar(child: Text('${index + 1}')),
               title: Text('Item ${index + 1}'),
@@ -110,24 +157,13 @@ Widget appBottomSheetScrollable(BuildContext context) {
           ),
         );
       },
-      child: Text('Show $itemCount Items'),
+      child: const Text('Show Scrollable List'),
     ),
   );
 }
 
-// Story 3: Form Input - Demonstrates bottom sheet with form fields and keyboard behavior
 @widgetbook.UseCase(name: 'Form Input', type: AppBottomSheet)
 Widget appBottomSheetForm(BuildContext context) {
-  final useSafeArea = context.knobs.boolean(
-    label: 'Use Safe Area',
-    initialValue: true,
-  );
-
-  final showDragHandle = context.knobs.boolean(
-    label: 'Show Drag Handle',
-    initialValue: true,
-  );
-
   return Center(
     child: ElevatedButton(
       onPressed: () {
@@ -137,8 +173,7 @@ Widget appBottomSheetForm(BuildContext context) {
         AppBottomSheet.show(
           context: context,
           initialHeight: AppBottomSheetHeight.auto,
-          useSafeArea: useSafeArea,
-          showDragHandle: showDragHandle,
+          useSafeArea: true,
           builder: (context) => Padding(
             padding: EdgeInsets.only(
               left: 16,
@@ -186,7 +221,6 @@ Widget appBottomSheetForm(BuildContext context) {
   );
 }
 
-// Story 4: Full Screen - Demonstrates nearly full-screen bottom sheet
 @widgetbook.UseCase(name: 'Full Screen', type: AppBottomSheet)
 Widget appBottomSheetFullScreen(BuildContext context) {
   return Center(
@@ -246,40 +280,23 @@ Widget appBottomSheetFullScreen(BuildContext context) {
   );
 }
 
-// Story 5: Custom Height - Demonstrates custom initial heights and snap points
 @widgetbook.UseCase(name: 'Custom Height', type: AppBottomSheet)
 Widget appBottomSheetCustomHeight(BuildContext context) {
-  final initialHeightIndex = context.knobs.int.slider(
-    label: 'Initial Height',
-    initialValue: 1,
-    min: 0,
-    max: 2,
-  );
-
-  final initialHeight = [
-    AppBottomSheetHeight.auto,
-    AppBottomSheetHeight.half,
-    AppBottomSheetHeight.full,
-  ][initialHeightIndex];
-
   return Center(
     child: ElevatedButton(
       onPressed: () {
         AppBottomSheet.show(
           context: context,
-          initialHeight: initialHeight,
+          initialHeight: AppBottomSheetHeight.half,
           snapPoints: const [0.3, 0.6, 0.95],
           builder: (context) => Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Height: ${initialHeight.name}',
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                const Text(
+                  'Custom Height Sheet',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
                 const Text('Snap points: 0.3, 0.6, 0.95'),
@@ -301,19 +318,13 @@ Widget appBottomSheetCustomHeight(BuildContext context) {
           ),
         );
       },
-      child: Text('Show ${initialHeight.name} Height'),
+      child: const Text('Show Custom Height'),
     ),
   );
 }
 
-// Story 6: Persistent Sheet - Demonstrates persistent bottom sheet without backdrop
 @widgetbook.UseCase(name: 'Persistent Sheet', type: AppBottomSheet)
 Widget appBottomSheetPersistent(BuildContext context) {
-  final showDragHandle = context.knobs.boolean(
-    label: 'Show Drag Handle',
-    initialValue: true,
-  );
-
   return Center(
     child: ElevatedButton(
       onPressed: () {
@@ -321,7 +332,6 @@ Widget appBottomSheetPersistent(BuildContext context) {
         controller = AppBottomSheet.showPersistent(
           context: context,
           initialHeight: AppBottomSheetHeight.auto,
-          showDragHandle: showDragHandle,
           builder: (context) => Container(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -348,47 +358,26 @@ Widget appBottomSheetPersistent(BuildContext context) {
   );
 }
 
-// Story 7: Drag Handle Variants - Demonstrates drag handle configurations
 @widgetbook.UseCase(name: 'Drag Handle Variants', type: AppBottomSheet)
 Widget appBottomSheetDragHandle(BuildContext context) {
-  final showDragHandle = context.knobs.boolean(
-    label: 'Show Drag Handle',
-    initialValue: true,
-  );
-
-  final enableDrag = context.knobs.boolean(
-    label: 'Enable Drag',
-    initialValue: true,
-  );
-
-  final isDismissible = context.knobs.boolean(
-    label: 'Is Dismissible',
-    initialValue: true,
-  );
-
   return Center(
     child: ElevatedButton(
       onPressed: () {
         AppBottomSheet.show(
           context: context,
-          showDragHandle: showDragHandle,
-          enableDrag: enableDrag,
-          isDismissible: isDismissible,
+          showDragHandle: true,
+          enableDrag: true,
           builder: (context) => Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  'Drag Handle: ${showDragHandle ? 'Visible' : 'Hidden'}',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                const Text(
+                  'Drag Handle Enabled',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
-                Text('Drag Enabled: ${enableDrag ? 'Yes' : 'No'}'),
-                Text('Dismissible: ${isDismissible ? 'Yes' : 'No'}'),
+                const Text('Try dragging the sheet up or down'),
                 const SizedBox(height: 16),
                 const Divider(),
                 ...List.generate(
@@ -414,26 +403,14 @@ Widget appBottomSheetDragHandle(BuildContext context) {
   );
 }
 
-// Story 8: Multiple Snap Points - Demonstrates multiple snap point configurations
 @widgetbook.UseCase(name: 'Multiple Snap Points', type: AppBottomSheet)
 Widget appBottomSheetSnapPoints(BuildContext context) {
-  final snapPointCount = context.knobs.int.slider(
-    label: 'Snap Point Count',
-    initialValue: 4,
-    min: 4,
-    max: 5,
-  );
-
-  final snapPoints = snapPointCount == 4
-      ? [0.2, 0.4, 0.6, 0.8]
-      : [0.15, 0.35, 0.55, 0.75, 0.95];
-
   return Center(
     child: ElevatedButton(
       onPressed: () {
         AppBottomSheet.show(
           context: context,
-          snapPoints: snapPoints,
+          snapPoints: const [0.2, 0.4, 0.6, 0.8],
           builder: (context) => Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -444,7 +421,7 @@ Widget appBottomSheetSnapPoints(BuildContext context) {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
-                Text('Snap points: ${snapPoints.join(', ')}'),
+                const Text('Snap points: 0.2, 0.4, 0.6, 0.8'),
                 const SizedBox(height: 16),
                 const Text(
                   'Try dragging the sheet to see it snap to different heights!',
@@ -468,7 +445,7 @@ Widget appBottomSheetSnapPoints(BuildContext context) {
           ),
         );
       },
-      child: Text('Show $snapPointCount Snap Points'),
+      child: const Text('Show Multiple Snap Points'),
     ),
   );
 }

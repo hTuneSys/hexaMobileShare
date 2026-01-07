@@ -2,207 +2,235 @@
 // SPDX-License-Identifier: MIT
 
 import 'package:flutter/material.dart';
+import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
-// import 'package:widgetbook/widgetbook.dart' as widgetbook;
 import 'package:core_kit/widgets/buttons/app_fab.dart';
 
-// 1. Default FAB - Standard size
-@widgetbook.UseCase(name: 'Default', type: AppFab)
+/// Interactive Playground - Expose ALL AppFab properties as knobs
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppFab)
+Widget appFabPlayground(BuildContext context) {
+  // Variant selection
+  final variantOptions = ['default', 'small', 'large', 'extended'];
+  final selectedVariant = context.knobs.object.dropdown(
+    label: 'Variant',
+    options: variantOptions,
+    labelBuilder: (value) => value,
+  );
+
+  // Icon selection
+  final icon = context.knobs.object.dropdown(
+    label: 'Icon',
+    options: const [
+      Icons.add,
+      Icons.edit,
+      Icons.filter_list,
+      Icons.camera_alt,
+      Icons.share,
+      Icons.download,
+      Icons.upload,
+    ],
+    labelBuilder: (icon) => icon.toString(),
+  );
+
+  // Extended variant props
+  final label = context.knobs.string(
+    label: 'Label (extended only)',
+    initialValue: 'Compose',
+  );
+
+  final hasTrailingIcon = context.knobs.boolean(
+    label: 'Has Trailing Icon (extended only)',
+    initialValue: false,
+  );
+
+  final trailingIcon = hasTrailingIcon
+      ? context.knobs.object.dropdown(
+          label: 'Trailing Icon',
+          options: const [
+            Icons.arrow_forward,
+            Icons.arrow_drop_down,
+            Icons.expand_more,
+          ],
+          labelBuilder: (icon) => icon.toString(),
+        )
+      : null;
+
+  // Common props
+  final isEnabled = context.knobs.boolean(label: 'Enabled', initialValue: true);
+
+  final hasTooltip = context.knobs.boolean(
+    label: 'Has Tooltip',
+    initialValue: true,
+  );
+
+  final tooltip = hasTooltip
+      ? context.knobs.string(label: 'Tooltip', initialValue: 'Action')
+      : null;
+
+  final hasCustomColors = context.knobs.boolean(
+    label: 'Custom Colors',
+    initialValue: false,
+  );
+
+  final backgroundColor = hasCustomColors
+      ? context.knobs.colorOrNull(label: 'Background Color')
+      : null;
+
+  final foregroundColor = hasCustomColors
+      ? context.knobs.colorOrNull(label: 'Foreground Color')
+      : null;
+
+  final elevation = context.knobs.double.slider(
+    label: 'Elevation',
+    initialValue: 6.0,
+    min: 0,
+    max: 24,
+  );
+
+  // Build appropriate variant
+  Widget fab;
+  switch (selectedVariant) {
+    case 'small':
+      fab = AppFab.small(
+        icon: icon,
+        onPressed: isEnabled ? () {} : null,
+        tooltip: tooltip,
+        backgroundColor: backgroundColor,
+        foregroundColor: foregroundColor,
+        elevation: elevation,
+      );
+      break;
+    case 'large':
+      fab = AppFab.large(
+        icon: icon,
+        onPressed: isEnabled ? () {} : null,
+        tooltip: tooltip,
+        backgroundColor: backgroundColor,
+        foregroundColor: foregroundColor,
+        elevation: elevation,
+      );
+      break;
+    case 'extended':
+      fab = AppFab.extended(
+        icon: icon,
+        label: label,
+        trailingIcon: trailingIcon,
+        onPressed: isEnabled ? () {} : null,
+        tooltip: tooltip,
+        backgroundColor: backgroundColor,
+        foregroundColor: foregroundColor,
+        elevation: elevation,
+      );
+      break;
+    default:
+      fab = AppFab(
+        icon: icon,
+        onPressed: isEnabled ? () {} : null,
+        tooltip: tooltip,
+        backgroundColor: backgroundColor,
+        foregroundColor: foregroundColor,
+        elevation: elevation,
+      );
+  }
+
+  return Center(child: fab);
+}
+
+/// Default FAB - Standard 56x56 size
+@widgetbook.UseCase(name: 'Default FAB', type: AppFab)
 Widget appFabDefault(BuildContext context) {
   return Center(
-    child: AppFab(icon: Icons.add, onPressed: () {}),
+    child: AppFab(icon: Icons.add, tooltip: 'Add', onPressed: () {}),
   );
 }
 
-// 2. All Sizes - Show size variants
-@widgetbook.UseCase(name: 'Sizes', type: AppFab)
-Widget appFabSizes(BuildContext context) {
+/// Small FAB - Compact 40x40 size
+@widgetbook.UseCase(name: 'Small FAB', type: AppFab)
+Widget appFabSmall(BuildContext context) {
   return Center(
-    child: Wrap(
-      spacing: 16,
-      runSpacing: 16,
-      alignment: WrapAlignment.center,
-      children: [
-        AppFab.small(icon: Icons.filter_list, onPressed: () {}),
-        AppFab(icon: Icons.add, onPressed: () {}),
-        AppFab.large(icon: Icons.camera_alt, onPressed: () {}),
-        AppFab.extended(icon: Icons.edit, label: 'Compose', onPressed: () {}),
-      ],
+    child: AppFab.small(
+      icon: Icons.filter_list,
+      tooltip: 'Filter',
+      onPressed: () {},
     ),
   );
 }
 
-// 3. Extended FAB Variants
-@widgetbook.UseCase(name: 'Extended Variants', type: AppFab)
-Widget appFabExtendedVariants(BuildContext context) {
+/// Large FAB - Prominent 96x96 size
+@widgetbook.UseCase(name: 'Large FAB', type: AppFab)
+Widget appFabLarge(BuildContext context) {
   return Center(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        AppFab.extended(icon: Icons.edit, label: 'Edit', onPressed: () {}),
-        const SizedBox(height: 12),
-        AppFab.extended(
-          icon: Icons.download,
-          label: 'Download',
-          trailingIcon: Icons.arrow_forward,
-          onPressed: () {},
-        ),
-        const SizedBox(height: 12),
-        AppFab.extended(
-          icon: Icons.share,
-          label: 'Share a long descriptive label',
-          onPressed: () {},
-        ),
-      ],
+    child: AppFab.large(
+      icon: Icons.camera_alt,
+      tooltip: 'Camera',
+      onPressed: () {},
     ),
   );
 }
 
-// 4. States
-@widgetbook.UseCase(name: 'States', type: AppFab)
-Widget appFabStates(BuildContext context) {
+/// Extended FAB - With label text
+@widgetbook.UseCase(name: 'Extended FAB', type: AppFab)
+Widget appFabExtended(BuildContext context) {
   return Center(
-    child: Wrap(
-      spacing: 16,
-      alignment: WrapAlignment.center,
-      children: [
-        AppFab(icon: Icons.add, onPressed: () {}),
-        const AppFab(icon: Icons.add, onPressed: null), // Disabled
-        const _LoadingFab(),
-      ],
+    child: AppFab.extended(
+      icon: Icons.edit,
+      label: 'Compose',
+      tooltip: 'Compose new message',
+      onPressed: () {},
     ),
   );
 }
 
-// 5. Theme Variations
-@widgetbook.UseCase(name: 'Theme Variations', type: AppFab)
-Widget appFabThemeVariations(BuildContext context) {
+/// Extended with Trailing Icon - Label with leading and trailing icons
+@widgetbook.UseCase(name: 'Extended with Trailing Icon', type: AppFab)
+Widget appFabExtendedWithTrailingIcon(BuildContext context) {
   return Center(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Theme(
-          data: ThemeData.light(useMaterial3: true),
-          child: Wrap(
-            spacing: 16,
-            alignment: WrapAlignment.center,
-            children: [
-              AppFab(icon: Icons.add, onPressed: () {}),
-              AppFab(
-                icon: Icons.add,
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.blue,
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 12),
-        Theme(
-          data: ThemeData.dark(useMaterial3: true),
-          child: Wrap(
-            spacing: 16,
-            alignment: WrapAlignment.center,
-            children: [
-              AppFab(icon: Icons.add, onPressed: () {}),
-              AppFab(
-                icon: Icons.add,
-                foregroundColor: Colors.black,
-                backgroundColor: Colors.yellow,
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ),
-      ],
+    child: AppFab.extended(
+      icon: Icons.download,
+      label: 'Download',
+      trailingIcon: Icons.arrow_forward,
+      tooltip: 'Download file',
+      onPressed: () {},
     ),
   );
 }
 
-// 6. Interactive Playground
-@widgetbook.UseCase(name: 'Playground (Static)', type: AppFab)
-Widget appFabPlayground(BuildContext context) {
+/// Disabled State - FAB with null onPressed
+@widgetbook.UseCase(name: 'Disabled State', type: AppFab)
+Widget appFabDisabled(BuildContext context) {
+  return const Center(
+    child: AppFab(icon: Icons.add, tooltip: 'Disabled action', onPressed: null),
+  );
+}
+
+/// Custom Colors - FAB with custom background and foreground colors
+@widgetbook.UseCase(name: 'Custom Colors', type: AppFab)
+Widget appFabCustomColors(BuildContext context) {
   return Center(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        AppFab(icon: Icons.add, onPressed: () {}),
-        const SizedBox(height: 12),
-        AppFab.small(icon: Icons.filter_list, onPressed: () {}),
-        const SizedBox(height: 12),
-        AppFab.large(icon: Icons.camera_alt, onPressed: () {}),
-        const SizedBox(height: 12),
-        AppFab.extended(icon: Icons.edit, label: 'Compose', onPressed: () {}),
-      ],
+    child: AppFab(
+      icon: Icons.favorite,
+      tooltip: 'Like',
+      backgroundColor: Colors.pink,
+      foregroundColor: Colors.white,
+      onPressed: () {},
     ),
   );
 }
 
-@widgetbook.UseCase(name: 'Collapsed vs Expanded', type: AppFab)
-Widget appFabCollapsedExpanded(BuildContext context) {
-  return Center(child: _SwitchableDemo());
+/// Loading State - FAB with rotating icon animation
+@widgetbook.UseCase(name: 'Loading State', type: AppFab)
+Widget appFabLoading(BuildContext context) {
+  return const Center(child: _LoadingFab());
 }
 
-class _SwitchableDemo extends StatefulWidget {
-  @override
-  State<_SwitchableDemo> createState() => _SwitchableDemoState();
+/// Switchable FAB - Animated transition between default and extended
+@widgetbook.UseCase(name: 'Switchable (Collapsed/Extended)', type: AppFab)
+Widget appFabSwitchable(BuildContext context) {
+  return const Center(child: _SwitchableDemo());
 }
 
-class _SwitchableDemoState extends State<_SwitchableDemo> {
-  bool _extended = true;
+// Helper widgets
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        AppFabSwitchable(
-          isExtended: _extended,
-          icon: Icons.edit,
-          label: 'Compose',
-          trailingIcon: Icons.arrow_forward,
-          onPressed: () {},
-        ),
-        const SizedBox(height: 12),
-        Center(
-          child: ElevatedButton(
-            onPressed: () => setState(() => _extended = !_extended),
-            child: Text(_extended ? 'Collapse' : 'Expand'),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-@widgetbook.UseCase(name: 'Hide on Scroll', type: AppFab)
-Widget appFabHideOnScroll(BuildContext context) {
-  final controller = ScrollController();
-  return Center(
-    child: SizedBox(
-      height: 240,
-      child: Stack(
-        children: [
-          ListView.builder(
-            controller: controller,
-            itemCount: 30,
-            itemBuilder: (_, i) => ListTile(title: Text('Item $i')),
-          ),
-          Positioned(
-            right: 16,
-            bottom: 16,
-            child: AppFabHideOnScroll(
-              scrollController: controller,
-              fab: AppFab(icon: Icons.add, onPressed: () {}),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-// Helper: loading state demo
 class _LoadingFab extends StatefulWidget {
   const _LoadingFab();
 
@@ -237,13 +265,39 @@ class _LoadingFabState extends State<_LoadingFab>
       icon: Icons.sync,
       onPressed: () {},
       tooltip: 'Loading',
-      foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
-      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-      heroTag: 'loading-fab',
       iconWrapper: (icon) => RotationTransition(turns: _rotation, child: icon),
     );
   }
 }
 
-// SPDX-FileCopyrightText: 2025 hexaTune LLC
-// SPDX-License-Identifier: MIT
+class _SwitchableDemo extends StatefulWidget {
+  const _SwitchableDemo();
+
+  @override
+  State<_SwitchableDemo> createState() => _SwitchableDemoState();
+}
+
+class _SwitchableDemoState extends State<_SwitchableDemo> {
+  bool _extended = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        AppFabSwitchable(
+          isExtended: _extended,
+          icon: Icons.edit,
+          label: 'Compose',
+          trailingIcon: Icons.arrow_forward,
+          onPressed: () {},
+        ),
+        const SizedBox(height: 16),
+        ElevatedButton(
+          onPressed: () => setState(() => _extended = !_extended),
+          child: Text(_extended ? 'Collapse' : 'Expand'),
+        ),
+      ],
+    );
+  }
+}

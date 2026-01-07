@@ -6,91 +6,149 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:core_kit/core_kit.dart';
 
-// 1. Basic App Bar - Default app bar with title and back button
-@widgetbook.UseCase(name: 'Basic App Bar', type: AppAppBar)
-Widget basicAppBar(BuildContext context) {
+/// Widgetbook stories for [AppAppBar] component.
+///
+/// Material Design 3 app bar component that provides consistent top
+/// navigation with title, actions, and responsive scroll behavior.
+
+// ============================================================================
+// Interactive Playground - MUST BE FIRST
+// ============================================================================
+
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppAppBar)
+Widget appAppBarPlayground(BuildContext context) {
   final title = context.knobs.string(label: 'Title', initialValue: 'My App');
-  final showBackButton = context.knobs.boolean(
-    label: 'Show Back Button',
-    initialValue: false,
-  );
+  final centerTitle = context.knobs.booleanOrNull(label: 'Center Title');
   final elevation = context.knobs.double.slider(
     label: 'Elevation',
     initialValue: 0.0,
-    min: 0.0,
-    max: 8.0,
+    min: 0,
+    max: 8,
   );
-
-  return Scaffold(
-    appBar: AppAppBar(
-      title: title,
-      leading: showBackButton ? const BackButton() : null,
-      elevation: elevation,
-    ),
-    body: const Center(child: Text('Basic app bar example')),
+  final showActions = context.knobs.boolean(
+    label: 'Show Actions',
+    initialValue: true,
   );
-}
-
-// 2. Action Icons - App bar with action icon buttons
-@widgetbook.UseCase(name: 'Action Icons', type: AppAppBar)
-Widget actionIcons(BuildContext context) {
-  final title = context.knobs.string(label: 'Title', initialValue: 'Actions');
-  final numberOfActions = context.knobs.double
-      .slider(label: 'Number of Actions', initialValue: 2.0, min: 1.0, max: 4.0)
-      .toInt();
-
-  final actionIcons = [
-    Icons.search,
-    Icons.favorite,
-    Icons.more_vert,
-    Icons.share,
-  ];
-
-  return Scaffold(
-    appBar: AppAppBar(
-      title: title,
-      actions: List.generate(
-        numberOfActions,
-        (index) => IconButton(
-          icon: Icon(actionIcons[index]),
-          onPressed: () {},
-          tooltip: 'Action ${index + 1}',
-        ),
-      ),
-    ),
-    body: const Center(child: Text('App bar with action icons')),
-  );
-}
-
-// 3. Large Title (Collapsible) - App bar with large title that collapses on scroll
-@widgetbook.UseCase(name: 'Large Title (Collapsible)', type: AppAppBar)
-Widget largeTitleCollapsible(BuildContext context) {
-  final title = context.knobs.string(
-    label: 'Title',
-    initialValue: 'Large Title',
-  );
-  final expandedHeight = context.knobs.double.slider(
-    label: 'Expanded Height',
-    initialValue: 128.0,
-    min: 100.0,
-    max: 200.0,
-  );
-  final pinned = context.knobs.boolean(label: 'Pinned', initialValue: true);
-  final floating = context.knobs.boolean(
-    label: 'Floating',
+  final showLeading = context.knobs.boolean(
+    label: 'Show Leading',
     initialValue: false,
   );
-  final snap = context.knobs.boolean(label: 'Snap', initialValue: false);
 
+  return _AppBarPreview(
+    appBar: AppAppBar(
+      title: title,
+      centerTitle: centerTitle,
+      elevation: elevation,
+      leading: showLeading ? const BackButton() : null,
+      actions: showActions
+          ? [
+              IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+              IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
+            ]
+          : null,
+    ),
+  );
+}
+
+// ============================================================================
+// Variant 2: Basic
+// ============================================================================
+
+@widgetbook.UseCase(name: 'Basic', type: AppAppBar)
+Widget basicAppBar(BuildContext context) {
+  return _AppBarPreview(appBar: const AppAppBar(title: 'My App'));
+}
+
+// ============================================================================
+// Variant 3: With Back Button
+// ============================================================================
+
+@widgetbook.UseCase(name: 'With Back Button', type: AppAppBar)
+Widget appBarWithBackButton(BuildContext context) {
+  return _AppBarPreview(
+    appBar: const AppAppBar(title: 'Details', leading: BackButton()),
+  );
+}
+
+// ============================================================================
+// Variant 4: With Actions
+// ============================================================================
+
+@widgetbook.UseCase(name: 'With Actions', type: AppAppBar)
+Widget appBarWithActions(BuildContext context) {
+  return _AppBarPreview(
+    appBar: AppAppBar(
+      title: 'Messages',
+      actions: [
+        IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+        IconButton(icon: const Icon(Icons.favorite), onPressed: () {}),
+        IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
+      ],
+    ),
+  );
+}
+
+// ============================================================================
+// Variant 5: Centered Title
+// ============================================================================
+
+@widgetbook.UseCase(name: 'Centered Title', type: AppAppBar)
+Widget centeredTitleAppBar(BuildContext context) {
+  return _AppBarPreview(
+    appBar: AppAppBar(
+      title: 'Centered',
+      centerTitle: true,
+      actions: [IconButton(icon: const Icon(Icons.settings), onPressed: () {})],
+    ),
+  );
+}
+
+// ============================================================================
+// Variant 6: With Elevation
+// ============================================================================
+
+@widgetbook.UseCase(name: 'With Elevation', type: AppAppBar)
+Widget appBarWithElevation(BuildContext context) {
+  return _AppBarPreview(
+    appBar: AppAppBar(
+      title: 'Elevated',
+      elevation: 4.0,
+      actions: [
+        IconButton(icon: const Icon(Icons.notifications), onPressed: () {}),
+      ],
+    ),
+  );
+}
+
+// ============================================================================
+// Variant 7: Custom Colors
+// ============================================================================
+
+@widgetbook.UseCase(name: 'Custom Colors', type: AppAppBar)
+Widget customColorsAppBar(BuildContext context) {
+  return _AppBarPreview(
+    appBar: AppAppBar(
+      title: 'Custom Colors',
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+      actions: [IconButton(icon: const Icon(Icons.palette), onPressed: () {})],
+    ),
+  );
+}
+
+// ============================================================================
+// Variant 8: Large Title (Collapsible)
+// ============================================================================
+
+@widgetbook.UseCase(name: 'Large Title', type: AppAppBar)
+Widget largeTitleAppBar(BuildContext context) {
   return Scaffold(
     body: CustomScrollView(
       slivers: [
         AppAppBar.large(
-          title: title,
-          expandedHeight: expandedHeight,
-          pinned: pinned,
-          floating: floating,
-          snap: snap,
+          title: 'Large Title',
+          pinned: true,
+          expandedHeight: 128.0,
           actions: [
             IconButton(icon: const Icon(Icons.search), onPressed: () {}),
           ],
@@ -99,7 +157,7 @@ Widget largeTitleCollapsible(BuildContext context) {
           delegate: SliverChildBuilderDelegate(
             (context, index) => ListTile(
               title: Text('Item ${index + 1}'),
-              subtitle: Text('Scroll to see the app bar collapse'),
+              subtitle: Text('Scroll to see collapse effect'),
             ),
             childCount: 30,
           ),
@@ -109,208 +167,83 @@ Widget largeTitleCollapsible(BuildContext context) {
   );
 }
 
-// 4. Center-Aligned Title - App bar with centered title
-@widgetbook.UseCase(name: 'Center-Aligned Title', type: AppAppBar)
-Widget centerAlignedTitle(BuildContext context) {
-  final title = context.knobs.string(
-    label: 'Title',
-    initialValue: 'Centered Title',
-  );
-  final centerTitle = context.knobs.boolean(
-    label: 'Center Title',
-    initialValue: true,
-  );
-  final backgroundColor = context.knobs.colorOrNull(
-    label: 'Background Color',
-    initialValue: Colors.blue,
-  );
+// ============================================================================
+// Variant 9: Floating App Bar
+// ============================================================================
 
+@widgetbook.UseCase(name: 'Floating', type: AppAppBar)
+Widget floatingAppBar(BuildContext context) {
   return Scaffold(
-    appBar: AppAppBar(
-      title: title,
-      centerTitle: centerTitle,
-      backgroundColor: backgroundColor,
-      foregroundColor: Colors.white,
-    ),
-    body: const Center(child: Text('Center-aligned app bar example')),
-  );
-}
-
-// 5. With Search Field - App bar with integrated search field
-@widgetbook.UseCase(name: 'With Search Field', type: AppAppBar)
-Widget withSearchField(BuildContext context) {
-  final searchHint = context.knobs.string(
-    label: 'Search Hint',
-    initialValue: 'Search...',
-  );
-  final showSearch = context.knobs.boolean(
-    label: 'Show Search',
-    initialValue: true,
-  );
-
-  return Scaffold(
-    appBar: AppAppBar(
-      title: showSearch
-          ? TextField(
-              decoration: InputDecoration(
-                hintText: searchHint,
-                border: InputBorder.none,
-                hintStyle: const TextStyle(color: Colors.white70),
-              ),
-              style: const TextStyle(color: Colors.white),
-            )
-          : 'Search Example',
-      backgroundColor: Colors.deepPurple,
-      foregroundColor: Colors.white,
-      actions: [
-        if (!showSearch)
-          IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+    body: CustomScrollView(
+      slivers: [
+        AppAppBar.large(
+          title: 'Floating Bar',
+          floating: true,
+          snap: true,
+          pinned: false,
+          actions: [
+            IconButton(icon: const Icon(Icons.filter_list), onPressed: () {}),
+          ],
+        ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => ListTile(
+              title: Text('Item ${index + 1}'),
+              subtitle: Text('Scroll down to hide, up to show'),
+            ),
+            childCount: 30,
+          ),
+        ),
       ],
     ),
-    body: ListView.builder(
-      itemCount: 20,
-      itemBuilder: (context, index) => ListTile(
-        leading: const Icon(Icons.article),
-        title: Text('Search Result ${index + 1}'),
-        subtitle: Text('Description for item ${index + 1}'),
-      ),
-    ),
   );
 }
 
-// 6. With Tabs - App bar with TabBar at the bottom
+// ============================================================================
+// Variant 10: With Tab Bar
+// ============================================================================
+
 @widgetbook.UseCase(name: 'With Tabs', type: AppAppBar)
-Widget withTabs(BuildContext context) {
-  final numberOfTabs = context.knobs.double
-      .slider(label: 'Number of Tabs', initialValue: 3.0, min: 2.0, max: 5.0)
-      .toInt();
-
-  final tabLabels = ['Home', 'Explore', 'Profile', 'Settings', 'More'];
-
+Widget appBarWithTabs(BuildContext context) {
   return DefaultTabController(
-    length: numberOfTabs,
+    length: 3,
     child: Scaffold(
       appBar: AppAppBar(
-        title: 'Tabs Example',
-        bottom: TabBar(
-          tabs: List.generate(
-            numberOfTabs,
-            (index) => Tab(text: tabLabels[index]),
-          ),
-        ),
-        actions: [
-          IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
-        ],
-      ),
-      body: TabBarView(
-        children: List.generate(
-          numberOfTabs,
-          (index) => Center(
-            child: Text(
-              'Tab ${index + 1}: ${tabLabels[index]}',
-              style: const TextStyle(fontSize: 24),
-            ),
-          ),
+        title: 'Tabs',
+        actions: [IconButton(icon: const Icon(Icons.search), onPressed: () {})],
+        bottom: const TabBar(
+          tabs: [
+            Tab(text: 'Tab 1'),
+            Tab(text: 'Tab 2'),
+            Tab(text: 'Tab 3'),
+          ],
         ),
       ),
-    ),
-  );
-}
-
-// 7. Transparent App Bar - App bar with transparent background
-@widgetbook.UseCase(name: 'Transparent App Bar', type: AppAppBar)
-Widget transparentAppBar(BuildContext context) {
-  final backgroundOpacity = context.knobs.double.slider(
-    label: 'Background Opacity',
-    initialValue: 0.0,
-    min: 0.0,
-    max: 1.0,
-  );
-  final foregroundColor = context.knobs.colorOrNull(
-    label: 'Foreground Color',
-    initialValue: Colors.white,
-  );
-
-  return Scaffold(
-    extendBodyBehindAppBar: true,
-    appBar: AppAppBar(
-      title: 'Transparent',
-      backgroundColor: Colors.black.withValues(alpha: backgroundOpacity),
-      foregroundColor: foregroundColor,
-      elevation: 0,
-      actions: [IconButton(icon: const Icon(Icons.settings), onPressed: () {})],
-    ),
-    body: Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Colors.purple, Colors.blue, Colors.pink],
-        ),
-      ),
-      child: const Center(
-        child: Text(
-          'Content Behind App Bar',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    ),
-  );
-}
-
-// 8. Custom Colors - App bar with custom colors
-@widgetbook.UseCase(name: 'Custom Colors', type: AppAppBar)
-Widget customColors(BuildContext context) {
-  final title = context.knobs.string(
-    label: 'Title',
-    initialValue: 'Custom Colors',
-  );
-  final backgroundColor = context.knobs.colorOrNull(
-    label: 'Background Color',
-    initialValue: Colors.blue,
-  );
-  final foregroundColor = context.knobs.colorOrNull(
-    label: 'Foreground Color',
-    initialValue: Colors.white,
-  );
-  final elevation = context.knobs.double.slider(
-    label: 'Elevation',
-    initialValue: 4.0,
-    min: 0.0,
-    max: 16.0,
-  );
-
-  return Scaffold(
-    appBar: AppAppBar(
-      title: title,
-      backgroundColor: backgroundColor,
-      foregroundColor: foregroundColor,
-      elevation: elevation,
-      actions: [
-        IconButton(icon: const Icon(Icons.palette), onPressed: () {}),
-        IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
-      ],
-    ),
-    body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: const TabBarView(
         children: [
-          const Text('Custom colored app bar', style: TextStyle(fontSize: 18)),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: backgroundColor,
-              foregroundColor: foregroundColor,
-            ),
-            child: const Text('Matching Button'),
-          ),
+          Center(child: Text('Content 1')),
+          Center(child: Text('Content 2')),
+          Center(child: Text('Content 3')),
         ],
       ),
     ),
   );
+}
+
+// ============================================================================
+// Helper Widget - Preview Container for AppBar
+// ============================================================================
+
+class _AppBarPreview extends StatelessWidget {
+  final AppAppBar appBar;
+
+  const _AppBarPreview({required this.appBar});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: appBar,
+      body: const Center(child: Text('App Bar Preview')),
+    );
+  }
 }

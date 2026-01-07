@@ -2,106 +2,142 @@
 // SPDX-License-Identifier: MIT
 
 import 'package:flutter/material.dart';
+import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:core_kit/core_kit.dart';
 
-// 1. Default - Basic vertical radio group
+/// Widgetbook stories for [AppRadioGroup] component.
+///
+/// A Material Design 3 radio button group widget that allows users to select
+/// exactly one option from a set of mutually exclusive choices.
+
+/// Interactive Playground - explore all AppRadioGroup properties with knobs
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppRadioGroup)
+Widget appRadioGroupPlayground(BuildContext context) {
+  final direction = context.knobs.object.dropdown(
+    label: 'Direction',
+    options: const ['vertical', 'horizontal'],
+    labelBuilder: (value) => value,
+  );
+
+  final optionCount = context.knobs.int.slider(
+    label: 'Option Count',
+    initialValue: 3,
+    min: 2,
+    max: 5,
+  );
+
+  final hasLabel = context.knobs.boolean(
+    label: 'Has Group Label',
+    initialValue: true,
+  );
+  final hasIcons = context.knobs.boolean(
+    label: 'Has Icons',
+    initialValue: false,
+  );
+  final hasDescriptions = context.knobs.boolean(
+    label: 'Has Descriptions',
+    initialValue: false,
+  );
+  final enabled = context.knobs.boolean(label: 'Enabled', initialValue: true);
+  final error = context.knobs.boolean(label: 'Error', initialValue: false);
+  final hasErrorText = context.knobs.boolean(
+    label: 'Has Error Text',
+    initialValue: false,
+  );
+
+  final label = hasLabel
+      ? context.knobs.string(
+          label: 'Group Label',
+          initialValue: 'Select an option',
+        )
+      : null;
+
+  final errorText = hasErrorText
+      ? context.knobs.string(
+          label: 'Error Text',
+          initialValue: 'Please select an option',
+        )
+      : null;
+
+  final options = List.generate(optionCount, (index) {
+    return RadioOption<String>(
+      value: 'option${index + 1}',
+      label: 'Option ${index + 1}',
+      description: hasDescriptions
+          ? 'Description for option ${index + 1}'
+          : null,
+      icon: hasIcons ? Icons.radio_button_checked : null,
+    );
+  });
+
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppRadioGroup<String>(
+        label: label,
+        value: 'option1',
+        direction: direction == 'horizontal' ? Axis.horizontal : Axis.vertical,
+        options: options,
+        enabled: enabled,
+        error: error,
+        errorText: errorText,
+        onChanged: enabled ? (_) {} : null,
+      ),
+    ),
+  );
+}
+
+/// Default - Basic vertical radio group
 @widgetbook.UseCase(name: 'Default', type: AppRadioGroup)
 Widget appRadioGroupDefault(BuildContext context) {
-  return const _DefaultRadioGroupStory();
-}
-
-class _DefaultRadioGroupStory extends StatefulWidget {
-  const _DefaultRadioGroupStory();
-
-  @override
-  State<_DefaultRadioGroupStory> createState() =>
-      _DefaultRadioGroupStoryState();
-}
-
-class _DefaultRadioGroupStoryState extends State<_DefaultRadioGroupStory> {
-  String? selectedValue;
-
-  @override
-  Widget build(BuildContext context) {
-    return _RadioGroupWrapper(
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
       child: AppRadioGroup<String>(
         label: 'Select an option',
-        value: selectedValue,
+        value: null,
         options: const [
           RadioOption(value: 'option1', label: 'Option 1'),
           RadioOption(value: 'option2', label: 'Option 2'),
           RadioOption(value: 'option3', label: 'Option 3'),
         ],
-        onChanged: (value) {
-          setState(() => selectedValue = value);
-        },
+        onChanged: (_) {},
       ),
-    );
-  }
+    ),
+  );
 }
 
-// 2. Horizontal Layout
+/// Horizontal Layout - Options displayed horizontally
 @widgetbook.UseCase(name: 'Horizontal Layout', type: AppRadioGroup)
 Widget appRadioGroupHorizontal(BuildContext context) {
-  return const _HorizontalRadioGroupStory();
-}
-
-class _HorizontalRadioGroupStory extends StatefulWidget {
-  const _HorizontalRadioGroupStory();
-
-  @override
-  State<_HorizontalRadioGroupStory> createState() =>
-      _HorizontalRadioGroupStoryState();
-}
-
-class _HorizontalRadioGroupStoryState
-    extends State<_HorizontalRadioGroupStory> {
-  String? selectedValue;
-
-  @override
-  Widget build(BuildContext context) {
-    return _RadioGroupWrapper(
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
       child: AppRadioGroup<String>(
         label: 'Layout Direction',
-        value: selectedValue,
+        value: 'center',
         direction: Axis.horizontal,
         options: const [
           RadioOption(value: 'left', label: 'Left'),
           RadioOption(value: 'center', label: 'Center'),
           RadioOption(value: 'right', label: 'Right'),
         ],
-        onChanged: (value) {
-          setState(() => selectedValue = value);
-        },
+        onChanged: (_) {},
       ),
-    );
-  }
+    ),
+  );
 }
 
-// 3. With Icons
+/// With Icons - Radio options with leading icons
 @widgetbook.UseCase(name: 'With Icons', type: AppRadioGroup)
 Widget appRadioGroupWithIcons(BuildContext context) {
-  return const _WithIconsRadioGroupStory();
-}
-
-class _WithIconsRadioGroupStory extends StatefulWidget {
-  const _WithIconsRadioGroupStory();
-
-  @override
-  State<_WithIconsRadioGroupStory> createState() =>
-      _WithIconsRadioGroupStoryState();
-}
-
-class _WithIconsRadioGroupStoryState extends State<_WithIconsRadioGroupStory> {
-  String? selectedValue;
-
-  @override
-  Widget build(BuildContext context) {
-    return _RadioGroupWrapper(
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
       child: AppRadioGroup<String>(
         label: 'Payment Method',
-        value: selectedValue,
+        value: 'card',
         options: const [
           RadioOption(
             value: 'card',
@@ -115,38 +151,21 @@ class _WithIconsRadioGroupStoryState extends State<_WithIconsRadioGroupStory> {
             icon: Icons.account_balance,
           ),
         ],
-        onChanged: (value) {
-          setState(() => selectedValue = value);
-        },
+        onChanged: (_) {},
       ),
-    );
-  }
+    ),
+  );
 }
 
-// 4. With Descriptions
+/// With Descriptions - Options with additional description text
 @widgetbook.UseCase(name: 'With Descriptions', type: AppRadioGroup)
 Widget appRadioGroupWithDescriptions(BuildContext context) {
-  return const _WithDescriptionsRadioGroupStory();
-}
-
-class _WithDescriptionsRadioGroupStory extends StatefulWidget {
-  const _WithDescriptionsRadioGroupStory();
-
-  @override
-  State<_WithDescriptionsRadioGroupStory> createState() =>
-      _WithDescriptionsRadioGroupStoryState();
-}
-
-class _WithDescriptionsRadioGroupStoryState
-    extends State<_WithDescriptionsRadioGroupStory> {
-  String? selectedValue;
-
-  @override
-  Widget build(BuildContext context) {
-    return _RadioGroupWrapper(
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
       child: AppRadioGroup<String>(
         label: 'Shipping Method',
-        value: selectedValue,
+        value: 'standard',
         options: const [
           RadioOption(
             value: 'standard',
@@ -167,332 +186,115 @@ class _WithDescriptionsRadioGroupStoryState
             icon: Icons.flight,
           ),
         ],
-        onChanged: (value) {
-          setState(() => selectedValue = value);
-        },
+        onChanged: (_) {},
       ),
-    );
-  }
+    ),
+  );
 }
 
-// 5. Pre-selected
+/// Pre-selected - Radio group with pre-selected value
 @widgetbook.UseCase(name: 'Pre-selected', type: AppRadioGroup)
 Widget appRadioGroupPreselected(BuildContext context) {
-  return const _PreselectedRadioGroupStory();
-}
-
-class _PreselectedRadioGroupStory extends StatefulWidget {
-  const _PreselectedRadioGroupStory();
-
-  @override
-  State<_PreselectedRadioGroupStory> createState() =>
-      _PreselectedRadioGroupStoryState();
-}
-
-class _PreselectedRadioGroupStoryState
-    extends State<_PreselectedRadioGroupStory> {
-  String? selectedValue = 'email';
-
-  @override
-  Widget build(BuildContext context) {
-    return _RadioGroupWrapper(
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
       child: AppRadioGroup<String>(
         label: 'Notification Preference',
-        value: selectedValue,
+        value: 'email',
         options: const [
           RadioOption(value: 'email', label: 'Email'),
           RadioOption(value: 'sms', label: 'SMS'),
           RadioOption(value: 'push', label: 'Push Notification'),
         ],
-        onChanged: (value) {
-          setState(() => selectedValue = value);
-        },
+        onChanged: (_) {},
       ),
-    );
-  }
+    ),
+  );
 }
 
-// 6. Disabled Group
+/// Disabled - Entire group disabled
 @widgetbook.UseCase(name: 'Disabled', type: AppRadioGroup)
 Widget appRadioGroupDisabled(BuildContext context) {
-  return const _DisabledRadioGroupStory();
-}
-
-class _DisabledRadioGroupStory extends StatefulWidget {
-  const _DisabledRadioGroupStory();
-
-  @override
-  State<_DisabledRadioGroupStory> createState() =>
-      _DisabledRadioGroupStoryState();
-}
-
-class _DisabledRadioGroupStoryState extends State<_DisabledRadioGroupStory> {
-  String? selectedValue;
-
-  @override
-  Widget build(BuildContext context) {
-    return _RadioGroupWrapper(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Disabled entire group
-          AppRadioGroup<String>(
-            label: 'Disabled Group',
-            enabled: false,
-            value: 'option1',
-            options: const [
-              RadioOption(value: 'option1', label: 'Selected but disabled'),
-              RadioOption(value: 'option2', label: 'Not selected'),
-            ],
-            onChanged: (value) {},
-          ),
-          const SizedBox(height: 24),
-          // Individual option disabled
-          AppRadioGroup<String>(
-            label: 'Individual Option Disabled',
-            value: selectedValue,
-            options: const [
-              RadioOption(value: 'available', label: 'Available Option'),
-              RadioOption(
-                value: 'unavailable',
-                label: 'Unavailable Option',
-                enabled: false,
-              ),
-            ],
-            onChanged: (value) {
-              setState(() => selectedValue = value);
-            },
-          ),
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppRadioGroup<String>(
+        label: 'Disabled Group',
+        enabled: false,
+        value: 'option1',
+        options: const [
+          RadioOption(value: 'option1', label: 'Selected but disabled'),
+          RadioOption(value: 'option2', label: 'Not selected'),
+          RadioOption(value: 'option3', label: 'Also disabled'),
         ],
+        onChanged: (_) {},
       ),
-    );
-  }
+    ),
+  );
 }
 
-// 7. Error State
+/// Individual Option Disabled - Some options disabled
+@widgetbook.UseCase(name: 'Individual Option Disabled', type: AppRadioGroup)
+Widget appRadioGroupIndividualDisabled(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppRadioGroup<String>(
+        label: 'Individual Option Disabled',
+        value: 'available',
+        options: const [
+          RadioOption(value: 'available', label: 'Available Option'),
+          RadioOption(
+            value: 'unavailable',
+            label: 'Unavailable Option',
+            enabled: false,
+          ),
+          RadioOption(value: 'available2', label: 'Another Available Option'),
+        ],
+        onChanged: (_) {},
+      ),
+    ),
+  );
+}
+
+/// Error State - Radio group with error message
 @widgetbook.UseCase(name: 'Error State', type: AppRadioGroup)
 Widget appRadioGroupError(BuildContext context) {
-  return const _ErrorRadioGroupStory();
-}
-
-class _ErrorRadioGroupStory extends StatefulWidget {
-  const _ErrorRadioGroupStory();
-
-  @override
-  State<_ErrorRadioGroupStory> createState() => _ErrorRadioGroupStoryState();
-}
-
-class _ErrorRadioGroupStoryState extends State<_ErrorRadioGroupStory> {
-  String? selectedValue;
-
-  @override
-  Widget build(BuildContext context) {
-    return _RadioGroupWrapper(
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
       child: AppRadioGroup<String>(
         label: 'Select Required Field',
-        value: selectedValue,
-        error: selectedValue == null,
-        errorText: selectedValue == null
-            ? 'Please select an option to continue'
-            : null,
+        value: null,
+        error: true,
+        errorText: 'Please select an option to continue',
         options: const [
           RadioOption(value: 'accept', label: 'Accept terms and conditions'),
           RadioOption(value: 'decline', label: 'Decline'),
         ],
-        onChanged: (value) {
-          setState(() => selectedValue = value);
-        },
+        onChanged: (_) {},
       ),
-    );
-  }
+    ),
+  );
 }
 
-// 8. All States - Comprehensive comparison
-@widgetbook.UseCase(name: 'All States', type: AppRadioGroup)
-Widget appRadioGroupAllStates(BuildContext context) {
-  return const _AllStatesRadioGroupStory();
-}
-
-class _AllStatesRadioGroupStory extends StatefulWidget {
-  const _AllStatesRadioGroupStory();
-
-  @override
-  State<_AllStatesRadioGroupStory> createState() =>
-      _AllStatesRadioGroupStoryState();
-}
-
-class _AllStatesRadioGroupStoryState extends State<_AllStatesRadioGroupStory> {
-  String? unselectedValue;
-  String? selectedValue = 'a';
-  String? labelValue;
-  String? errorValue;
-  String? iconValue = 'star';
-  String? horizontalValue = 'yes';
-
-  @override
-  Widget build(BuildContext context) {
-    return _RadioGroupWrapper(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Unselected
-            _buildSection(
-              'Unselected',
-              AppRadioGroup<String>(
-                value: unselectedValue,
-                options: const [
-                  RadioOption(value: 'a', label: 'Choice A'),
-                  RadioOption(value: 'b', label: 'Choice B'),
-                ],
-                onChanged: (value) {
-                  setState(() => unselectedValue = value);
-                },
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            // Selected
-            _buildSection(
-              'Selected',
-              AppRadioGroup<String>(
-                value: selectedValue,
-                options: const [
-                  RadioOption(value: 'a', label: 'Choice A'),
-                  RadioOption(value: 'b', label: 'Choice B'),
-                ],
-                onChanged: (value) {
-                  setState(() => selectedValue = value);
-                },
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            // With Label
-            _buildSection(
-              'With Group Label',
-              AppRadioGroup<String>(
-                label: 'Group Label',
-                value: labelValue,
-                options: const [
-                  RadioOption(value: 'a', label: 'Choice A'),
-                  RadioOption(value: 'b', label: 'Choice B'),
-                ],
-                onChanged: (value) {
-                  setState(() => labelValue = value);
-                },
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            // Disabled
-            _buildSection(
-              'Disabled',
-              AppRadioGroup<String>(
-                enabled: false,
-                value: 'a',
-                options: const [
-                  RadioOption(value: 'a', label: 'Choice A'),
-                  RadioOption(value: 'b', label: 'Choice B'),
-                ],
-                onChanged: (value) {},
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            // Error
-            _buildSection(
-              'Error State',
-              AppRadioGroup<String>(
-                value: errorValue,
-                error: true,
-                errorText: 'Selection required',
-                options: const [
-                  RadioOption(value: 'a', label: 'Choice A'),
-                  RadioOption(value: 'b', label: 'Choice B'),
-                ],
-                onChanged: (value) {
-                  setState(() => errorValue = value);
-                },
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            // With Icons
-            _buildSection(
-              'With Icons',
-              AppRadioGroup<String>(
-                value: iconValue,
-                options: const [
-                  RadioOption(value: 'star', label: 'Star', icon: Icons.star),
-                  RadioOption(
-                    value: 'heart',
-                    label: 'Heart',
-                    icon: Icons.favorite,
-                  ),
-                ],
-                onChanged: (value) {
-                  setState(() => iconValue = value);
-                },
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            // Horizontal
-            _buildSection(
-              'Horizontal Layout',
-              AppRadioGroup<String>(
-                direction: Axis.horizontal,
-                value: horizontalValue,
-                options: const [
-                  RadioOption(value: 'yes', label: 'Yes'),
-                  RadioOption(value: 'no', label: 'No'),
-                ],
-                onChanged: (value) {
-                  setState(() => horizontalValue = value);
-                },
-              ),
-            ),
-          ],
-        ),
+/// Gender Selection - Real-world gender selection example
+@widgetbook.UseCase(name: 'Gender Selection', type: AppRadioGroup)
+Widget appRadioGroupGenderSelection(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppRadioGroup<String>(
+        label: 'Gender',
+        value: null,
+        options: const [
+          RadioOption(value: 'male', label: 'Male', icon: Icons.male),
+          RadioOption(value: 'female', label: 'Female', icon: Icons.female),
+          RadioOption(value: 'other', label: 'Other'),
+          RadioOption(value: 'prefer_not', label: 'Prefer not to say'),
+        ],
+        onChanged: (_) {},
       ),
-    );
-  }
-}
-
-// Helper widget for consistent padding
-class _RadioGroupWrapper extends StatelessWidget {
-  const _RadioGroupWrapper({required this.child});
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(padding: const EdgeInsets.all(16.0), child: child);
-  }
-}
-
-// Helper function for All States story
-Widget _buildSection(String title, Widget content) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        title,
-        style: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-          color: Colors.grey,
-        ),
-      ),
-      const SizedBox(height: 8),
-      content,
-    ],
+    ),
   );
 }

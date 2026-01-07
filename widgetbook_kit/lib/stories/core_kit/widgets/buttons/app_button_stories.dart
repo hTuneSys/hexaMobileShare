@@ -2,334 +2,193 @@
 // SPDX-License-Identifier: MIT
 
 import 'package:flutter/material.dart';
+import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:core_kit/core_kit.dart';
 
-// 1. Interactive Playground - All Variants with Different States
+/// Interactive Playground - Expose ALL component properties as knobs
 @widgetbook.UseCase(name: 'Interactive Playground', type: AppButton)
 Widget appButtonPlayground(BuildContext context) {
-  return SingleChildScrollView(
-    child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const Text(
-            'Filled Variants',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          AppButton.filled(label: 'Default', onPressed: () {}),
-          const SizedBox(height: 8),
-          AppButton.filled(
-            label: 'With Icon',
-            icon: Icons.add,
-            onPressed: () {},
-          ),
-          const SizedBox(height: 8),
-          const AppButton.filled(label: 'Disabled', onPressed: null),
-          const SizedBox(height: 8),
-          AppButton.filled(label: 'Loading', isLoading: true, onPressed: () {}),
-          const SizedBox(height: 8),
-          AppButton.filled(
-            label: 'Full Width',
-            fullWidth: true,
-            onPressed: () {},
-          ),
-          const Divider(height: 32),
-          const Text(
-            'Outlined Variants',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          AppButton.outlined(label: 'Default', onPressed: () {}),
-          const SizedBox(height: 8),
-          AppButton.outlined(
-            label: 'With Icon',
-            icon: Icons.download,
-            onPressed: () {},
-          ),
-          const SizedBox(height: 8),
-          const AppButton.outlined(label: 'Disabled', onPressed: null),
-          const SizedBox(height: 8),
-          AppButton.outlined(
-            label: 'Loading',
-            isLoading: true,
-            onPressed: () {},
-          ),
-          const Divider(height: 32),
-          const Text(
-            'Text Variants',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          AppButton.text(label: 'Default', onPressed: () {}),
-          const SizedBox(height: 8),
-          AppButton.text(
-            label: 'With Icon',
-            icon: Icons.arrow_forward,
-            onPressed: () {},
-          ),
-          const SizedBox(height: 8),
-          const AppButton.text(label: 'Disabled', onPressed: null),
-          const SizedBox(height: 8),
-          AppButton.text(label: 'Loading', isLoading: true, onPressed: () {}),
-          const Divider(height: 32),
-          const Text(
-            'Elevated Variants',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          AppButton.elevated(label: 'Default', onPressed: () {}),
-          const SizedBox(height: 8),
-          AppButton.elevated(
-            label: 'With Icon',
-            icon: Icons.upload,
-            onPressed: () {},
-          ),
-          const SizedBox(height: 8),
-          const AppButton.elevated(label: 'Disabled', onPressed: null),
-          const SizedBox(height: 8),
-          AppButton.elevated(
-            label: 'Loading',
-            isLoading: true,
-            onPressed: () {},
-          ),
-        ],
-      ),
+  // Knobs for all AppButton properties
+  final label = context.knobs.string(
+    label: 'Label',
+    initialValue: 'Button Label',
+  );
+
+  final selectedVariant = context.knobs.object.dropdown(
+    label: 'Variant',
+    options: const ['filled', 'outlined', 'text', 'elevated'],
+    labelBuilder: (value) => value,
+  );
+
+  final hasIcon = context.knobs.boolean(label: 'Has Icon', initialValue: false);
+
+  final selectedIcon = context.knobs.object.dropdown(
+    label: 'Icon (if enabled)',
+    options: const [
+      'add',
+      'download',
+      'upload',
+      'arrow_forward',
+      'shopping_cart',
+      'login',
+      'check_circle',
+      'favorite',
+    ],
+    labelBuilder: (value) => value,
+  );
+
+  final isEnabled = context.knobs.boolean(label: 'Enabled', initialValue: true);
+
+  final isLoading = context.knobs.boolean(
+    label: 'Loading',
+    initialValue: false,
+  );
+
+  final fullWidth = context.knobs.boolean(
+    label: 'Full Width',
+    initialValue: false,
+  );
+
+  // Map string icon name to IconData
+  final IconData? icon = hasIcon
+      ? switch (selectedIcon) {
+          'add' => Icons.add,
+          'download' => Icons.download,
+          'upload' => Icons.upload,
+          'arrow_forward' => Icons.arrow_forward,
+          'shopping_cart' => Icons.shopping_cart,
+          'login' => Icons.login,
+          'check_circle' => Icons.check_circle,
+          'favorite' => Icons.favorite,
+          _ => Icons.add,
+        }
+      : null;
+
+  // Build button based on selected variant
+  final button = switch (selectedVariant) {
+    'filled' => AppButton.filled(
+      label: label,
+      icon: icon,
+      onPressed: isEnabled ? () {} : null,
+      isLoading: isLoading,
+      fullWidth: fullWidth,
+    ),
+    'outlined' => AppButton.outlined(
+      label: label,
+      icon: icon,
+      onPressed: isEnabled ? () {} : null,
+      isLoading: isLoading,
+      fullWidth: fullWidth,
+    ),
+    'text' => AppButton.text(
+      label: label,
+      icon: icon,
+      onPressed: isEnabled ? () {} : null,
+      isLoading: isLoading,
+      fullWidth: fullWidth,
+    ),
+    'elevated' => AppButton.elevated(
+      label: label,
+      icon: icon,
+      onPressed: isEnabled ? () {} : null,
+      isLoading: isLoading,
+      fullWidth: fullWidth,
+    ),
+    _ => AppButton.filled(
+      label: label,
+      icon: icon,
+      onPressed: isEnabled ? () {} : null,
+      isLoading: isLoading,
+      fullWidth: fullWidth,
+    ),
+  };
+
+  return Center(
+    child: Padding(padding: const EdgeInsets.all(16.0), child: button),
+  );
+}
+
+/// Filled Button - High emphasis primary action
+@widgetbook.UseCase(name: 'Filled Button', type: AppButton)
+Widget appButtonFilled(BuildContext context) {
+  return Center(
+    child: AppButton.filled(label: 'Filled Button', onPressed: () {}),
+  );
+}
+
+/// Outlined Button - Medium emphasis secondary action
+@widgetbook.UseCase(name: 'Outlined Button', type: AppButton)
+Widget appButtonOutlined(BuildContext context) {
+  return Center(
+    child: AppButton.outlined(label: 'Outlined Button', onPressed: () {}),
+  );
+}
+
+/// Text Button - Low emphasis tertiary action
+@widgetbook.UseCase(name: 'Text Button', type: AppButton)
+Widget appButtonText(BuildContext context) {
+  return Center(
+    child: AppButton.text(label: 'Text Button', onPressed: () {}),
+  );
+}
+
+/// Elevated Button - Elevated emphasis for busy backgrounds
+@widgetbook.UseCase(name: 'Elevated Button', type: AppButton)
+Widget appButtonElevated(BuildContext context) {
+  return Center(
+    child: AppButton.elevated(label: 'Elevated Button', onPressed: () {}),
+  );
+}
+
+/// Button with Icon - Shows button with leading icon
+@widgetbook.UseCase(name: 'With Icon', type: AppButton)
+Widget appButtonWithIcon(BuildContext context) {
+  return Center(
+    child: AppButton.filled(
+      label: 'Add Item',
+      icon: Icons.add,
+      onPressed: () {},
     ),
   );
 }
 
-// 2. All Variants Side-by-Side
-@widgetbook.UseCase(name: 'All Variants', type: AppButton)
-Widget appButtonAllVariants(BuildContext context) {
+/// Disabled State - Shows disabled button appearance
+@widgetbook.UseCase(name: 'Disabled State', type: AppButton)
+Widget appButtonDisabled(BuildContext context) {
+  return const Center(
+    child: AppButton.filled(label: 'Disabled Button', onPressed: null),
+  );
+}
+
+/// Loading State - Shows button in loading state with spinner
+@widgetbook.UseCase(name: 'Loading State', type: AppButton)
+Widget appButtonLoading(BuildContext context) {
+  return Center(
+    child: AppButton.filled(
+      label: 'Processing',
+      isLoading: true,
+      onPressed: () {},
+    ),
+  );
+}
+
+/// Full Width Button - Button that expands to fill parent width
+@widgetbook.UseCase(name: 'Full Width', type: AppButton)
+Widget appButtonFullWidth(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16.0),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text('Filled', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 8),
-        AppButton.filled(label: 'Filled Button', onPressed: () {}),
-        const SizedBox(height: 16),
-        const Text('Outlined', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 8),
-        AppButton.outlined(label: 'Outlined Button', onPressed: () {}),
-        const SizedBox(height: 16),
-        const Text('Text', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 8),
-        AppButton.text(label: 'Text Button', onPressed: () {}),
-        const SizedBox(height: 16),
-        const Text('Elevated', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 8),
-        AppButton.elevated(label: 'Elevated Button', onPressed: () {}),
-      ],
+    child: AppButton.filled(
+      label: 'Full Width Button',
+      fullWidth: true,
+      onPressed: () {},
     ),
   );
 }
 
-// 3. With Icons - Demonstrate icon combinations
-@widgetbook.UseCase(name: 'With Icons', type: AppButton)
-Widget appButtonWithIcons(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'All button variants support icons',
-          style: TextStyle(fontStyle: FontStyle.italic),
-        ),
-        const SizedBox(height: 16),
-        AppButton.filled(label: 'Add Item', icon: Icons.add, onPressed: () {}),
-        const SizedBox(height: 8),
-        AppButton.outlined(
-          label: 'Download',
-          icon: Icons.download,
-          onPressed: () {},
-        ),
-        const SizedBox(height: 8),
-        AppButton.text(
-          label: 'Learn More',
-          icon: Icons.arrow_forward,
-          onPressed: () {},
-        ),
-        const SizedBox(height: 8),
-        AppButton.elevated(
-          label: 'Upload',
-          icon: Icons.upload,
-          onPressed: () {},
-        ),
-      ],
-    ),
-  );
-}
-
-// 4. States - Interactive state demonstration
-@widgetbook.UseCase(name: 'States', type: AppButton)
-Widget appButtonStates(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text('Enabled', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 8),
-        AppButton.filled(label: 'Enabled', onPressed: () {}),
-        const SizedBox(height: 16),
-        const Text('Disabled', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 8),
-        const AppButton.filled(label: 'Disabled', onPressed: null),
-        const SizedBox(height: 16),
-        const Text('Loading', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 8),
-        AppButton.filled(
-          label: 'Processing',
-          isLoading: true,
-          onPressed: () {},
-        ),
-        const SizedBox(height: 16),
-        const Text(
-          'Icon + Loading (Bug Fix Demo)',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 4),
-        const Text(
-          'When both icon and loading are true, loading indicator should show instead of icon',
-          style: TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
-        ),
-        const SizedBox(height: 8),
-        AppButton.filled(
-          label: 'Uploading',
-          icon: Icons.cloud_upload,
-          isLoading: true,
-          onPressed: () {},
-        ),
-      ],
-    ),
-  );
-}
-
-// 5. Sizes - Layout variations
-@widgetbook.UseCase(name: 'Sizes', type: AppButton)
-Widget appButtonSizes(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const Text(
-          'Normal Width',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 8),
-        AppButton.filled(label: 'Normal', fullWidth: false, onPressed: () {}),
-        const SizedBox(height: 16),
-        const Text('Full Width', style: TextStyle(fontWeight: FontWeight.bold)),
-        const SizedBox(height: 8),
-        AppButton.filled(
-          label: 'Full Width',
-          fullWidth: true,
-          onPressed: () {},
-        ),
-        const SizedBox(height: 16),
-        const Text(
-          'Full Width with Icon',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 8),
-        AppButton.filled(
-          label: 'Sign In',
-          icon: Icons.login,
-          fullWidth: true,
-          onPressed: () {},
-        ),
-      ],
-    ),
-  );
-}
-
-// 6. Theme Variations - Light & dark mode
-@widgetbook.UseCase(name: 'Theme Variations', type: AppButton)
-Widget appButtonThemeVariations(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Toggle theme in Widgetbook settings (top toolbar) to see light/dark mode variations',
-          style: TextStyle(fontStyle: FontStyle.italic),
-        ),
-        const SizedBox(height: 16),
-        AppButton.filled(label: 'Filled', onPressed: () {}),
-        const SizedBox(height: 8),
-        AppButton.outlined(label: 'Outlined', onPressed: () {}),
-        const SizedBox(height: 8),
-        AppButton.text(label: 'Text', onPressed: () {}),
-        const SizedBox(height: 8),
-        AppButton.elevated(label: 'Elevated', onPressed: () {}),
-      ],
-    ),
-  );
-}
-
-// 7. Edge Cases
-@widgetbook.UseCase(name: 'Edge Cases', type: AppButton)
-Widget appButtonEdgeCases(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Very Long Label',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 8),
-        SizedBox(
-          width: 200,
-          child: AppButton.filled(
-            label: 'This is a very long button label that might wrap',
-            onPressed: () {},
-          ),
-        ),
-        const SizedBox(height: 16),
-        const Text(
-          'Empty Label',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 8),
-        AppButton.filled(label: '', onPressed: () {}),
-        const SizedBox(height: 16),
-        const Text(
-          'All Properties Combined',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 8),
-        AppButton.filled(
-          label: 'Complete',
-          icon: Icons.check_circle,
-          fullWidth: true,
-          isLoading: false,
-          onPressed: () {},
-        ),
-      ],
-    ),
-  );
-}
-
-// Real-world Examples
-
+/// Real-world Example - Login form with primary and text buttons
 @widgetbook.UseCase(name: 'Login Form Example', type: AppButton)
-Widget loginFormExample(BuildContext context) {
+Widget appButtonLoginExample(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(16.0),
     child: Column(
@@ -337,7 +196,7 @@ Widget loginFormExample(BuildContext context) {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const Text(
-          'Typical login form layout',
+          'Real-world example: Login form layout',
           style: TextStyle(fontStyle: FontStyle.italic),
         ),
         const SizedBox(height: 16),
@@ -350,62 +209,6 @@ Widget loginFormExample(BuildContext context) {
         const SizedBox(height: 8),
         AppButton.text(
           label: 'Forgot Password?',
-          fullWidth: true,
-          onPressed: () {},
-        ),
-      ],
-    ),
-  );
-}
-
-@widgetbook.UseCase(name: 'Dialog Actions Example', type: AppButton)
-Widget dialogActionsExample(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Typical dialog action buttons',
-          style: TextStyle(fontStyle: FontStyle.italic),
-        ),
-        const SizedBox(height: 16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            AppButton.text(label: 'Cancel', onPressed: () {}),
-            const SizedBox(width: 8),
-            AppButton.filled(label: 'Confirm', onPressed: () {}),
-          ],
-        ),
-      ],
-    ),
-  );
-}
-
-@widgetbook.UseCase(name: 'E-commerce Example', type: AppButton)
-Widget ecommerceExample(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const Text(
-          'E-commerce product actions',
-          style: TextStyle(fontStyle: FontStyle.italic),
-        ),
-        const SizedBox(height: 16),
-        AppButton.filled(
-          label: 'Add to Cart',
-          icon: Icons.shopping_cart,
-          fullWidth: true,
-          onPressed: () {},
-        ),
-        const SizedBox(height: 8),
-        AppButton.outlined(
-          label: 'Add to Wishlist',
-          icon: Icons.favorite_border,
           fullWidth: true,
           onPressed: () {},
         ),

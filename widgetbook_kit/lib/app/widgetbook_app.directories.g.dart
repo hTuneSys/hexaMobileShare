@@ -13,10 +13,6 @@
 import 'package:widgetbook/widgetbook.dart' as _widgetbook;
 import 'package:widgetbook_kit/stories/analytics_kit/analytics/screen_tracking_mixin_stories.dart'
     as _widgetbook_kit_stories_analytics_kit_analytics_screen_tracking_mixin_stories;
-import 'package:widgetbook_kit/stories/core_kit/buttons/app_button_stories.dart'
-    as _widgetbook_kit_stories_core_kit_buttons_app_button_stories;
-import 'package:widgetbook_kit/stories/core_kit/feedback/app_empty_state_stories.dart'
-    as _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_fab_stories.dart'
@@ -43,8 +39,12 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_confirm_dia
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_dialog_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_empty_state_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_empty_state_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_error_state_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_loading_state_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_snackbar_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_toast_stories.dart'
@@ -152,88 +152,28 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppButton',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'All Variants',
+                name: 'Disabled State',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
-                        .appButtonAllVariants,
+                        .appButtonDisabled,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Default',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .filledButtonDefault,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Dialog Actions',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .dialogActions,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Dialog Actions Example',
+                name: 'Elevated Button',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
-                        .dialogActionsExample,
+                        .appButtonElevated,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Disabled',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .filledButtonDisabled,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'E-commerce Add to Cart',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .ecommerceAddToCart,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'E-commerce Example',
+                name: 'Filled Button',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
-                        .ecommerceExample,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Edge Cases',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
-                        .appButtonEdgeCases,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Elevated Default',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .elevatedButtonDefault,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Elevated Disabled',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .elevatedButtonDisabled,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Elevated Full Width',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .elevatedButtonFullWidth,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Elevated Loading',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .elevatedButtonLoading,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Elevated With Icon',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .elevatedButtonWithIcon,
+                        .appButtonFilled,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Full Width',
                 builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .filledButtonFullWidth,
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
+                        .appButtonFullWidth,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
@@ -242,112 +182,34 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appButtonPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Loading Processing Payment',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .loadingProcessingPayment,
-              ),
-              _widgetbook.WidgetbookUseCase(
                 name: 'Loading State',
                 builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .filledButtonLoading,
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
+                        .appButtonLoading,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Login Form Example',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
-                        .loginFormExample,
+                        .appButtonLoginExample,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Login Form Submit',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .loginFormSubmit,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Outlined Default',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .outlinedButtonDefault,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Outlined Disabled',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .outlinedButtonDisabled,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Outlined Full Width',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .outlinedButtonFullWidth,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Outlined Loading',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .outlinedButtonLoading,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Outlined With Icon',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .outlinedButtonWithIcon,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Sizes',
+                name: 'Outlined Button',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
-                        .appButtonSizes,
+                        .appButtonOutlined,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'States',
+                name: 'Text Button',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
-                        .appButtonStates,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Text Default',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .textButtonDefault,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Text Disabled',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .textButtonDisabled,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Text Loading',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .textButtonLoading,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Text With Icon',
-                builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .textButtonWithIcon,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Theme Variations',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
-                        .appButtonThemeVariations,
+                        .appButtonText,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Icon',
                 builder:
-                    _widgetbook_kit_stories_core_kit_buttons_app_button_stories
-                        .filledButtonWithIcon,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'With Icons',
-                builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories
-                        .appButtonWithIcons,
+                        .appButtonWithIcon,
               ),
             ],
           ),
@@ -355,52 +217,64 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppFab',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Collapsed vs Expanded',
+                name: 'Custom Colors',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_fab_stories
-                        .appFabCollapsedExpanded,
+                        .appFabCustomColors,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Default',
+                name: 'Default FAB',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_fab_stories
                         .appFabDefault,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Extended Variants',
+                name: 'Disabled State',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_fab_stories
-                        .appFabExtendedVariants,
+                        .appFabDisabled,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Hide on Scroll',
+                name: 'Extended FAB',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_fab_stories
-                        .appFabHideOnScroll,
+                        .appFabExtended,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Playground (Static)',
+                name: 'Extended with Trailing Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_fab_stories
+                        .appFabExtendedWithTrailingIcon,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_fab_stories
                         .appFabPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Sizes',
+                name: 'Large FAB',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_fab_stories
-                        .appFabSizes,
+                        .appFabLarge,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'States',
+                name: 'Loading State',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_fab_stories
-                        .appFabStates,
+                        .appFabLoading,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Theme Variations',
+                name: 'Small FAB',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_fab_stories
-                        .appFabThemeVariations,
+                        .appFabSmall,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Switchable (Collapsed/Extended)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_fab_stories
+                        .appFabSwitchable,
               ),
             ],
           ),
@@ -461,34 +335,46 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppOutlinedButton',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Comparison',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
-                        .appOutlinedButtonComparison,
-              ),
-              _widgetbook.WidgetbookUseCase(
                 name: 'Default',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
                         .appOutlinedButtonDefault,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Sizes',
+                name: 'Disabled State',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
-                        .appOutlinedButtonSizes,
+                        .appOutlinedButtonDisabled,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'States',
+                name: 'Full Width',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
-                        .appOutlinedButtonStates,
+                        .appOutlinedButtonFullWidth,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Theme Variations',
+                name: 'Icon + Loading State',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
-                        .appOutlinedButtonTheme,
+                        .appOutlinedButtonIconLoading,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
+                        .appOutlinedButtonPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
+                        .appOutlinedButtonLoading,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Long Label',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories
+                        .appOutlinedButtonLongLabel,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Icon',
@@ -502,40 +388,46 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppTextButton',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Button Hierarchy',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
-                        .appTextButtonHierarchy,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Common Use Cases',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
-                        .appTextButtonUseCases,
-              ),
-              _widgetbook.WidgetbookUseCase(
                 name: 'Default',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
                         .appTextButtonDefault,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Inline Usage',
+                name: 'Dialog Action Example',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
-                        .appTextButtonInlineUsage,
+                        .appTextButtonDialogAction,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'States',
+                name: 'Disabled State',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
-                        .appTextButtonStates,
+                        .appTextButtonDisabled,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Theme Variations',
+                name: 'Full Width',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
-                        .appTextButtonThemeVariations,
+                        .appTextButtonFullWidth,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Inline Link Example',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
+                        .appTextButtonInlineLink,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
+                        .appTextButtonPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories
+                        .appTextButtonLoading,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Icon',
@@ -554,52 +446,64 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppBadge',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Auto-Hide Behavior',
+                name: 'Auto-Hide (Count=0)',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .autoHideBehavior,
+                        .appBadgeAutoHide,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Custom Colors',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .customColors,
+                        .appBadgeCustomColors,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Custom Position',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .customPosition,
+                        .appBadgeCustomPosition,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Dot Badge',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .dotBadge,
+                        .appBadgeDot,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Max Count Overflow',
+                name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .maxCountOverflow,
+                        .appBadgePlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Multiple Badges',
+                name: 'Large Size',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .multipleBadges,
+                        .appBadgeLarge,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Numeric Badge on Icon',
+                name: 'Max Count (99+)',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .numericBadgeOnIcon,
+                        .appBadgeMaxCount,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Size Variants',
+                name: 'Numeric Badge',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
-                        .sizeVariants,
+                        .appBadgeNumeric,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'On Avatar (Status)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
+                        .appBadgeOnAvatar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'On Navigation Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
+                        .appBadgeOnNavigation,
               ),
             ],
           ),
@@ -660,58 +564,64 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppFilterChip',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Basic Unselected',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
-                        .basicFilterChip,
-              ),
-              _widgetbook.WidgetbookUseCase(
                 name: 'Custom Colors',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
-                        .filterChipCustomColors,
+                        .appFilterChipCustomColors,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled Selected',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .appFilterChipDisabledSelected,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Disabled State',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
-                        .disabledFilterChip,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Filter Group Demo',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
-                        .filterChipGroup,
+                        .appFilterChipDisabled,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
-                        .filterChipPlayground,
+                        .appFilterChipPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Toggle',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .appFilterChipInteractive,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Selected State',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
-                        .selectedFilterChip,
+                        .appFilterChipSelected,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Unselected State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .appFilterChipUnselected,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Avatar',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
-                        .filterChipWithAvatar,
+                        .appFilterChipWithAvatar,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Icon',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
-                        .filterChipWithIcon,
+                        .appFilterChipWithIcon,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Tooltip',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
-                        .withTooltipChip,
+                        .appFilterChipWithTooltip,
               ),
             ],
           ),
@@ -719,10 +629,10 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppInputChip',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Chip Group',
+                name: 'Basic',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
-                        .appInputChipGroup,
+                        .appInputChipBasic,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Custom Colors',
@@ -731,22 +641,16 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appInputChipCustomColors,
               ),
               _widgetbook.WidgetbookUseCase(
+                name: 'Deletable (Interactive)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipDeletable,
+              ),
+              _widgetbook.WidgetbookUseCase(
                 name: 'Disabled State',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
                         .appInputChipDisabled,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Email Recipients',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
-                        .appInputChipEmailRecipients,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'File Attachment',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
-                        .appInputChipFileAttachment,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
@@ -761,16 +665,28 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appInputChipSelected,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Avatar and Label',
+                name: 'With Avatar',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
                         .appInputChipWithAvatar,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Delete Button',
+                name: 'With Elevation',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
-                        .appInputChipWithDelete,
+                        .appInputChipWithElevation,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon Avatar',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipWithIconAvatar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Without Delete Button',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipWithoutDelete,
               ),
             ],
           ),
@@ -784,40 +700,58 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appTagBasic,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Color Variants',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
-                        .appTagColorVariants,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Combined Features',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
-                        .appTagCombinedFeatures,
-              ),
-              _widgetbook.WidgetbookUseCase(
                 name: 'Custom Colors',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
                         .appTagCustomColors,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Size Variants',
+                name: 'Error Variant',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
-                        .appTagSizeVariants,
+                        .appTagError,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Style Variants',
+                name: 'Info Variant',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
-                        .appTagStyleVariants,
+                        .appTagInfo,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Text Overflow',
+                name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
-                        .appTagTextOverflow,
+                        .appTagPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Large Size',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagLarge,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Outlined Style',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagOutlined,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Small Size',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagSmall,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Success Variant',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagSuccess,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Warning Variant',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagWarning,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Icon',
@@ -860,6 +794,12 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appBottomSheetFullScreen,
               ),
               _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories
+                        .appBottomSheetPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
                 name: 'Modal Action List',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories
@@ -889,52 +829,52 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppConfirmDialog',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Async with Loading',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .asyncLoadingStory,
-              ),
-              _widgetbook.WidgetbookUseCase(
                 name: 'Basic Confirmation',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .basicConfirmationStory,
+                        .appConfirmDialogBasic,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Custom Button Labels',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .customButtonLabelsStory,
+                        .appConfirmDialogCustomLabels,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Destructive Action',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .destructiveActionStory,
+                        .appConfirmDialogDestructive,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Discard Changes',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .discardChangesStory,
+                        .appConfirmDialogDiscardChanges,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Don\'t Ask Again',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .dontAskAgainStory,
+                        .appConfirmDialogDontAskAgain,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
+                        .appConfirmDialogPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Non-Dismissible (Critical)',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .nonDismissibleStory,
+                        .appConfirmDialogNonDismissible,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Sign Out Confirmation',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
-                        .signOutConfirmationStory,
+                        .appConfirmDialogSignOut,
               ),
             ],
           ),
@@ -945,55 +885,55 @@ final directories = <_widgetbook.WidgetbookNode>[
                 name: 'Basic Alert',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
-                        .basicAlert,
+                        .appDialogBasicAlert,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Confirmation Dialog',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
-                        .confirmationDialog,
+                        .appDialogConfirmation,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Custom Content',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
-                        .customContent,
+                        .appDialogCustomContent,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Form Dialog',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
-                        .formDialog,
+                        .appDialogForm,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Full Screen',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
-                        .fullScreen,
+                        .appDialogFullScreen,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
-                        .interactivePlayground,
+                        .appDialogPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Multi Action',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
-                        .multiAction,
+                        .appDialogMultiAction,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Scrolling Content',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
-                        .scrollingContent,
+                        .appDialogScrolling,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Icon',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
-                        .withIcon,
+                        .appDialogWithIcon,
               ),
             ],
           ),
@@ -1003,44 +943,56 @@ final directories = <_widgetbook.WidgetbookNode>[
               _widgetbook.WidgetbookUseCase(
                 name: 'Compact Mode',
                 builder:
-                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
-                        .compactMode,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_empty_state_stories
+                        .appEmptyStateCompact,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Default (Title Only)',
                 builder:
-                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
-                        .defaultAppEmptyState,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Full Actions (Shopping Cart)',
-                builder:
-                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
-                        .fullActions,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_empty_state_stories
+                        .appEmptyStateDefault,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
                 builder:
-                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
-                        .interactivePlayground,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_empty_state_stories
+                        .appEmptyStatePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'No Connection Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_empty_state_stories
+                        .appEmptyStateNoConnection,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Search No Results',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_empty_state_stories
+                        .appEmptyStateSearchNoResults,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Both Actions',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_empty_state_stories
+                        .appEmptyStateWithBothActions,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Description',
                 builder:
-                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
-                        .withDescription,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_empty_state_stories
+                        .appEmptyStateWithDescription,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Icon',
                 builder:
-                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
-                        .withIcon,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_empty_state_stories
+                        .appEmptyStateWithIcon,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Illustration',
+                name: 'With Primary Action',
                 builder:
-                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
-                        .withIllustration,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_empty_state_stories
+                        .appEmptyStateWithPrimaryAction,
               ),
             ],
           ),
@@ -1051,79 +1003,126 @@ final directories = <_widgetbook.WidgetbookNode>[
                 name: 'Authentication Error',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .authenticationErrorStory,
+                        .appErrorStateAuthentication,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Compact Variant',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .compactVariantStory,
+                        .appErrorStateCompact,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Full-Screen Variant',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .fullScreenVariantStory,
+                        .appErrorStateFullScreen,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Generic Error',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .genericErrorStory,
+                        .appErrorStateGeneric,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .interactivePlaygroundStory,
+                        .appErrorStatePlayground,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Network Error',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .networkErrorStory,
+                        .appErrorStateNetwork,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Not Found (404)',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .notFoundErrorStory,
+                        .appErrorStateNotFound,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Permission Denied',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .permissionDeniedStory,
+                        .appErrorStatePermissionDenied,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Server Error (500)',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .serverErrorStory,
+                        .appErrorStateServerError,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Timeout Error',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .timeoutErrorStory,
+                        .appErrorStateTimeout,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppLoadingState',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Circular Spinner (Indeterminate)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .circularSpinner,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Stack Trace (Debug)',
+                name: 'Full-Screen Loading Overlay',
                 builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories
-                        .errorWithStackTraceStory,
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .fullScreenOverlay,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Inline Loading (Within Button)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .inlineLoading,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Linear Progress Bar (Determinate)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .linearProgressBar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading with Cancel Button',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .loadingWithCancel,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading with Custom Message',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .loadingWithMessage,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading with Progress Percentage',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .loadingWithPercentage,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Skeleton Screen (List Items)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .skeletonScreen,
               ),
             ],
           ),
           _widgetbook.WidgetbookComponent(
             name: 'AppSnackbar',
             useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'All Variants',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
-                        .appSnackbarAllVariants,
-              ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Basic',
                 builder:
@@ -1196,16 +1195,10 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appToastBasic,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Copied to Clipboard',
+                name: 'Center Position',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
-                        .appToastCopied,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Duration Variants',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
-                        .appToastDuration,
+                        .appToastCenterPosition,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Error Toast',
@@ -1226,7 +1219,7 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appToastPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Long Message Toast',
+                name: 'Long Message',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
                         .appToastLongMessage,
@@ -1244,16 +1237,16 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appToastQueue,
               ),
               _widgetbook.WidgetbookUseCase(
+                name: 'Top Position',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
+                        .appToastTopPosition,
+              ),
+              _widgetbook.WidgetbookUseCase(
                 name: 'Warning Toast',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
                         .appToastWarning,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'With Custom Icon',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_toast_stories
-                        .appToastWithIcon,
               ),
             ],
           ),
@@ -1266,58 +1259,64 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppAutocompleteField',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Async API',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
-                        .asyncAutocomplete,
-              ),
-              _widgetbook.WidgetbookUseCase(
                 name: 'Basic',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
                         .basicAutocomplete,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Custom Items',
+                name: 'Contains Filter',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
-                        .customItemAutocomplete,
+                        .containsFilterAutocomplete,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Email Autocomplete',
+                name: 'Custom Objects',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
-                        .emailAutocomplete,
+                        .customObjectsAutocomplete,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Empty State',
+                name: 'Disabled',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
-                        .emptyStateAutocomplete,
+                        .disabledAutocomplete,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Filter Strategies',
+                name: 'Email Domains',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
-                        .filterStrategiesAutocomplete,
+                        .emailDomainAutocomplete,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Free Text',
+                name: 'Fuzzy Match',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
-                        .freeTextAutocomplete,
+                        .fuzzyMatchAutocomplete,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
-                        .interactivePlayground,
+                        .appAutocompleteFieldPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Loading State',
+                name: 'Limited Suggestions',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
-                        .loadingStateAutocomplete,
+                        .limitedSuggestionsAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'No Free Text',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .noFreeTextAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .autocompleteWithError,
               ),
             ],
           ),
@@ -1325,16 +1324,16 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppCheckbox',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'All States',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
-                        .appCheckboxAllStates,
-              ),
-              _widgetbook.WidgetbookUseCase(
                 name: 'Checked',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
                         .appCheckboxChecked,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Colors',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
+                        .appCheckboxCustomColors,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Default',
@@ -1361,22 +1360,16 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appCheckboxError,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Form Example',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
-                        .appCheckboxFormExample,
-              ),
-              _widgetbook.WidgetbookUseCase(
                 name: 'Indeterminate',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
                         .appCheckboxIndeterminate,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'List Integration',
+                name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
-                        .appCheckboxListIntegration,
+                        .appCheckboxPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Long Label',
@@ -1385,22 +1378,10 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appCheckboxLongLabel,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'No Label',
+                name: 'Without Label',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
                         .appCheckboxNoLabel,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Short Label',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
-                        .appCheckboxShortLabel,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Theme Variations',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories
-                        .appCheckboxThemeVariations,
               ),
             ],
           ),
@@ -1408,58 +1389,64 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppDropdown',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Basic String Dropdown',
+                name: 'Basic',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
-                        .basicStringDropdown,
+                        .basicDropdown,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Custom Objects Dropdown',
+                name: 'Custom Objects',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
                         .customObjectsDropdown,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Disabled Dropdown',
+                name: 'Disabled',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
                         .disabledDropdown,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Dropdown with Error',
+                name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
-                        .dropdownWithError,
+                        .appDropdownPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Dropdown with Icons',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
-                        .dropdownWithIcons,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Dropdown with Placeholder',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
-                        .dropdownWithPlaceholder,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Dropdown with Search',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
-                        .dropdownWithSearch,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Large List Dropdown',
+                name: 'Large List',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
                         .largeListDropdown,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Rich Items Dropdown',
+                name: 'Rich Items',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
                         .richItemsDropdown,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .dropdownWithError,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icons',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .dropdownWithIcons,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Leading Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .dropdownWithLeadingIcon,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Search',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_dropdown_stories
+                        .dropdownWithSearch,
               ),
             ],
           ),
@@ -1467,64 +1454,70 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppPasswordField',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Basic',
+                name: 'Confirm Password',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories
-                        .basicPasswordField,
+                        .appPasswordFieldConfirm,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Current Password',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories
+                        .appPasswordFieldCurrent,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories
+                        .appPasswordFieldDefault,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Disabled',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories
-                        .disabledPasswordField,
+                        .appPasswordFieldDisabled,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Login Form Variant',
+                name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories
-                        .loginFormPasswordField,
+                        .appPasswordFieldPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Password Confirmation',
+                name: 'Prevent Copy/Paste',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories
-                        .passwordConfirmationFields,
+                        .appPasswordFieldPreventCopyPaste,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Registration Form Variant',
+                name: 'With Error',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories
-                        .registrationFormPasswordField,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'With Copy Prevention',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories
-                        .passwordFieldWithCopyPrevention,
+                        .appPasswordFieldWithError,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Strength Indicator',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories
-                        .passwordFieldWithStrength,
+                        .appPasswordFieldWithStrength,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Validation Error',
+                name: 'Without Lock Icon',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories
-                        .passwordFieldWithError,
+                        .appPasswordFieldWithoutLockIcon,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Without Visibility Toggle',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_password_field_stories
+                        .appPasswordFieldWithoutVisibilityToggle,
               ),
             ],
           ),
           _widgetbook.WidgetbookComponent(
             name: 'AppRadioGroup',
             useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'All States',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
-                        .appRadioGroupAllStates,
-              ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Default',
                 builder:
@@ -1544,10 +1537,28 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appRadioGroupError,
               ),
               _widgetbook.WidgetbookUseCase(
+                name: 'Gender Selection',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
+                        .appRadioGroupGenderSelection,
+              ),
+              _widgetbook.WidgetbookUseCase(
                 name: 'Horizontal Layout',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
                         .appRadioGroupHorizontal,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Individual Option Disabled',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
+                        .appRadioGroupIndividualDisabled,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_radio_group_stories
+                        .appRadioGroupPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Pre-selected',
@@ -1573,52 +1584,64 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppSearchField',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Auto Focus',
+                name: 'Clear On Submit',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
-                        .autoFocusSearchField,
+                        .appSearchFieldClearOnSubmit,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Basic',
+                name: 'Default',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
-                        .basicSearchField,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Custom Hint',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
-                        .customHintSearchField,
+                        .appSearchFieldDefault,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Disabled',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
-                        .disabledSearchField,
+                        .appSearchFieldDisabled,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Loading State',
+                name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
-                        .loadingSearchField,
+                        .appSearchFieldPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Submit Action',
+                name: 'Search Locations',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
-                        .submitActionSearchField,
+                        .appSearchFieldLocations,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Clear Button',
+                name: 'Search Products',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
-                        .searchFieldWithClearButton,
+                        .appSearchFieldProducts,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Results',
+                name: 'Search Users',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
-                        .searchFieldWithResults,
+                        .appSearchFieldUsers,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Autofocus',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .appSearchFieldAutofocus,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Loading',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .appSearchFieldWithLoading,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Text',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_search_field_stories
+                        .appSearchFieldWithText,
               ),
             ],
           ),
@@ -1626,10 +1649,10 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppSlider',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Basic Continuous',
+                name: 'Custom Colors',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
-                        .appSliderBasicContinuous,
+                        .appSliderCustomColors,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Custom Formatter',
@@ -1638,40 +1661,52 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appSliderCustomFormatter,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Disabled State',
+                name: 'Default',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
+                        .appSliderDefault,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
                         .appSliderDisabled,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Discrete with Divisions',
+                name: 'Discrete',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
                         .appSliderDiscrete,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Range Slider',
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
+                        .appSliderPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Range',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
                         .appSliderRange,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Real-World Examples',
+                name: 'Volume Control',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
-                        .appSliderRealWorld,
+                        .appSliderVolumeControl,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Min/Max Indicators',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
-                        .appSliderMinMaxIndicators,
+                        .appSliderWithMinMaxIndicators,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Value Labels',
+                name: 'With Value Label',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_slider_stories
-                        .appSliderValueLabels,
+                        .appSliderWithValueLabel,
               ),
             ],
           ),
@@ -1679,10 +1714,10 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppSwitch',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'All States',
+                name: 'Custom Colors',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchStates,
+                        .appSwitchCustomColors,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Default',
@@ -1691,34 +1726,52 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appSwitchDefault,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Real-World Examples',
+                name: 'Disabled Off',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchExamples,
+                        .appSwitchDisabledOff,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Settings List',
+                name: 'Disabled On',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchSettingsList,
+                        .appSwitchDisabledOn,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Theme Variations',
+                name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchThemeVariations,
+                        .appSwitchPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Icons',
+                name: 'Long Label',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchIcons,
+                        .appSwitchLongLabel,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Labels',
+                name: 'Settings Item',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
-                        .appSwitchLabels,
+                        .appSwitchSettingsItem,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchWithIcon,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Subtitle',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchWithSubtitle,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Without Label',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories
+                        .appSwitchWithoutLabel,
               ),
             ],
           ),
@@ -1726,58 +1779,64 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppTextField',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Basic',
+                name: 'Default',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
-                        .buildAppTextFieldBasicUseCase,
+                        .appTextFieldDefault,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Character Counter & Max Length',
+                name: 'Disabled',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
-                        .buildAppTextFieldCharacterCounterUseCase,
+                        .appTextFieldDisabled,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Email & URL Input',
+                name: 'Email Input',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
-                        .buildAppTextFieldEmailUrlUseCase,
+                        .appTextFieldEmail,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Multiline (Text Area)',
+                name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
-                        .buildAppTextFieldMultilineUseCase,
+                        .appTextFieldPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Numeric Input with Formatter',
+                name: 'Multiline',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
-                        .buildAppTextFieldNumericUseCase,
+                        .appTextFieldMultiline,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Search Field Variant',
+                name: 'Numeric Input',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
-                        .buildAppTextFieldSearchUseCase,
+                        .appTextFieldNumeric,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'States (Disabled & Read-only)',
+                name: 'Read Only',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
-                        .buildAppTextFieldStatesUseCase,
+                        .appTextFieldReadOnly,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Icons',
+                name: 'With Error',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
-                        .buildAppTextFieldWithIconsUseCase,
+                        .appTextFieldWithError,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Validation Error',
+                name: 'With Prefix Icon',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
-                        .buildAppTextFieldErrorUseCase,
+                        .appTextFieldWithPrefixIcon,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Suffix Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
+                        .appTextFieldWithSuffixIcon,
               ),
             ],
           ),
@@ -1790,52 +1849,64 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppAppBar',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Action Icons',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
-                        .actionIcons,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Basic App Bar',
+                name: 'Basic',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
                         .basicAppBar,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Center-Aligned Title',
+                name: 'Centered Title',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
-                        .centerAlignedTitle,
+                        .centeredTitleAppBar,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Custom Colors',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
-                        .customColors,
+                        .customColorsAppBar,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Large Title (Collapsible)',
+                name: 'Floating',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
-                        .largeTitleCollapsible,
+                        .floatingAppBar,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Transparent App Bar',
+                name: 'Interactive Playground',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
-                        .transparentAppBar,
+                        .appAppBarPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'With Search Field',
+                name: 'Large Title',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
-                        .withSearchField,
+                        .largeTitleAppBar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Actions',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
+                        .appBarWithActions,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Back Button',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
+                        .appBarWithBackButton,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Elevation',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
+                        .appBarWithElevation,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Tabs',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
-                        .withTabs,
+                        .appBarWithTabs,
               ),
             ],
           ),
@@ -2013,40 +2084,40 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppCard',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'All Variants',
+                name: 'Basic',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
-                        .appCardVariants,
+                        .basicCard,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Content Types',
+                name: 'Compact',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
-                        .appCardContentTypes,
+                        .compactCard,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Custom Styling',
+                name: 'Custom Color',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
-                        .appCardCustom,
+                        .customColorCard,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Default',
+                name: 'Elevated',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
-                        .appCardDefault,
+                        .elevatedCard,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Elevation Levels',
+                name: 'Flat',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
-                        .appCardElevations,
+                        .flatCard,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
-                        .appCardInteractive,
+                        .interactiveCard,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
@@ -2054,28 +2125,46 @@ final directories = <_widgetbook.WidgetbookNode>[
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
                         .appCardPlayground,
               ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Outlined',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .outlinedCard,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Actions',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .cardWithActions,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Image',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories
+                        .cardWithImage,
+              ),
             ],
           ),
           _widgetbook.WidgetbookComponent(
             name: 'AppListTile',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Common Patterns',
+                name: 'Basic',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTilePatterns,
+                        .basicListTile,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Default',
+                name: 'Dense',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileDefault,
+                        .denseListTile,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Dense Mode',
+                name: 'Disabled',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileDense,
+                        .disabledListTile,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
@@ -2084,46 +2173,40 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appListTilePlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Leading Widgets',
+                name: 'Selected',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileLeading,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'One Line',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileOneLine,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'States',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileStates,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Theme Variations',
-                builder:
-                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileThemes,
+                        .selectedListTile,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Three Line',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileThreeLine,
+                        .threeLineListTile,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Trailing Widgets',
+                name: 'With Leading',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileTrailing,
+                        .listTileWithLeading,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Two Line',
+                name: 'With Subtitle',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
-                        .appListTileTwoLine,
+                        .listTileWithSubtitle,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Switch',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .listTileWithSwitch,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Trailing',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_list_tile_stories
+                        .listTileWithTrailing,
               ),
             ],
           ),
@@ -2131,10 +2214,22 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'AppSectionHeader',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'Default',
+                name: 'Basic',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderDefault,
+                        .basicSectionHeader,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Divider Above',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
+                        .sectionHeaderDividerAbove,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Full Featured',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
+                        .fullFeaturedSectionHeader,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'Interactive Playground',
@@ -2143,40 +2238,40 @@ final directories = <_widgetbook.WidgetbookNode>[
                         .appSectionHeaderPlayground,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Settings List Example',
+                name: 'Uppercase',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderSettingsList,
+                        .uppercaseSectionHeader,
               ),
               _widgetbook.WidgetbookUseCase(
-                name: 'Theme Variations',
+                name: 'With Background',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderThemeVariations,
+                        .sectionHeaderWithBackground,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Divider',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderWithDivider,
+                        .sectionHeaderWithDivider,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Leading',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderWithLeading,
+                        .sectionHeaderWithLeading,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Subtitle',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderWithSubtitle,
+                        .sectionHeaderWithSubtitle,
               ),
               _widgetbook.WidgetbookUseCase(
                 name: 'With Trailing',
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_surfaces_app_section_header_stories
-                        .appSectionHeaderWithTrailing,
+                        .sectionHeaderWithTrailing,
               ),
             ],
           ),

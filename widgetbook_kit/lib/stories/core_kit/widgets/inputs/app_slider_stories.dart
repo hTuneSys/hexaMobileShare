@@ -2,560 +2,301 @@
 // SPDX-License-Identifier: MIT
 
 import 'package:flutter/material.dart';
+import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
-import 'package:core_kit/widgets/inputs/app_slider.dart';
+import 'package:core_kit/core_kit.dart';
 
-// 1. Basic Continuous Slider - Simple value selection (Interactive)
-@widgetbook.UseCase(name: 'Basic Continuous', type: AppSlider)
-Widget appSliderBasicContinuous(BuildContext context) {
-  return const _BasicContinuousDemo();
-}
+/// Widgetbook stories for [AppSlider] component.
+///
+/// A Material Design 3 slider widget that provides consistent value selection
+/// with support for continuous, discrete, and range modes.
 
-class _BasicContinuousDemo extends StatefulWidget {
-  const _BasicContinuousDemo();
+/// Interactive Playground - explore all AppSlider properties with knobs
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppSlider)
+Widget appSliderPlayground(BuildContext context) {
+  final mode = context.knobs.object.dropdown(
+    label: 'Mode',
+    options: const ['single', 'range'],
+    labelBuilder: (value) => value,
+  );
 
-  @override
-  State<_BasicContinuousDemo> createState() => _BasicContinuousDemoState();
-}
+  final value = context.knobs.double.slider(
+    label: 'Value',
+    initialValue: 50,
+    min: 0,
+    max: 100,
+  );
 
-class _BasicContinuousDemoState extends State<_BasicContinuousDemo> {
-  double _value = 50;
+  final min = context.knobs.double.slider(
+    label: 'Min',
+    initialValue: 0,
+    min: 0,
+    max: 50,
+  );
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Current Value: ${_value.toStringAsFixed(1)}',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          const SizedBox(height: 16),
-          AppSlider(
-            value: _value,
-            min: 0,
-            max: 100,
-            label: 'Volume',
-            showMinMaxIndicators: true,
-            onChanged: (value) => setState(() => _value = value),
-          ),
-        ],
-      ),
-    );
-  }
-}
+  final max = context.knobs.double.slider(
+    label: 'Max',
+    initialValue: 100,
+    min: 50,
+    max: 200,
+  );
 
-// 2. Discrete Slider - Snap to divisions (Interactive)
-@widgetbook.UseCase(name: 'Discrete with Divisions', type: AppSlider)
-Widget appSliderDiscrete(BuildContext context) {
-  return const _DiscreteDemo();
-}
+  final hasDivisions = context.knobs.boolean(
+    label: 'Has Divisions',
+    initialValue: false,
+  );
+  final divisions = hasDivisions
+      ? context.knobs.int.slider(
+          label: 'Divisions',
+          initialValue: 10,
+          min: 2,
+          max: 20,
+        )
+      : null;
 
-class _DiscreteDemo extends StatefulWidget {
-  const _DiscreteDemo();
+  final hasLabel = context.knobs.boolean(
+    label: 'Has Label',
+    initialValue: true,
+  );
+  final label = hasLabel
+      ? context.knobs.string(label: 'Label Text', initialValue: 'Slider label')
+      : null;
 
-  @override
-  State<_DiscreteDemo> createState() => _DiscreteDemoState();
-}
+  final showValueLabel = context.knobs.boolean(
+    label: 'Show Value Label',
+    initialValue: false,
+  );
+  final showMinMaxIndicators = context.knobs.boolean(
+    label: 'Show Min/Max Indicators',
+    initialValue: false,
+  );
+  final enabled = context.knobs.boolean(label: 'Enabled', initialValue: true);
 
-class _DiscreteDemoState extends State<_DiscreteDemo> {
-  double _rating = 3;
-  double _quality = 5;
+  final hasCustomColors = context.knobs.boolean(
+    label: 'Has Custom Colors',
+    initialValue: false,
+  );
+  final activeColor = hasCustomColors
+      ? context.knobs.colorOrNull(
+          label: 'Active Color',
+          initialValue: Colors.green,
+        )
+      : null;
 
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Rating: ${_rating.toInt()}/5',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            AppSlider(
-              value: _rating,
-              min: 0,
-              max: 5,
-              divisions: 5,
-              label: 'Rating',
-              showValueLabel: true,
-              showMinMaxIndicators: true,
-              onChanged: (value) => setState(() => _rating = value),
-            ),
-            const SizedBox(height: 32),
-            Text(
-              'Quality Level: ${_quality.toInt()}/10',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            AppSlider(
-              value: _quality,
-              min: 0,
-              max: 10,
-              divisions: 10,
-              label: 'Quality',
-              showValueLabel: true,
-              onChanged: (value) => setState(() => _quality = value),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+  final inactiveColor = hasCustomColors
+      ? context.knobs.colorOrNull(label: 'Inactive Color')
+      : null;
 
-// 3. Range Slider - Min/Max selection (Interactive)
-@widgetbook.UseCase(name: 'Range Slider', type: AppSlider)
-Widget appSliderRange(BuildContext context) {
-  return const _RangeSliderDemo();
-}
-
-class _RangeSliderDemo extends StatefulWidget {
-  const _RangeSliderDemo();
-
-  @override
-  State<_RangeSliderDemo> createState() => _RangeSliderDemoState();
-}
-
-class _RangeSliderDemoState extends State<_RangeSliderDemo> {
-  RangeValues _priceRange = const RangeValues(100, 500);
-  RangeValues _ageRange = const RangeValues(18, 65);
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Price Range: \$${_priceRange.start.toInt()} - \$${_priceRange.end.toInt()}',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            AppSlider.range(
-              values: _priceRange,
-              min: 0,
-              max: 1000,
-              divisions: 20,
-              label: 'Price Range',
-              showValueLabel: true,
-              showMinMaxIndicators: true,
-              labelFormatter: (value) => '\$${value.toInt()}',
-              onRangeChanged: (values) => setState(() => _priceRange = values),
-            ),
-            const SizedBox(height: 32),
-            Text(
-              'Age Range: ${_ageRange.start.toInt()} - ${_ageRange.end.toInt()} years',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            AppSlider.range(
-              values: _ageRange,
-              min: 0,
-              max: 100,
-              label: 'Age Range',
-              showValueLabel: true,
-              showMinMaxIndicators: true,
-              onRangeChanged: (values) => setState(() => _ageRange = values),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// 4. With Value Labels - Always visible labels (Interactive)
-@widgetbook.UseCase(name: 'With Value Labels', type: AppSlider)
-Widget appSliderValueLabels(BuildContext context) {
-  return const _ValueLabelsDemo();
-}
-
-class _ValueLabelsDemo extends StatefulWidget {
-  const _ValueLabelsDemo();
-
-  @override
-  State<_ValueLabelsDemo> createState() => _ValueLabelsDemoState();
-}
-
-class _ValueLabelsDemoState extends State<_ValueLabelsDemo> {
-  double _brightness = 75;
-  double _temperature = 22;
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Drag the sliders to see value labels',
-              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12),
-            ),
-            const SizedBox(height: 24),
-            AppSlider(
-              value: _brightness,
-              min: 0,
-              max: 100,
-              label: 'Brightness',
-              showValueLabel: true,
-              showMinMaxIndicators: true,
-              labelFormatter: (value) => '${value.toInt()}%',
-              onChanged: (value) => setState(() => _brightness = value),
-            ),
-            const SizedBox(height: 32),
-            AppSlider(
-              value: _temperature,
-              min: 10,
-              max: 35,
-              label: 'Temperature',
-              showValueLabel: true,
-              divisions: 25,
-              showMinMaxIndicators: true,
-              labelFormatter: (value) => '${value.toInt()}°C',
-              onChanged: (value) => setState(() => _temperature = value),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// 5. Custom Formatter - Currency, percentage, custom formats (Interactive)
-@widgetbook.UseCase(name: 'Custom Formatter', type: AppSlider)
-Widget appSliderCustomFormatter(BuildContext context) {
-  return const _CustomFormatterDemo();
-}
-
-class _CustomFormatterDemo extends StatefulWidget {
-  const _CustomFormatterDemo();
-
-  @override
-  State<_CustomFormatterDemo> createState() => _CustomFormatterDemoState();
-}
-
-class _CustomFormatterDemoState extends State<_CustomFormatterDemo> {
-  double _price = 499.99;
-  double _discount = 25;
-  double _distance = 5.5;
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Currency: \$${_price.toStringAsFixed(2)}',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            AppSlider(
-              value: _price,
-              min: 0,
-              max: 1000,
-              label: 'Price',
-              showValueLabel: true,
-              showMinMaxIndicators: true,
-              labelFormatter: (value) => '\$${value.toStringAsFixed(2)}',
-              onChanged: (value) => setState(() => _price = value),
-            ),
-            const SizedBox(height: 32),
-            Text(
-              'Percentage: ${_discount.toInt()}%',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            AppSlider(
-              value: _discount,
-              min: 0,
-              max: 100,
-              divisions: 20,
-              label: 'Discount',
-              showValueLabel: true,
-              showMinMaxIndicators: true,
-              labelFormatter: (value) => '${value.toInt()}%',
-              onChanged: (value) => setState(() => _discount = value),
-            ),
-            const SizedBox(height: 32),
-            Text(
-              'Distance: ${_distance.toStringAsFixed(1)} km',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            AppSlider(
-              value: _distance,
-              min: 0,
-              max: 50,
-              label: 'Search Radius',
-              showValueLabel: true,
-              showMinMaxIndicators: true,
-              labelFormatter: (value) => '${value.toStringAsFixed(1)} km',
-              onChanged: (value) => setState(() => _distance = value),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// 6. Disabled State - Non-interactive demonstration
-@widgetbook.UseCase(name: 'Disabled State', type: AppSlider)
-Widget appSliderDisabled(BuildContext context) {
-  return SingleChildScrollView(
+  return Center(
     child: Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text('Enabled Slider', style: TextStyle(fontWeight: FontWeight.bold)),
-          SizedBox(height: 8),
-          AppSlider(
-            value: 75,
-            min: 0,
-            max: 100,
-            label: 'Enabled (interactive)',
-            showMinMaxIndicators: true,
-            onChanged: null, // Will be enabled in stateful version if needed
-          ),
-          SizedBox(height: 24),
-          Text(
-            'Disabled Slider (onChanged = null)',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 8),
-          AppSlider(
-            value: 50,
-            min: 0,
-            max: 100,
-            label: 'Disabled (non-interactive)',
-            showMinMaxIndicators: true,
-            onChanged: null,
-          ),
-          SizedBox(height: 24),
-          Text(
-            'Disabled via enabled property',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 8),
-          AppSlider(
-            value: 30,
-            min: 0,
-            max: 100,
-            label: 'System managed (disabled)',
-            enabled: false,
-            showMinMaxIndicators: true,
-            onChanged: _dummyCallback,
-          ),
-          SizedBox(height: 24),
-          Text(
-            'Disabled Range Slider',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 8),
-          AppSlider.range(
-            values: RangeValues(20, 80),
-            min: 0,
-            max: 100,
-            label: 'Disabled range',
-            showMinMaxIndicators: true,
-            onRangeChanged: null,
-          ),
-        ],
+      child: mode == 'range'
+          ? AppSlider.range(
+              values: RangeValues(min + 20, max - 20),
+              min: min,
+              max: max,
+              label: label,
+              divisions: divisions,
+              showValueLabel: showValueLabel,
+              showMinMaxIndicators: showMinMaxIndicators,
+              activeColor: activeColor,
+              inactiveColor: inactiveColor,
+              enabled: enabled,
+              onRangeChanged: enabled ? (_) {} : null,
+            )
+          : AppSlider(
+              value: value,
+              min: min,
+              max: max,
+              label: label,
+              divisions: divisions,
+              showValueLabel: showValueLabel,
+              showMinMaxIndicators: showMinMaxIndicators,
+              activeColor: activeColor,
+              inactiveColor: inactiveColor,
+              enabled: enabled,
+              onChanged: enabled ? (_) {} : null,
+            ),
+    ),
+  );
+}
+
+/// Default - Basic continuous slider
+@widgetbook.UseCase(name: 'Default', type: AppSlider)
+Widget appSliderDefault(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppSlider(
+        value: 50,
+        min: 0,
+        max: 100,
+        label: 'Volume',
+        onChanged: (_) {},
       ),
     ),
   );
 }
 
-void _dummyCallback(double value) {
-  // This won't be called when enabled = false
+/// Discrete - Slider with divisions
+@widgetbook.UseCase(name: 'Discrete', type: AppSlider)
+Widget appSliderDiscrete(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppSlider(
+        value: 3,
+        min: 0,
+        max: 5,
+        divisions: 5,
+        label: 'Rating',
+        showValueLabel: true,
+        showMinMaxIndicators: true,
+        onChanged: (_) {},
+      ),
+    ),
+  );
 }
 
-// 7. With Min/Max Indicators - Show bounds labels (Interactive)
+/// Range - Range slider with two thumbs
+@widgetbook.UseCase(name: 'Range', type: AppSlider)
+Widget appSliderRange(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppSlider.range(
+        values: const RangeValues(100, 500),
+        min: 0,
+        max: 1000,
+        divisions: 20,
+        label: 'Price Range',
+        showValueLabel: true,
+        showMinMaxIndicators: true,
+        labelFormatter: (value) => '\$${value.toInt()}',
+        onRangeChanged: (_) {},
+      ),
+    ),
+  );
+}
+
+/// With Value Label - Shows value during interaction
+@widgetbook.UseCase(name: 'With Value Label', type: AppSlider)
+Widget appSliderWithValueLabel(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppSlider(
+        value: 75,
+        min: 0,
+        max: 100,
+        label: 'Brightness',
+        showValueLabel: true,
+        labelFormatter: (value) => '${value.toInt()}%',
+        onChanged: (_) {},
+      ),
+    ),
+  );
+}
+
+/// With Min/Max Indicators - Shows boundary values
 @widgetbook.UseCase(name: 'With Min/Max Indicators', type: AppSlider)
-Widget appSliderMinMaxIndicators(BuildContext context) {
-  return const _MinMaxIndicatorsDemo();
-}
-
-class _MinMaxIndicatorsDemo extends StatefulWidget {
-  const _MinMaxIndicatorsDemo();
-
-  @override
-  State<_MinMaxIndicatorsDemo> createState() => _MinMaxIndicatorsDemoState();
-}
-
-class _MinMaxIndicatorsDemoState extends State<_MinMaxIndicatorsDemo> {
-  double _temperature1 = 20;
-  double _temperature2 = 20;
-  double _speed = 60;
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Without Indicators',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            AppSlider(
-              value: _temperature1,
-              min: -10,
-              max: 40,
-              label: 'Temperature',
-              onChanged: (value) => setState(() => _temperature1 = value),
-            ),
-            const SizedBox(height: 24),
-            const Text(
-              'With Indicators',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            AppSlider(
-              value: _temperature2,
-              min: -10,
-              max: 40,
-              label: 'Temperature',
-              showMinMaxIndicators: true,
-              labelFormatter: (value) => '${value.toInt()}°C',
-              onChanged: (value) => setState(() => _temperature2 = value),
-            ),
-            const SizedBox(height: 32),
-            const Text(
-              'With Custom Formatted Indicators',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            AppSlider(
-              value: _speed,
-              min: 0,
-              max: 120,
-              divisions: 24,
-              label: 'Speed',
-              showMinMaxIndicators: true,
-              showValueLabel: true,
-              labelFormatter: (value) => '${value.toInt()} km/h',
-              onChanged: (value) => setState(() => _speed = value),
-            ),
-          ],
-        ),
+Widget appSliderWithMinMaxIndicators(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppSlider(
+        value: 20,
+        min: -10,
+        max: 40,
+        label: 'Temperature',
+        showMinMaxIndicators: true,
+        labelFormatter: (value) => '${value.toInt()}°C',
+        onChanged: (_) {},
       ),
-    );
-  }
+    ),
+  );
 }
 
-// 8. Real-World Examples - Common use cases (Interactive)
-@widgetbook.UseCase(name: 'Real-World Examples', type: AppSlider)
-Widget appSliderRealWorld(BuildContext context) {
-  return const _RealWorldDemo();
-}
-
-class _RealWorldDemo extends StatefulWidget {
-  const _RealWorldDemo();
-
-  @override
-  State<_RealWorldDemo> createState() => _RealWorldDemoState();
-}
-
-class _RealWorldDemoState extends State<_RealWorldDemo> {
-  double _volume = 50;
-  double _brightness = 75;
-  RangeValues _priceFilter = const RangeValues(0, 500);
-  double _fontScale = 1.0;
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Common Use Cases',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 24),
-            // Volume Control
-            const Icon(Icons.volume_up, size: 32),
-            const SizedBox(height: 8),
-            AppSlider(
-              value: _volume,
-              min: 0,
-              max: 100,
-              label: 'Volume',
-              showValueLabel: true,
-              labelFormatter: (value) => '${value.toInt()}%',
-              onChanged: (value) => setState(() => _volume = value),
-            ),
-            const SizedBox(height: 32),
-            // Brightness Control
-            const Icon(Icons.brightness_6, size: 32),
-            const SizedBox(height: 8),
-            AppSlider(
-              value: _brightness,
-              min: 0,
-              max: 100,
-              label: 'Screen Brightness',
-              showValueLabel: true,
-              labelFormatter: (value) => '${value.toInt()}%',
-              onChanged: (value) => setState(() => _brightness = value),
-            ),
-            const SizedBox(height: 32),
-            // Price Range Filter
-            const Icon(Icons.filter_list, size: 32),
-            const SizedBox(height: 8),
-            Text(
-              'Price: \$${_priceFilter.start.toInt()} - \$${_priceFilter.end.toInt()}',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            AppSlider.range(
-              values: _priceFilter,
-              min: 0,
-              max: 1000,
-              divisions: 20,
-              label: 'Price Filter',
-              showValueLabel: true,
-              showMinMaxIndicators: true,
-              labelFormatter: (value) => '\$${value.toInt()}',
-              onRangeChanged: (values) => setState(() => _priceFilter = values),
-            ),
-            const SizedBox(height: 32),
-            // Font Size
-            const Icon(Icons.text_fields, size: 32),
-            const SizedBox(height: 8),
-            AppSlider(
-              value: _fontScale,
-              min: 0.5,
-              max: 2.0,
-              divisions: 15,
-              label: 'Font Scale',
-              showValueLabel: true,
-              labelFormatter: (value) => '${value.toStringAsFixed(1)}x',
-              showMinMaxIndicators: true,
-              onChanged: (value) => setState(() => _fontScale = value),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Preview text at ${_fontScale.toStringAsFixed(1)}x scale',
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(fontSize: 16 * _fontScale),
-            ),
-          ],
-        ),
+/// Custom Formatter - Currency and percentage formatting
+@widgetbook.UseCase(name: 'Custom Formatter', type: AppSlider)
+Widget appSliderCustomFormatter(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppSlider(
+        value: 499.99,
+        min: 0,
+        max: 1000,
+        label: 'Price',
+        showValueLabel: true,
+        showMinMaxIndicators: true,
+        labelFormatter: (value) => '\$${value.toStringAsFixed(2)}',
+        onChanged: (_) {},
       ),
-    );
-  }
+    ),
+  );
+}
+
+/// Disabled - Non-interactive state
+@widgetbook.UseCase(name: 'Disabled', type: AppSlider)
+Widget appSliderDisabled(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppSlider(
+        value: 50,
+        min: 0,
+        max: 100,
+        label: 'Disabled slider',
+        showMinMaxIndicators: true,
+        onChanged: null,
+      ),
+    ),
+  );
+}
+
+/// Custom Colors - Slider with custom colors
+@widgetbook.UseCase(name: 'Custom Colors', type: AppSlider)
+Widget appSliderCustomColors(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppSlider(
+        value: 60,
+        min: 0,
+        max: 100,
+        label: 'Custom green slider',
+        activeColor: Colors.green,
+        thumbColor: Colors.green,
+        showMinMaxIndicators: true,
+        onChanged: (_) {},
+      ),
+    ),
+  );
+}
+
+/// Volume Control - Real-world volume control example
+@widgetbook.UseCase(name: 'Volume Control', type: AppSlider)
+Widget appSliderVolumeControl(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(Icons.volume_up, size: 32),
+          const SizedBox(height: 16),
+          AppSlider(
+            value: 50,
+            min: 0,
+            max: 100,
+            label: 'Volume',
+            showValueLabel: true,
+            labelFormatter: (value) => '${value.toInt()}%',
+            onChanged: (_) {},
+          ),
+        ],
+      ),
+    ),
+  );
 }

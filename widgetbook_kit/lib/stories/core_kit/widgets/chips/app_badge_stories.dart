@@ -6,9 +6,17 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:core_kit/core_kit.dart';
 
-// 1. Numeric badge on icon button (notification count)
-@widgetbook.UseCase(name: 'Numeric Badge on Icon', type: AppBadge)
-Widget numericBadgeOnIcon(BuildContext context) {
+/// Interactive Playground - Expose ALL AppBadge properties as knobs
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppBadge)
+Widget appBadgePlayground(BuildContext context) {
+  // Badge type
+  final badgeType = context.knobs.object.dropdown(
+    label: 'Badge Type',
+    options: const ['numeric', 'dot'],
+    labelBuilder: (value) => value,
+  );
+
+  // Numeric badge properties
   final count = context.knobs.int.slider(
     label: 'Count',
     initialValue: 5,
@@ -16,69 +24,17 @@ Widget numericBadgeOnIcon(BuildContext context) {
     max: 150,
   );
 
-  final icon = context.knobs.object.dropdown(
-    label: 'Icon',
-    options: const [
-      Icons.notifications,
-      Icons.mail,
-      Icons.message,
-      Icons.shopping_cart,
-    ],
-    labelBuilder: (icon) => icon.toString().split('.').last,
+  final autoHide = context.knobs.boolean(
+    label: 'Auto Hide (when count=0)',
+    initialValue: true,
   );
 
-  return Center(
-    child: AppBadge(
-      count: count,
-      child: IconButton(icon: Icon(icon, size: 32), onPressed: () {}),
-    ),
-  );
-}
-
-// 2. Dot badge on navigation tab
-@widgetbook.UseCase(name: 'Dot Badge', type: AppBadge)
-Widget dotBadge(BuildContext context) {
-  final backgroundColor = context.knobs.colorOrNull(
-    label: 'Dot color',
-    initialValue: Colors.green,
+  final isLarge = context.knobs.boolean(
+    label: 'Large Size',
+    initialValue: false,
   );
 
-  final childType = context.knobs.object.dropdown(
-    label: 'Child type',
-    options: const ['avatar', 'icon', 'navigation_tab'],
-    labelBuilder: (type) => type.replaceAll('_', ' '),
-  );
-
-  Widget buildChild() {
-    switch (childType) {
-      case 'avatar':
-        return CircleAvatar(
-          radius: 30,
-          backgroundColor: Colors.grey[300],
-          child: const Icon(Icons.person, size: 36),
-        );
-      case 'navigation_tab':
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          decoration: BoxDecoration(
-            color: Colors.blue[100],
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: const Text('Tab'),
-        );
-      default: // icon
-        return const Icon(Icons.message, size: 32);
-    }
-  }
-
-  return Center(
-    child: AppBadge.dot(backgroundColor: backgroundColor, child: buildChild()),
-  );
-}
-
-// 3. Badge with custom position offset
-@widgetbook.UseCase(name: 'Custom Position', type: AppBadge)
-Widget customPosition(BuildContext context) {
+  // Position
   final position = context.knobs.object.dropdown(
     label: 'Position',
     options: [
@@ -90,32 +46,162 @@ Widget customPosition(BuildContext context) {
     labelBuilder: (pos) => pos.toString().split('.').last,
   );
 
-  final offsetX = context.knobs.double.slider(
-    label: 'Offset X',
-    initialValue: 0,
-    min: -20,
-    max: 20,
+  // Offset
+  final hasCustomOffset = context.knobs.boolean(
+    label: 'Custom Offset',
+    initialValue: false,
   );
 
-  final offsetY = context.knobs.double.slider(
-    label: 'Offset Y',
-    initialValue: 0,
-    min: -20,
-    max: 20,
+  final offsetX = hasCustomOffset
+      ? context.knobs.double.slider(
+          label: 'Offset X',
+          initialValue: 0,
+          min: -20,
+          max: 20,
+        )
+      : 0.0;
+
+  final offsetY = hasCustomOffset
+      ? context.knobs.double.slider(
+          label: 'Offset Y',
+          initialValue: 0,
+          min: -20,
+          max: 20,
+        )
+      : 0.0;
+
+  // Colors
+  final hasCustomColors = context.knobs.boolean(
+    label: 'Custom Colors',
+    initialValue: false,
   );
 
-  final count = context.knobs.int.slider(
-    label: 'Count',
-    initialValue: 3,
-    min: 0,
-    max: 99,
+  final backgroundColor = hasCustomColors
+      ? context.knobs.colorOrNull(
+          label: 'Background Color',
+          initialValue: Colors.red,
+        )
+      : null;
+
+  final textColor = hasCustomColors && badgeType == 'numeric'
+      ? context.knobs.colorOrNull(
+          label: 'Text Color',
+          initialValue: Colors.white,
+        )
+      : null;
+
+  // Child widget
+  final childIcon = context.knobs.object.dropdown(
+    label: 'Child Icon',
+    options: const [
+      Icons.notifications,
+      Icons.mail,
+      Icons.shopping_cart,
+      Icons.message,
+    ],
+    labelBuilder: (icon) => icon.toString().split('.').last,
   );
 
+  final badge = badgeType == 'dot'
+      ? AppBadge.dot(
+          position: position,
+          offset: hasCustomOffset ? Offset(offsetX, offsetY) : null,
+          backgroundColor: backgroundColor,
+          child: IconButton(icon: Icon(childIcon, size: 32), onPressed: () {}),
+        )
+      : AppBadge(
+          count: count,
+          position: position,
+          offset: hasCustomOffset ? Offset(offsetX, offsetY) : null,
+          autoHide: autoHide,
+          isLarge: isLarge,
+          backgroundColor: backgroundColor,
+          textColor: textColor,
+          child: IconButton(icon: Icon(childIcon, size: 32), onPressed: () {}),
+        );
+
+  return Center(child: badge);
+}
+
+/// Numeric Badge - Badge with count display
+@widgetbook.UseCase(name: 'Numeric Badge', type: AppBadge)
+Widget appBadgeNumeric(BuildContext context) {
   return Center(
     child: AppBadge(
-      count: count,
-      position: position,
-      offset: Offset(offsetX, offsetY),
+      count: 5,
+      child: IconButton(
+        icon: const Icon(Icons.notifications, size: 32),
+        onPressed: () {},
+      ),
+    ),
+  );
+}
+
+/// Dot Badge - Simple indicator without count
+@widgetbook.UseCase(name: 'Dot Badge', type: AppBadge)
+Widget appBadgeDot(BuildContext context) {
+  return Center(
+    child: AppBadge.dot(
+      child: IconButton(
+        icon: const Icon(Icons.message, size: 32),
+        onPressed: () {},
+      ),
+    ),
+  );
+}
+
+/// Large Badge - Larger size variant for numeric badge
+@widgetbook.UseCase(name: 'Large Size', type: AppBadge)
+Widget appBadgeLarge(BuildContext context) {
+  return Center(
+    child: AppBadge(
+      count: 12,
+      isLarge: true,
+      child: IconButton(
+        icon: const Icon(Icons.shopping_cart, size: 32),
+        onPressed: () {},
+      ),
+    ),
+  );
+}
+
+/// Max Count - Shows 99+ for counts over 99
+@widgetbook.UseCase(name: 'Max Count (99+)', type: AppBadge)
+Widget appBadgeMaxCount(BuildContext context) {
+  return Center(
+    child: AppBadge(
+      count: 150,
+      child: IconButton(
+        icon: const Icon(Icons.mail, size: 32),
+        onPressed: () {},
+      ),
+    ),
+  );
+}
+
+/// Custom Colors - Badge with custom background and text colors
+@widgetbook.UseCase(name: 'Custom Colors', type: AppBadge)
+Widget appBadgeCustomColors(BuildContext context) {
+  return Center(
+    child: AppBadge(
+      count: 8,
+      backgroundColor: Colors.green,
+      textColor: Colors.white,
+      child: IconButton(
+        icon: const Icon(Icons.check_circle, size: 32),
+        onPressed: () {},
+      ),
+    ),
+  );
+}
+
+/// Custom Position - Badge positioned at different corners
+@widgetbook.UseCase(name: 'Custom Position', type: AppBadge)
+Widget appBadgeCustomPosition(BuildContext context) {
+  return Center(
+    child: AppBadge(
+      count: 3,
+      position: BadgePosition.bottomEnd,
       child: Container(
         width: 80,
         height: 80,
@@ -129,237 +215,60 @@ Widget customPosition(BuildContext context) {
   );
 }
 
-// 4. Badge with max count overflow (99+)
-@widgetbook.UseCase(name: 'Max Count Overflow', type: AppBadge)
-Widget maxCountOverflow(BuildContext context) {
-  final count = context.knobs.int.slider(
-    label: 'Count',
-    initialValue: 100,
-    min: 0,
-    max: 9999,
-  );
-
+/// Auto-Hide - Badge automatically hides when count is zero
+@widgetbook.UseCase(name: 'Auto-Hide (Count=0)', type: AppBadge)
+Widget appBadgeAutoHide(BuildContext context) {
   return Center(
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         AppBadge(
-          count: count,
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(Icons.mail, size: 32),
+          count: 0,
+          autoHide: true,
+          child: IconButton(
+            icon: const Icon(Icons.notifications, size: 32),
+            onPressed: () {},
           ),
         ),
         const SizedBox(height: 16),
-        Text(
-          count > 99 ? 'Shows "99+"' : 'Shows "$count"',
-          style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+        const Text(
+          'Badge is hidden because count = 0',
+          style: TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
         ),
       ],
     ),
   );
 }
 
-// 5. Large badge variant
-@widgetbook.UseCase(name: 'Size Variants', type: AppBadge)
-Widget sizeVariants(BuildContext context) {
-  final isLarge = context.knobs.boolean(
-    label: 'Large size',
-    initialValue: false,
-  );
-
-  final count = context.knobs.int.slider(
-    label: 'Count',
-    initialValue: 5,
-    min: 0,
-    max: 99,
-  );
-
+/// On Avatar - Dot badge on user avatar for status indicator
+@widgetbook.UseCase(name: 'On Avatar (Status)', type: AppBadge)
+Widget appBadgeOnAvatar(BuildContext context) {
   return Center(
-    child: AppBadge(
-      count: count,
-      isLarge: isLarge,
-      child: IconButton(
-        icon: const Icon(Icons.shopping_cart, size: 32),
-        onPressed: () {},
+    child: AppBadge.dot(
+      backgroundColor: Colors.green,
+      child: CircleAvatar(
+        radius: 30,
+        backgroundColor: Colors.grey[300],
+        child: const Icon(Icons.person, size: 36),
       ),
     ),
   );
 }
 
-// 6. Badge with custom colors
-@widgetbook.UseCase(name: 'Custom Colors', type: AppBadge)
-Widget customColors(BuildContext context) {
-  final backgroundColor = context.knobs.colorOrNull(
-    label: 'Background color',
-    initialValue: Colors.green,
-  );
-
-  final textColor = context.knobs.colorOrNull(
-    label: 'Text color',
-    initialValue: Colors.white,
-  );
-
-  final count = context.knobs.int.slider(
-    label: 'Count',
-    initialValue: 3,
-    min: 0,
-    max: 99,
-  );
-
-  final colorScheme = context.knobs.object.dropdown(
-    label: 'Quick color schemes',
-    options: const ['success', 'warning', 'error', 'info', 'custom'],
-    labelBuilder: (scheme) => scheme,
-  );
-
-  Color? getBgColor() {
-    if (colorScheme == 'custom') return backgroundColor;
-    switch (colorScheme) {
-      case 'success':
-        return Colors.green;
-      case 'warning':
-        return Colors.orange;
-      case 'error':
-        return Colors.red;
-      case 'info':
-        return Colors.blue;
-      default:
-        return backgroundColor;
-    }
-  }
-
+/// On Navigation - Badge on navigation icon
+@widgetbook.UseCase(name: 'On Navigation Icon', type: AppBadge)
+Widget appBadgeOnNavigation(BuildContext context) {
   return Center(
     child: AppBadge(
-      count: count,
-      backgroundColor: getBgColor(),
-      textColor: textColor,
+      count: 12,
       child: Container(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: Colors.grey[200],
-          shape: BoxShape.circle,
+          color: Colors.blue[50],
+          borderRadius: BorderRadius.circular(8),
         ),
-        child: const Icon(Icons.check_circle, size: 32),
+        child: const Icon(Icons.inbox, size: 24),
       ),
-    ),
-  );
-}
-
-// 7. Badge auto-hiding at zero count
-@widgetbook.UseCase(name: 'Auto-Hide Behavior', type: AppBadge)
-Widget autoHideBehavior(BuildContext context) {
-  final count = context.knobs.int.slider(
-    label: 'Count',
-    initialValue: 0,
-    min: 0,
-    max: 10,
-  );
-
-  final autoHide = context.knobs.boolean(
-    label: 'Auto-hide when count = 0',
-    initialValue: true,
-  );
-
-  return Center(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        AppBadge(
-          count: count,
-          autoHide: autoHide,
-          child: const Icon(Icons.notifications, size: 32),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          count == 0 && autoHide ? 'Badge is hidden' : 'Badge is visible',
-          style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
-        ),
-      ],
-    ),
-  );
-}
-
-// 8. Multiple badges on different elements
-@widgetbook.UseCase(name: 'Multiple Badges', type: AppBadge)
-Widget multipleBadges(BuildContext context) {
-  final badgeType = context.knobs.object.dropdown(
-    label: 'Badge type',
-    options: const ['notifications', 'messages', 'cart', 'user_status'],
-    labelBuilder: (type) => type.replaceAll('_', ' '),
-  );
-
-  final count = context.knobs.int.slider(
-    label: 'Count',
-    initialValue: 12,
-    min: 0,
-    max: 99,
-  );
-
-  Widget buildBadge() {
-    switch (badgeType) {
-      case 'notifications':
-        return AppBadge(
-          count: count,
-          child: IconButton(
-            icon: const Icon(Icons.notifications, size: 28),
-            onPressed: () {},
-          ),
-        );
-      case 'messages':
-        return AppBadge(
-          count: count,
-          child: IconButton(
-            icon: const Icon(Icons.mail, size: 28),
-            onPressed: () {},
-          ),
-        );
-      case 'cart':
-        return AppBadge(
-          count: count,
-          backgroundColor: Colors.green,
-          child: IconButton(
-            icon: const Icon(Icons.shopping_cart, size: 28),
-            onPressed: () {},
-          ),
-        );
-      case 'user_status':
-        // Only show online status knob when user_status is selected
-        final isOnline = context.knobs.boolean(
-          label: 'Online status',
-          initialValue: true,
-        );
-        return AppBadge.dot(
-          backgroundColor: isOnline ? Colors.green : Colors.grey,
-          child: CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.grey[300],
-            child: const Icon(Icons.person, size: 36),
-          ),
-        );
-      default:
-        return AppBadge(
-          count: count,
-          child: const Icon(Icons.notifications, size: 28),
-        );
-    }
-  }
-
-  return Center(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          badgeType.replaceAll('_', ' ').toUpperCase(),
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 16),
-        buildBadge(),
-      ],
     ),
   );
 }

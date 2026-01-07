@@ -2,37 +2,82 @@
 // SPDX-License-Identifier: MIT
 
 import 'package:flutter/material.dart';
+import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:core_kit/core_kit.dart';
 
-// Model class for custom objects example
-class Country {
-  final String code;
-  final String name;
-  final String flag;
+/// Widgetbook stories for [AppDropdown] component.
+///
+/// Material Design 3 dropdown menu component for selecting a single value
+/// from a list of options with support for search, custom items, and validation.
 
-  const Country(this.code, this.name, this.flag);
+// ============================================================================
+// Interactive Playground - MUST BE FIRST
+// ============================================================================
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Country &&
-          runtimeType == other.runtimeType &&
-          code == other.code;
+@widgetbook.UseCase(name: 'Interactive Playground', type: AppDropdown)
+Widget appDropdownPlayground(BuildContext context) {
+  final label = context.knobs.stringOrNull(
+    label: 'Label',
+    initialValue: 'Select an option',
+  );
+  final hint = context.knobs.stringOrNull(
+    label: 'Hint',
+    initialValue: 'Choose one...',
+  );
+  final helperText = context.knobs.stringOrNull(
+    label: 'Helper Text',
+    initialValue: 'Pick your preferred option',
+  );
+  final errorText = context.knobs.stringOrNull(label: 'Error Text');
+  final enabled = context.knobs.boolean(label: 'Enabled', initialValue: true);
+  final enableSearch = context.knobs.boolean(
+    label: 'Enable Search',
+    initialValue: false,
+  );
+  final width = context.knobs.double.slider(
+    label: 'Width',
+    initialValue: 300,
+    min: 200,
+    max: 500,
+  );
 
-  @override
-  int get hashCode => code.hashCode;
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppDropdown<String>(
+        items: const [
+          'Option 1',
+          'Option 2',
+          'Option 3',
+          'Option 4',
+          'Option 5',
+        ],
+        itemLabelBuilder: (item) => item,
+        label: label,
+        hint: hint,
+        helperText: helperText,
+        errorText: errorText,
+        enabled: enabled,
+        enableSearch: enableSearch,
+        width: width,
+        onChanged: (value) {
+          debugPrint('Selected: $value');
+        },
+      ),
+    ),
+  );
 }
 
 // ============================================================================
-// Story 1: Basic String Dropdown
+// Variant 2: Basic Dropdown
 // ============================================================================
 
-@widgetbook.UseCase(name: 'Basic String Dropdown', type: AppDropdown)
-Widget basicStringDropdown(BuildContext context) {
+@widgetbook.UseCase(name: 'Basic', type: AppDropdown)
+Widget basicDropdown(BuildContext context) {
   return Center(
-    child: SizedBox(
-      width: 300,
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
       child: AppDropdown<String>(
         items: const [
           'Option 1',
@@ -45,6 +90,7 @@ Widget basicStringDropdown(BuildContext context) {
         label: 'Select an option',
         hint: 'Choose one...',
         helperText: 'Pick your preferred option',
+        width: 300,
         onChanged: (value) {
           debugPrint('Selected: $value');
         },
@@ -54,29 +100,157 @@ Widget basicStringDropdown(BuildContext context) {
 }
 
 // ============================================================================
-// Story 2: Dropdown with Custom Objects
+// Variant 3: With Search
 // ============================================================================
 
-@widgetbook.UseCase(name: 'Custom Objects Dropdown', type: AppDropdown)
+@widgetbook.UseCase(name: 'With Search', type: AppDropdown)
+Widget dropdownWithSearch(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppDropdown<String>.withSearch(
+        items: const [
+          'New York',
+          'Los Angeles',
+          'Chicago',
+          'Houston',
+          'Phoenix',
+          'Philadelphia',
+          'San Antonio',
+          'San Diego',
+          'Dallas',
+          'San Jose',
+        ],
+        itemLabelBuilder: (city) => city,
+        label: 'Select City',
+        hint: 'Type to search cities...',
+        helperText: 'Search functionality enabled',
+        width: 350,
+        onChanged: (value) {
+          debugPrint('Selected: $value');
+        },
+      ),
+    ),
+  );
+}
+
+// ============================================================================
+// Variant 4: With Error
+// ============================================================================
+
+@widgetbook.UseCase(name: 'With Error', type: AppDropdown)
+Widget dropdownWithError(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppDropdown<String>(
+        items: const ['Small', 'Medium', 'Large', 'Extra Large'],
+        itemLabelBuilder: (item) => item,
+        label: 'Select Size',
+        hint: 'Choose a size',
+        errorText: 'Size selection is required',
+        width: 300,
+        onChanged: (value) {
+          debugPrint('Selected: $value');
+        },
+      ),
+    ),
+  );
+}
+
+// ============================================================================
+// Variant 5: Disabled State
+// ============================================================================
+
+@widgetbook.UseCase(name: 'Disabled', type: AppDropdown)
+Widget disabledDropdown(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppDropdown<String>(
+        items: const ['Option 1', 'Option 2', 'Option 3'],
+        value: 'Option 2',
+        itemLabelBuilder: (item) => item,
+        label: 'Select an option',
+        hint: 'This dropdown is disabled',
+        enabled: false,
+        width: 300,
+        onChanged: (value) {
+          debugPrint('Selected: $value');
+        },
+      ),
+    ),
+  );
+}
+
+// ============================================================================
+// Variant 6: With Leading Icon
+// ============================================================================
+
+@widgetbook.UseCase(name: 'With Leading Icon', type: AppDropdown)
+Widget dropdownWithLeadingIcon(BuildContext context) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppDropdown<String>(
+        items: const ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'],
+        itemLabelBuilder: (item) => item,
+        label: 'Select Fruit',
+        hint: 'Choose your favorite',
+        leadingIcon: Icons.apple,
+        helperText: 'Dropdown with leading icon',
+        width: 300,
+        onChanged: (value) {
+          debugPrint('Selected: $value');
+        },
+      ),
+    ),
+  );
+}
+
+// ============================================================================
+// Variant 7: Custom Objects (Countries)
+// ============================================================================
+
+class _Country {
+  final String code;
+  final String name;
+  final String flag;
+
+  const _Country(this.code, this.name, this.flag);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is _Country &&
+          runtimeType == other.runtimeType &&
+          code == other.code;
+
+  @override
+  int get hashCode => code.hashCode;
+}
+
+@widgetbook.UseCase(name: 'Custom Objects', type: AppDropdown)
 Widget customObjectsDropdown(BuildContext context) {
   const countries = [
-    Country('us', 'United States', '🇺🇸'),
-    Country('uk', 'United Kingdom', '🇬🇧'),
-    Country('ca', 'Canada', '🇨🇦'),
-    Country('de', 'Germany', '🇩🇪'),
-    Country('fr', 'France', '🇫🇷'),
-    Country('jp', 'Japan', '🇯🇵'),
-    Country('tr', 'Turkey', '🇹🇷'),
+    _Country('us', 'United States', '🇺🇸'),
+    _Country('uk', 'United Kingdom', '🇬🇧'),
+    _Country('ca', 'Canada', '🇨🇦'),
+    _Country('de', 'Germany', '🇩🇪'),
+    _Country('fr', 'France', '🇫🇷'),
+    _Country('jp', 'Japan', '🇯🇵'),
+    _Country('tr', 'Turkey', '🇹🇷'),
   ];
 
   return Center(
-    child: SizedBox(
-      width: 300,
-      child: AppDropdown<Country>(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppDropdown<_Country>(
         items: countries,
         itemLabelBuilder: (country) => '${country.flag} ${country.name}',
         label: 'Select Country',
         hint: 'Choose your country',
+        width: 300,
         onChanged: (value) {
           debugPrint('Selected: ${value?.name}');
         },
@@ -86,61 +260,10 @@ Widget customObjectsDropdown(BuildContext context) {
 }
 
 // ============================================================================
-// Story 3: Dropdown with Search
+// Variant 8: With Icons (Using AppDropdownItem)
 // ============================================================================
 
-@widgetbook.UseCase(name: 'Dropdown with Search', type: AppDropdown)
-Widget dropdownWithSearch(BuildContext context) {
-  final cities = [
-    'New York',
-    'Los Angeles',
-    'Chicago',
-    'Houston',
-    'Phoenix',
-    'Philadelphia',
-    'San Antonio',
-    'San Diego',
-    'Dallas',
-    'San Jose',
-    'Austin',
-    'Jacksonville',
-    'Fort Worth',
-    'Columbus',
-    'Charlotte',
-    'San Francisco',
-    'Indianapolis',
-    'Seattle',
-    'Denver',
-    'Washington',
-    'Boston',
-    'Nashville',
-    'Baltimore',
-    'Detroit',
-    'Portland',
-  ];
-
-  return Center(
-    child: SizedBox(
-      width: 350,
-      child: AppDropdown<String>.withSearch(
-        items: cities,
-        itemLabelBuilder: (city) => city,
-        label: 'Select City',
-        hint: 'Type to search cities...',
-        helperText: 'Search functionality enabled',
-        onChanged: (value) {
-          debugPrint('Selected: $value');
-        },
-      ),
-    ),
-  );
-}
-
-// ============================================================================
-// Story 4: Dropdown with Icons (using AppDropdownItem)
-// ============================================================================
-
-@widgetbook.UseCase(name: 'Dropdown with Icons', type: AppDropdown)
+@widgetbook.UseCase(name: 'With Icons', type: AppDropdown)
 Widget dropdownWithIcons(BuildContext context) {
   final items = [
     const AppDropdownItem<String>(
@@ -163,16 +286,11 @@ Widget dropdownWithIcons(BuildContext context) {
       label: 'Favorite',
       icon: Icons.favorite,
     ),
-    const AppDropdownItem<String>(
-      value: 'settings',
-      label: 'Settings',
-      icon: Icons.settings,
-    ),
   ];
 
   return Center(
-    child: SizedBox(
-      width: 300,
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
       child: Builder(
         builder: (context) => AppDropdown<AppDropdownItem<String>>(
           items: items,
@@ -180,6 +298,7 @@ Widget dropdownWithIcons(BuildContext context) {
           customItemBuilder: (item) => item.buildWidget(context),
           label: 'Select Location',
           hint: 'Choose a location type',
+          width: 300,
           onChanged: (value) {
             debugPrint('Selected: ${value?.label}');
           },
@@ -190,106 +309,10 @@ Widget dropdownWithIcons(BuildContext context) {
 }
 
 // ============================================================================
-// Story 5: Dropdown with Validation Error
+// Variant 9: Rich Items (Icon + Subtitle)
 // ============================================================================
 
-@widgetbook.UseCase(name: 'Dropdown with Error', type: AppDropdown)
-Widget dropdownWithError(BuildContext context) {
-  return Center(
-    child: SizedBox(
-      width: 300,
-      child: AppDropdown<String>(
-        items: const ['Small', 'Medium', 'Large', 'Extra Large'],
-        itemLabelBuilder: (item) => item,
-        label: 'Select Size',
-        hint: 'Choose a size',
-        errorText: 'Size selection is required',
-        onChanged: (value) {
-          debugPrint('Selected: $value');
-        },
-      ),
-    ),
-  );
-}
-
-// ============================================================================
-// Story 6: Disabled Dropdown
-// ============================================================================
-
-@widgetbook.UseCase(name: 'Disabled Dropdown', type: AppDropdown)
-Widget disabledDropdown(BuildContext context) {
-  return Center(
-    child: SizedBox(
-      width: 300,
-      child: AppDropdown<String>(
-        items: const ['Option 1', 'Option 2', 'Option 3'],
-        value: 'Option 2',
-        itemLabelBuilder: (item) => item,
-        label: 'Select an option',
-        hint: 'This dropdown is disabled',
-        enabled: false,
-        onChanged: (value) {
-          debugPrint('Selected: $value');
-        },
-      ),
-    ),
-  );
-}
-
-// ============================================================================
-// Story 7: Dropdown with Placeholder (No Selection)
-// ============================================================================
-
-@widgetbook.UseCase(name: 'Dropdown with Placeholder', type: AppDropdown)
-Widget dropdownWithPlaceholder(BuildContext context) {
-  return Center(
-    child: SizedBox(
-      width: 300,
-      child: AppDropdown<String>(
-        items: const ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'],
-        value: null,
-        itemLabelBuilder: (item) => item,
-        label: 'Select Fruit',
-        hint: 'No fruit selected',
-        helperText: 'Choose your favorite fruit',
-        onChanged: (value) {
-          debugPrint('Selected: $value');
-        },
-      ),
-    ),
-  );
-}
-
-// ============================================================================
-// Story 8: Large List Dropdown (100+ items with search)
-// ============================================================================
-
-@widgetbook.UseCase(name: 'Large List Dropdown', type: AppDropdown)
-Widget largeListDropdown(BuildContext context) {
-  final items = List.generate(150, (index) => 'Item ${index + 1}');
-
-  return Center(
-    child: SizedBox(
-      width: 350,
-      child: AppDropdown<String>.withSearch(
-        items: items,
-        itemLabelBuilder: (item) => item,
-        label: 'Select Item',
-        hint: 'Search from 150 items...',
-        helperText: 'Large scrollable list with search',
-        onChanged: (value) {
-          debugPrint('Selected: $value');
-        },
-      ),
-    ),
-  );
-}
-
-// ============================================================================
-// Bonus Story: Dropdown with Rich Items (Icon + Subtitle)
-// ============================================================================
-
-@widgetbook.UseCase(name: 'Rich Items Dropdown', type: AppDropdown)
+@widgetbook.UseCase(name: 'Rich Items', type: AppDropdown)
 Widget richItemsDropdown(BuildContext context) {
   final items = [
     const AppDropdownItem<String>(
@@ -319,8 +342,8 @@ Widget richItemsDropdown(BuildContext context) {
   ];
 
   return Center(
-    child: SizedBox(
-      width: 350,
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
       child: Builder(
         builder: (context) => AppDropdown<AppDropdownItem<String>>(
           items: items,
@@ -329,10 +352,37 @@ Widget richItemsDropdown(BuildContext context) {
           label: 'Select Status',
           hint: 'Choose item status',
           helperText: 'Items with icons and subtitles',
+          width: 350,
           onChanged: (value) {
             debugPrint('Selected: ${value?.label}');
           },
         ),
+      ),
+    ),
+  );
+}
+
+// ============================================================================
+// Variant 10: Large List with Search
+// ============================================================================
+
+@widgetbook.UseCase(name: 'Large List', type: AppDropdown)
+Widget largeListDropdown(BuildContext context) {
+  final items = List.generate(100, (index) => 'Item ${index + 1}');
+
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AppDropdown<String>.withSearch(
+        items: items,
+        itemLabelBuilder: (item) => item,
+        label: 'Select Item',
+        hint: 'Search from 100 items...',
+        helperText: 'Large scrollable list with search',
+        width: 350,
+        onChanged: (value) {
+          debugPrint('Selected: $value');
+        },
       ),
     ),
   );
