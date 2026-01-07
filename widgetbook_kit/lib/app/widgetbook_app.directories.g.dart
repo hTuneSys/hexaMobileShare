@@ -15,6 +15,8 @@ import 'package:widgetbook_kit/stories/analytics_kit/analytics/screen_tracking_m
     as _widgetbook_kit_stories_analytics_kit_analytics_screen_tracking_mixin_stories;
 import 'package:widgetbook_kit/stories/core_kit/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_buttons_app_button_stories;
+import 'package:widgetbook_kit/stories/core_kit/feedback/app_empty_state_stories.dart'
+    as _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_fab_stories.dart'
@@ -25,6 +27,30 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_outlined_but
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_outlined_button_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/buttons/app_text_button_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_buttons_app_text_button_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_badge_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_chip_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_filter_chip_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_input_chip_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/chips/app_tag_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_bottom_sheet_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_confirm_dialog_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_error_state_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_error_state_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_dialog_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_loading_state_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/feedback/app_snackbar_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_autocomplete_field_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_checkbox_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_checkbox_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_dropdown_stories.dart'
@@ -41,6 +67,14 @@ import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_switch_storie
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_switch_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/inputs/app_text_field_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/navigation/app_app_bar_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/navigation/app_bottom_navigation_bar_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/navigation/app_drawer_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories;
+import 'package:widgetbook_kit/stories/core_kit/widgets/navigation/app_tabs_stories.dart'
+    as _widgetbook_kit_stories_core_kit_widgets_navigation_app_tabs_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_card_stories.dart'
     as _widgetbook_kit_stories_core_kit_widgets_surfaces_app_card_stories;
 import 'package:widgetbook_kit/stories/core_kit/widgets/surfaces/app_list_tile_stories.dart'
@@ -514,8 +548,696 @@ final directories = <_widgetbook.WidgetbookNode>[
         ],
       ),
       _widgetbook.WidgetbookFolder(
+        name: 'chips',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AppBadge',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Auto-Hide Behavior',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
+                        .autoHideBehavior,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Colors',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
+                        .customColors,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Position',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
+                        .customPosition,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Dot Badge',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
+                        .dotBadge,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Max Count Overflow',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
+                        .maxCountOverflow,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Multiple Badges',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
+                        .multipleBadges,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Numeric Badge on Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
+                        .numericBadgeOnIcon,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Size Variants',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_badge_stories
+                        .sizeVariants,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppChip',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Assist Chips',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .assistChips,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Chip Group',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .chipGroup,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Colors',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .customColorChips,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .disabledChips,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Filter Chips',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .filterChips,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Input Chips',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .inputChips,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Suggestion Chips',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_chip_stories
+                        .suggestionChips,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppFilterChip',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic Unselected',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .basicFilterChip,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Colors',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .filterChipCustomColors,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .disabledFilterChip,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Filter Group Demo',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .filterChipGroup,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .filterChipPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Selected State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .selectedFilterChip,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Avatar',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .filterChipWithAvatar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .filterChipWithIcon,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Tooltip',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_filter_chip_stories
+                        .withTooltipChip,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppInputChip',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Chip Group',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipGroup,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Colors',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipCustomColors,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Disabled State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipDisabled,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Email Recipients',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipEmailRecipients,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'File Attachment',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipFileAttachment,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Selected State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipSelected,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Avatar and Label',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipWithAvatar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Delete Button',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_input_chip_stories
+                        .appInputChipWithDelete,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppTag',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic Tag',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagBasic,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Color Variants',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagColorVariants,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Combined Features',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagCombinedFeatures,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Colors',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagCustomColors,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Size Variants',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagSizeVariants,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Style Variants',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagStyleVariants,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Text Overflow',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagTextOverflow,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_chips_app_tag_stories
+                        .appTagWithIcon,
+              ),
+            ],
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'feedback',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AppBottomSheet',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Height',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories
+                        .appBottomSheetCustomHeight,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Drag Handle Variants',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories
+                        .appBottomSheetDragHandle,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Form Input',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories
+                        .appBottomSheetForm,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Full Screen',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories
+                        .appBottomSheetFullScreen,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Modal Action List',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories
+                        .appBottomSheetActionList,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Multiple Snap Points',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories
+                        .appBottomSheetSnapPoints,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Persistent Sheet',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories
+                        .appBottomSheetPersistent,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Scrollable Content',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_bottom_sheet_stories
+                        .appBottomSheetScrollable,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppConfirmDialog',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Async with Loading',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
+                        .asyncLoadingStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic Confirmation',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
+                        .basicConfirmationStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Button Labels',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
+                        .customButtonLabelsStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Destructive Action',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
+                        .destructiveActionStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Discard Changes',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
+                        .discardChangesStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Don\'t Ask Again',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
+                        .dontAskAgainStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Non-Dismissible (Critical)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
+                        .nonDismissibleStory,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Sign Out Confirmation',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_confirm_dialog_stories
+                        .signOutConfirmationStory,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppDialog',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic Alert',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .basicAlert,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Confirmation Dialog',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .confirmationDialog,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Content',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .customContent,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Form Dialog',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .formDialog,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Full Screen',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .fullScreen,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Multi Action',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .multiAction,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Scrolling Content',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .scrollingContent,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_dialog_stories
+                        .withIcon,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppEmptyState',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Compact Mode',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .compactMode,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default (Title Only)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .defaultAppEmptyState,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Full Actions (Shopping Cart)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .fullActions,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Description',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .withDescription,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .withIcon,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Illustration',
+                builder:
+                    _widgetbook_kit_stories_core_kit_feedback_app_empty_state_stories
+                        .withIllustration,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppLoadingState',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Circular Spinner (Indeterminate)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .circularSpinner,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Full-Screen Loading Overlay',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .fullScreenOverlay,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Inline Loading (Within Button)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .inlineLoading,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Linear Progress Bar (Determinate)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .linearProgressBar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading with Cancel Button',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .loadingWithCancel,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading with Custom Message',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .loadingWithMessage,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading with Progress Percentage',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .loadingWithPercentage,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Skeleton Screen (List Items)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_loading_state_stories
+                        .skeletonScreen,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppSnackbar',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'All Variants',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
+                        .appSnackbarAllVariants,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
+                        .appSnackbarBasic,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Error',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
+                        .appSnackbarError,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Info',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
+                        .appSnackbarInfo,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
+                        .appSnackbarPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Long Message',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
+                        .appSnackbarLongMessage,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Queue Demo',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
+                        .appSnackbarQueueDemo,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Success',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
+                        .appSnackbarSuccess,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Warning',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
+                        .appSnackbarWarning,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Action',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
+                        .appSnackbarWithAction,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Icon',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_feedback_app_snackbar_stories
+                        .appSnackbarWithIcon,
+              ),
+            ],
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
         name: 'inputs',
         children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AppAutocompleteField',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Async API',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .asyncAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .basicAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Items',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .customItemAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Email Autocomplete',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .emailAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Empty State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .emptyStateAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Filter Strategies',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .filterStrategiesAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Free Text',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .freeTextAutocomplete,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Loading State',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_inputs_app_autocomplete_field_stories
+                        .loadingStateAutocomplete,
+              ),
+            ],
+          ),
           _widgetbook.WidgetbookComponent(
             name: 'AppCheckbox',
             useCases: [
@@ -973,6 +1695,229 @@ final directories = <_widgetbook.WidgetbookNode>[
                 builder:
                     _widgetbook_kit_stories_core_kit_widgets_inputs_app_text_field_stories
                         .buildAppTextFieldErrorUseCase,
+              ),
+            ],
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'navigation',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'AppAppBar',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Action Icons',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
+                        .actionIcons,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic App Bar',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
+                        .basicAppBar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Center-Aligned Title',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
+                        .centerAlignedTitle,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Colors',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
+                        .customColors,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Large Title (Collapsible)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
+                        .largeTitleCollapsible,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Transparent App Bar',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
+                        .transparentAppBar,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Search Field',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
+                        .withSearchField,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Tabs',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_app_bar_stories
+                        .withTabs,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppBottomNavigationBar',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: '3 Destinations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .threeDestinations,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: '5 Destinations',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .fiveDestinations,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Colors',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .customColors,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Icon Only (No Labels)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .iconOnly,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .interactivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Count Badges',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .withCountBadges,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Dot Badges',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .withDotBadges,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Page Controller',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_bottom_navigation_bar_stories
+                        .withPageController,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppDrawer',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Basic Drawer',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerBasic,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerInteractivePlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'RTL Support',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerRTL,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Selection States',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerSelectionStates,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Badges',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithBadges,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Expandable Sections',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithExpandableSections,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Footer',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithFooter,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Profile Header',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithHeader,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Sections',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_drawer_stories
+                        .appDrawerWithSections,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'AppTabs',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Custom Indicator Color',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_tabs_stories
+                        .appTabsCustomIndicatorColor,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Icon Only',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_tabs_stories
+                        .appTabsIconOnly,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Icon and Text',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_tabs_stories
+                        .appTabsIconAndText,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Interactive Playground',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_tabs_stories
+                        .appTabsPlayground,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Pill Indicator',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_tabs_stories
+                        .appTabsPillIndicator,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Scrollable (12 Tabs)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_tabs_stories
+                        .appTabsScrollable,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Text Only (3 Tabs)',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_tabs_stories
+                        .appTabsTextOnly,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'With Badges',
+                builder:
+                    _widgetbook_kit_stories_core_kit_widgets_navigation_app_tabs_stories
+                        .appTabsWithBadges,
               ),
             ],
           ),
