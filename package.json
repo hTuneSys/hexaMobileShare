@@ -20,7 +20,7 @@
     "storybook": "pnpm widgetbook:web",
     "build-storybook": "pnpm widgetbook:build",
     "ci:format": "dart format --set-exit-if-changed .",
-    "ci:analyze": "pnpm bootstrap && pnpm analyze",
+    "ci:analyze": "pnpm bootstrap && pnpm widgetbook:generate && pnpm analyze",
     "ci:test": "pnpm bootstrap && pnpm test",
     "ci:local": "pnpm ci:format && pnpm ci:analyze && pnpm ci:test"
   },
