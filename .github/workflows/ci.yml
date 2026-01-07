@@ -60,6 +60,16 @@ jobs:
           channel: 'stable'
           cache: true
 
+      - name: Install Melos
+        run: dart pub global activate melos
+
+      - name: Bootstrap packages
+        run: melos bootstrap
+
+      - name: Generate Widgetbook files
+        working-directory: widgetbook_kit
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
       - name: Run Flutter analyze
         run: melos run analyze
 
@@ -78,6 +88,12 @@ jobs:
           flutter-version: '3.x'
           channel: 'stable'
           cache: true
+
+      - name: Install Melos
+        run: dart pub global activate melos
+
+      - name: Bootstrap packages
+        run: melos bootstrap
 
       - name: Run tests
         run: melos run test
