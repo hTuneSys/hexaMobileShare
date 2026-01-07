@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 /// and full-width layouts. All variants follow Material Design 3 guidelines
 /// and automatically adapt to the app's theme.
 ///
+///
 /// ## Usage
 ///
 /// ```dart
