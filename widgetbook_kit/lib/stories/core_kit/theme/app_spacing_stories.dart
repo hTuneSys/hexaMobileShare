@@ -53,33 +53,21 @@ Widget sizedBoxHelpers(BuildContext context) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Items separated by verticalMd (16.0)'),
-        Container(height: 50, color: Colors.blue.withOpacity(0.2)),
+        Container(height: 50, color: Colors.blue.withAlpha(51)),
         AppSpacing.verticalMd,
-        Container(height: 50, color: Colors.blue.withOpacity(0.2)),
+        Container(height: 50, color: Colors.blue.withAlpha(51)),
         AppSpacing.verticalMd,
-        Container(height: 50, color: Colors.blue.withOpacity(0.2)),
+        Container(height: 50, color: Colors.blue.withAlpha(51)),
         const SizedBox(height: 32),
         const Text('Items separated by horizontalMd (16.0)'),
         const SizedBox(height: 8),
         Row(
           children: [
-            Container(
-              width: 50,
-              height: 50,
-              color: Colors.red.withOpacity(0.2),
-            ),
+            Container(width: 50, height: 50, color: Colors.red.withAlpha(51)),
             AppSpacing.horizontalMd,
-            Container(
-              width: 50,
-              height: 50,
-              color: Colors.red.withOpacity(0.2),
-            ),
+            Container(width: 50, height: 50, color: Colors.red.withAlpha(51)),
             AppSpacing.horizontalMd,
-            Container(
-              width: 50,
-              height: 50,
-              color: Colors.red.withOpacity(0.2),
-            ),
+            Container(width: 50, height: 50, color: Colors.red.withAlpha(51)),
           ],
         ),
       ],
@@ -146,6 +134,7 @@ class _PaddingItem extends StatelessWidget {
 
 @widgetbook.UseCase(name: 'Interactive Playground', type: AppSpacing)
 Widget interactivePlayground(BuildContext context) {
+  // ignore: deprecated_member_use
   final spacing = context.knobs.list<double>(
     label: 'Spacing Size',
     options: [
@@ -179,7 +168,7 @@ Widget interactivePlayground(BuildContext context) {
     child: Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.withOpacity(0.3)),
+        border: Border.all(color: Colors.grey.withAlpha(76)), // 0.3 * 255 ≈ 76
         borderRadius: BorderRadius.circular(16),
       ),
       child: isHorizontal
