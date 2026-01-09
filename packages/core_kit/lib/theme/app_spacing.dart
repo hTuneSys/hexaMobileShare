@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2025 hexaTune LLC
+// SPDX-FileCopyrightText: 2026 hexaTune LLC
 // SPDX-License-Identifier: MIT
 
 import 'package:flutter/material.dart';
