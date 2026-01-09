@@ -16,7 +16,7 @@ import 'package:core_kit/theme/app_shadows.dart';
 @widgetbook.UseCase(name: 'Interactive Playground', type: AppShadows)
 Widget interactivePlayground(BuildContext context) {
   // Knobs for all elevation properties
-  final level = context.knobs.list(
+  final level = context.knobs.object.dropdown(
     label: 'Elevation Level',
     options: [0, 1, 2, 3, 4, 5],
     initialOption: 2,
@@ -49,7 +49,7 @@ Widget interactivePlayground(BuildContext context) {
     max: 50,
   );
 
-  final themeMode = context.knobs.list(
+  final themeMode = context.knobs.object.dropdown(
     label: 'Component Theme',
     options: ['Light', 'Dark'],
     initialOption: 'Light',
@@ -105,7 +105,7 @@ Widget interactivePlayground(BuildContext context) {
 
 @widgetbook.UseCase(name: 'Elevation Levels Showcase', type: AppShadows)
 Widget elevationLevelsShowcase(BuildContext context) {
-  final level = context.knobs.list(
+  final level = context.knobs.object.dropdown(
     label: 'Elevation Level',
     options: [0, 1, 2, 3, 4, 5],
     initialOption: 2,
@@ -117,7 +117,7 @@ Widget elevationLevelsShowcase(BuildContext context) {
     initialValue: true,
   );
 
-  final themeMode = context.knobs.list(
+  final themeMode = context.knobs.object.dropdown(
     label: 'Component Theme',
     options: ['Light', 'Dark'],
     initialOption: 'Light',
@@ -199,7 +199,7 @@ Widget elevationLevelsShowcase(BuildContext context) {
 
 @widgetbook.UseCase(name: 'Light vs Dark Mode', type: AppShadows)
 Widget lightVsDarkMode(BuildContext context) {
-  final level = context.knobs.list(
+  final level = context.knobs.object.dropdown(
     label: 'Elevation Level',
     options: [0, 1, 2, 3, 4, 5],
     initialOption: 3,
@@ -211,7 +211,7 @@ Widget lightVsDarkMode(BuildContext context) {
     initialValue: true,
   );
 
-  final themeMode = context.knobs.list(
+  final themeMode = context.knobs.object.dropdown(
     label: 'Component Theme',
     options: ['Light', 'Dark'],
     initialOption: 'Light',
@@ -279,13 +279,13 @@ Widget lightVsDarkMode(BuildContext context) {
 
 @widgetbook.UseCase(name: 'Common Components', type: AppShadows)
 Widget commonComponents(BuildContext context) {
-  final componentType = context.knobs.list(
+  final componentType = context.knobs.object.dropdown(
     label: 'Component Type',
     options: ['Card', 'FAB', 'Dialog', 'Navigation Drawer'],
     initialOption: 'Card',
   );
 
-  final themeMode = context.knobs.list(
+  final themeMode = context.knobs.object.dropdown(
     label: 'Component Theme',
     options: ['Light', 'Dark'],
     initialOption: 'Light',
@@ -423,7 +423,7 @@ Widget commonComponents(BuildContext context) {
 
 @widgetbook.UseCase(name: 'Shadow Variations', type: AppShadows)
 Widget shadowVariations(BuildContext context) {
-  final shadowType = context.knobs.list(
+  final shadowType = context.knobs.object.dropdown(
     label: 'Shadow Type',
     options: ['none', 'sm', 'md', 'lg', 'xl', 'xxl'],
     initialOption: 'md',
@@ -439,7 +439,7 @@ Widget shadowVariations(BuildContext context) {
     initialValue: null,
   );
 
-  final themeMode = context.knobs.list(
+  final themeMode = context.knobs.object.dropdown(
     label: 'Component Theme',
     options: ['Light', 'Dark'],
     initialOption: 'Light',
@@ -506,14 +506,14 @@ Widget shadowVariations(BuildContext context) {
 
 @widgetbook.UseCase(name: 'Surface Tint', type: AppShadows)
 Widget surfaceTintDemo(BuildContext context) {
-  final level = context.knobs.list(
+  final level = context.knobs.object.dropdown(
     label: 'Elevation Level',
     options: [0, 1, 2, 3, 4, 5],
     initialOption: 3,
     labelBuilder: (value) => 'Level $value',
   );
 
-  final themeMode = context.knobs.list(
+  final themeMode = context.knobs.object.dropdown(
     label: 'Component Theme',
     options: ['Light', 'Dark'],
     initialOption: 'Light',
@@ -616,14 +616,14 @@ Widget surfaceTintDemo(BuildContext context) {
 
 @widgetbook.UseCase(name: 'Elevation Animation', type: AppShadows)
 Widget elevationAnimation(BuildContext context) {
-  final startLevel = context.knobs.list(
+  final startLevel = context.knobs.object.dropdown(
     label: 'Start Level',
     options: [0, 1, 2, 3, 4, 5],
     initialOption: 1,
     labelBuilder: (value) => 'Level $value',
   );
 
-  final endLevel = context.knobs.list(
+  final endLevel = context.knobs.object.dropdown(
     label: 'End Level',
     options: [0, 1, 2, 3, 4, 5],
     initialOption: 3,
@@ -639,7 +639,7 @@ Widget elevationAnimation(BuildContext context) {
       )
       .toInt();
 
-  final themeMode = context.knobs.list(
+  final themeMode = context.knobs.object.dropdown(
     label: 'Component Theme',
     options: ['Light', 'Dark'],
     initialOption: 'Light',
@@ -773,7 +773,7 @@ class _AnimatedElevationCardState extends State<_AnimatedElevationCard>
 
 @widgetbook.UseCase(name: 'Real-World Examples', type: AppShadows)
 Widget realWorldExamples(BuildContext context) {
-  final exampleType = context.knobs.list(
+  final exampleType = context.knobs.object.dropdown(
     label: 'Example Type',
     options: ['Hover Card', 'Bottom Sheet', 'Menu', 'App Bar (Scrolled)'],
     initialOption: 'Hover Card',
@@ -784,7 +784,7 @@ Widget realWorldExamples(BuildContext context) {
     initialValue: true,
   );
 
-  final themeMode = context.knobs.list(
+  final themeMode = context.knobs.object.dropdown(
     label: 'Component Theme',
     options: ['Light', 'Dark'],
     initialOption: 'Light',
