@@ -5,13 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:core_kit/typography/app_body_text.dart';
+import 'package:core_kit/layout/gap.dart';
+import 'package:core_kit/theme/app_spacing.dart';
 
 /// Default body text variant (medium).
 @widgetbook.UseCase(name: 'Default (Medium)', type: AppBodyText)
 Widget defaultBodyText(BuildContext context) {
   return const Center(
     child: Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(AppSpacing.md),
       child: AppBodyText(
         'This is default body text. It uses the medium variant with 14sp font size.',
       ),
@@ -24,7 +26,7 @@ Widget defaultBodyText(BuildContext context) {
 Widget allVariants(BuildContext context) {
   return const Center(
     child: Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,11 +34,11 @@ Widget allVariants(BuildContext context) {
           AppBodyText.large(
             'Large: 16sp font size. Perfect for primary content.',
           ),
-          SizedBox(height: 16),
+          VGap.md(),
           AppBodyText.medium(
             'Medium: 14sp font size (default). Great for standard content.',
           ),
-          SizedBox(height: 16),
+          VGap.md(),
           AppBodyText.small(
             'Small: 12sp font size. Ideal for tertiary content or footnotes.',
           ),
@@ -53,7 +55,7 @@ Widget semanticColors(BuildContext context) {
 
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,22 +64,22 @@ Widget semanticColors(BuildContext context) {
             'Default: onSurface color (uses theme default).',
             color: colorScheme.onSurface,
           ),
-          const SizedBox(height: 16),
+          const VGap.md(),
           AppBodyText(
             'Primary: for emphasized content.',
             color: colorScheme.primary,
           ),
-          const SizedBox(height: 16),
+          const VGap.md(),
           AppBodyText(
             'Secondary: for secondary content.',
             color: colorScheme.secondary,
           ),
-          const SizedBox(height: 16),
+          const VGap.md(),
           AppBodyText(
             'Error: for error messages or warnings.',
             color: colorScheme.error,
           ),
-          const SizedBox(height: 16),
+          const VGap.md(),
           AppBodyText(
             'OnSurfaceVariant: for subtle or de-emphasized text.',
             color: colorScheme.onSurfaceVariant,
@@ -93,13 +95,13 @@ Widget semanticColors(BuildContext context) {
 Widget boldWeight(BuildContext context) {
   return const Center(
     child: Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppBodyText('Regular weight body text (400).'),
-          SizedBox(height: 16),
+          VGap.md(),
           AppBodyText(
             'Bold weight body text (700).',
             fontWeight: FontWeight.bold,
@@ -115,7 +117,7 @@ Widget boldWeight(BuildContext context) {
 Widget overflowHandling(BuildContext context) {
   return const Center(
     child: Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(AppSpacing.md),
       child: SizedBox(
         width: 200,
         child: Column(
@@ -127,7 +129,7 @@ Widget overflowHandling(BuildContext context) {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            SizedBox(height: 16),
+            VGap.md(),
             AppBodyText(
               'This is a very long body text that will overflow and clip at the end.',
               maxLines: 2,
@@ -150,14 +152,14 @@ Widget textAlignment(BuildContext context) {
 
   return const Center(
     child: Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           AppBodyText(longText, textAlign: TextAlign.left),
-          SizedBox(height: 16),
+          VGap.md(),
           AppBodyText(longText, textAlign: TextAlign.center),
-          SizedBox(height: 16),
+          VGap.md(),
           AppBodyText(longText, textAlign: TextAlign.right),
         ],
       ),
@@ -277,6 +279,6 @@ Widget interactivePlayground(BuildContext context) {
   };
 
   return Center(
-    child: Padding(padding: const EdgeInsets.all(16.0), child: widget),
+    child: Padding(padding: const EdgeInsets.all(AppSpacing.md), child: widget),
   );
 }
