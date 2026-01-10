@@ -24,14 +24,42 @@ Widget interactivePlayground(BuildContext context) {
     initialValue: 'The quick brown fox jumps over the lazy dog',
   );
 
-  final textStyleName = context.knobs.string(
+  final textStyleName = context.knobs.object.dropdown(
     label: 'Text Style',
-    initialValue: 'bodyLarge',
+    options: const [
+      'displayLarge',
+      'displayMedium',
+      'displaySmall',
+      'headlineLarge',
+      'headlineMedium',
+      'headlineSmall',
+      'titleLarge',
+      'titleMedium',
+      'titleSmall',
+      'bodyLarge',
+      'bodyMedium',
+      'bodySmall',
+      'labelLarge',
+      'labelMedium',
+      'labelSmall',
+    ],
+    labelBuilder: (value) => value,
   );
 
-  final fontWeight = context.knobs.string(
+  final fontWeight = context.knobs.object.dropdown(
     label: 'Font Weight',
-    initialValue: 'w400',
+    options: const [
+      'w100',
+      'w200',
+      'w300',
+      'w400',
+      'w500',
+      'w600',
+      'w700',
+      'w800',
+      'w900',
+    ],
+    labelBuilder: (value) => value,
   );
 
   final isItalic = context.knobs.boolean(label: 'Italic', initialValue: false);
@@ -136,7 +164,7 @@ Widget interactivePlayground(BuildContext context) {
 
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.all(AppSpacing.lg),
       child: Text(textContent, style: finalStyle, textAlign: TextAlign.center),
     ),
   );
@@ -146,118 +174,108 @@ Widget interactivePlayground(BuildContext context) {
 @widgetbook.UseCase(name: 'Full Type Scale', type: AppTypography)
 Widget fullTypeScale(BuildContext context) {
   return SingleChildScrollView(
-    padding: const EdgeInsets.all(24.0),
+    padding: const EdgeInsets.all(AppSpacing.lg),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _TypeScaleSection(
+        AppSectionHeader(
           title: 'Display',
-          description: 'Largest text - hero sections, splash screens',
-          styles: [
-            _TypeScaleItem(
-              label: 'Display Large',
-              style: Theme.of(context).textTheme.displayLarge!,
-              specs: '57sp / Regular / -0.25',
-            ),
-            _TypeScaleItem(
-              label: 'Display Medium',
-              style: Theme.of(context).textTheme.displayMedium!,
-              specs: '45sp / Regular / 0',
-            ),
-            _TypeScaleItem(
-              label: 'Display Small',
-              style: Theme.of(context).textTheme.displaySmall!,
-              specs: '36sp / Regular / 0',
-            ),
-          ],
+          subtitle: 'Largest text - hero sections, splash screens',
         ),
-        const SizedBox(height: 32),
-        _TypeScaleSection(
+        _TypeScaleItem(
+          label: 'Display Large',
+          style: Theme.of(context).textTheme.displayLarge!,
+          specs: '57sp / Regular / -0.25',
+        ),
+        _TypeScaleItem(
+          label: 'Display Medium',
+          style: Theme.of(context).textTheme.displayMedium!,
+          specs: '45sp / Regular / 0',
+        ),
+        _TypeScaleItem(
+          label: 'Display Small',
+          style: Theme.of(context).textTheme.displaySmall!,
+          specs: '36sp / Regular / 0',
+        ),
+        const VGap.xl(),
+        AppSectionHeader(
           title: 'Headline',
-          description: 'High emphasis - page titles, section headers',
-          styles: [
-            _TypeScaleItem(
-              label: 'Headline Large',
-              style: Theme.of(context).textTheme.headlineLarge!,
-              specs: '32sp / Regular / 0',
-            ),
-            _TypeScaleItem(
-              label: 'Headline Medium',
-              style: Theme.of(context).textTheme.headlineMedium!,
-              specs: '28sp / Regular / 0',
-            ),
-            _TypeScaleItem(
-              label: 'Headline Small',
-              style: Theme.of(context).textTheme.headlineSmall!,
-              specs: '24sp / Regular / 0',
-            ),
-          ],
+          subtitle: 'High emphasis - page titles, section headers',
         ),
-        const SizedBox(height: 32),
-        _TypeScaleSection(
+        _TypeScaleItem(
+          label: 'Headline Large',
+          style: Theme.of(context).textTheme.headlineLarge!,
+          specs: '32sp / Regular / 0',
+        ),
+        _TypeScaleItem(
+          label: 'Headline Medium',
+          style: Theme.of(context).textTheme.headlineMedium!,
+          specs: '28sp / Regular / 0',
+        ),
+        _TypeScaleItem(
+          label: 'Headline Small',
+          style: Theme.of(context).textTheme.headlineSmall!,
+          specs: '24sp / Regular / 0',
+        ),
+        const VGap.xl(),
+        AppSectionHeader(
           title: 'Title',
-          description: 'Medium emphasis - card titles, toolbar titles',
-          styles: [
-            _TypeScaleItem(
-              label: 'Title Large',
-              style: Theme.of(context).textTheme.titleLarge!,
-              specs: '22sp / Regular / 0',
-            ),
-            _TypeScaleItem(
-              label: 'Title Medium',
-              style: Theme.of(context).textTheme.titleMedium!,
-              specs: '16sp / Medium / 0.15',
-            ),
-            _TypeScaleItem(
-              label: 'Title Small',
-              style: Theme.of(context).textTheme.titleSmall!,
-              specs: '14sp / Medium / 0.1',
-            ),
-          ],
+          subtitle: 'Medium emphasis - card titles, toolbar titles',
         ),
-        const SizedBox(height: 32),
-        _TypeScaleSection(
+        _TypeScaleItem(
+          label: 'Title Large',
+          style: Theme.of(context).textTheme.titleLarge!,
+          specs: '22sp / Regular / 0',
+        ),
+        _TypeScaleItem(
+          label: 'Title Medium',
+          style: Theme.of(context).textTheme.titleMedium!,
+          specs: '16sp / Medium / 0.15',
+        ),
+        _TypeScaleItem(
+          label: 'Title Small',
+          style: Theme.of(context).textTheme.titleSmall!,
+          specs: '14sp / Medium / 0.1',
+        ),
+        const VGap.xl(),
+        AppSectionHeader(
           title: 'Body',
-          description: 'Main content - paragraphs, descriptions',
-          styles: [
-            _TypeScaleItem(
-              label: 'Body Large',
-              style: Theme.of(context).textTheme.bodyLarge!,
-              specs: '16sp / Regular / 0.5',
-            ),
-            _TypeScaleItem(
-              label: 'Body Medium',
-              style: Theme.of(context).textTheme.bodyMedium!,
-              specs: '14sp / Regular / 0.25',
-            ),
-            _TypeScaleItem(
-              label: 'Body Small',
-              style: Theme.of(context).textTheme.bodySmall!,
-              specs: '12sp / Regular / 0.4',
-            ),
-          ],
+          subtitle: 'Main content - paragraphs, descriptions',
         ),
-        const SizedBox(height: 32),
-        _TypeScaleSection(
+        _TypeScaleItem(
+          label: 'Body Large',
+          style: Theme.of(context).textTheme.bodyLarge!,
+          specs: '16sp / Regular / 0.5',
+        ),
+        _TypeScaleItem(
+          label: 'Body Medium',
+          style: Theme.of(context).textTheme.bodyMedium!,
+          specs: '14sp / Regular / 0.25',
+        ),
+        _TypeScaleItem(
+          label: 'Body Small',
+          style: Theme.of(context).textTheme.bodySmall!,
+          specs: '12sp / Regular / 0.4',
+        ),
+        const VGap.xl(),
+        AppSectionHeader(
           title: 'Label',
-          description: 'UI elements - buttons, tabs, captions',
-          styles: [
-            _TypeScaleItem(
-              label: 'Label Large',
-              style: Theme.of(context).textTheme.labelLarge!,
-              specs: '14sp / Medium / 0.1',
-            ),
-            _TypeScaleItem(
-              label: 'Label Medium',
-              style: Theme.of(context).textTheme.labelMedium!,
-              specs: '12sp / Medium / 0.5',
-            ),
-            _TypeScaleItem(
-              label: 'Label Small',
-              style: Theme.of(context).textTheme.labelSmall!,
-              specs: '11sp / Medium / 0.5',
-            ),
-          ],
+          subtitle: 'UI elements - buttons, tabs, captions',
+        ),
+        _TypeScaleItem(
+          label: 'Label Large',
+          style: Theme.of(context).textTheme.labelLarge!,
+          specs: '14sp / Medium / 0.1',
+        ),
+        _TypeScaleItem(
+          label: 'Label Medium',
+          style: Theme.of(context).textTheme.labelMedium!,
+          specs: '12sp / Medium / 0.5',
+        ),
+        _TypeScaleItem(
+          label: 'Label Small',
+          style: Theme.of(context).textTheme.labelSmall!,
+          specs: '11sp / Medium / 0.5',
         ),
       ],
     ),
@@ -270,7 +288,7 @@ Widget styleHelpers(BuildContext context) {
   final baseStyle = Theme.of(context).textTheme.bodyLarge!;
 
   return SingleChildScrollView(
-    padding: const EdgeInsets.all(24.0),
+    padding: const EdgeInsets.all(AppSpacing.lg),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -278,13 +296,13 @@ Widget styleHelpers(BuildContext context) {
           'Style Modification Helpers',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         Text('Base style (bodyLarge)', style: baseStyle),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text('Bold text', style: AppTypography.bold(baseStyle)),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text('Italic text', style: AppTypography.italic(baseStyle)),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Colored text',
           style: AppTypography.withColor(
@@ -292,22 +310,22 @@ Widget styleHelpers(BuildContext context) {
             Theme.of(context).colorScheme.primary,
           ),
         ),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Larger size (20sp)',
           style: AppTypography.withSize(baseStyle, 20),
         ),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Increased line height (2.0)',
           style: AppTypography.withLineHeight(baseStyle, 2.0),
         ),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Letter spacing (2.0)',
           style: AppTypography.withLetterSpacing(baseStyle, 2.0),
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         Text(
           'Combined: Bold + Italic + Color',
           style: AppTypography.withColor(
@@ -334,7 +352,7 @@ Widget responsiveScaling(BuildContext context) {
   }
 
   return SingleChildScrollView(
-    padding: const EdgeInsets.all(24.0),
+    padding: const EdgeInsets.all(AppSpacing.lg),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -342,20 +360,20 @@ Widget responsiveScaling(BuildContext context) {
           'Responsive Text Scaling',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Screen width: ${width.toInt()}dp',
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         Text(deviceCategory, style: Theme.of(context).textTheme.bodySmall),
-        const SizedBox(height: 32),
+        const VGap.xl(),
         Text('Standard Text', style: Theme.of(context).textTheme.titleLarge),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'This text uses standard titleLarge style without responsive scaling.',
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         Text(
           'Responsive Text',
           style: AppTypography.responsive(
@@ -363,7 +381,7 @@ Widget responsiveScaling(BuildContext context) {
             context,
           ),
         ),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'This text uses responsive titleLarge style that adapts to screen size.',
           style: AppTypography.responsive(
@@ -371,7 +389,7 @@ Widget responsiveScaling(BuildContext context) {
             context,
           ),
         ),
-        const SizedBox(height: 32),
+        const VGap.xl(),
         Text(
           'Custom Scale (1.5x)',
           style: AppTypography.scale(
@@ -379,7 +397,7 @@ Widget responsiveScaling(BuildContext context) {
             1.5,
           ),
         ),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'This demonstrates custom scaling with a 1.5x multiplier.',
           style: AppTypography.scale(
@@ -396,7 +414,7 @@ Widget responsiveScaling(BuildContext context) {
 @widgetbook.UseCase(name: 'Common Patterns', type: AppTypography)
 Widget commonPatterns(BuildContext context) {
   return SingleChildScrollView(
-    padding: const EdgeInsets.all(24.0),
+    padding: const EdgeInsets.all(AppSpacing.lg),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -404,51 +422,51 @@ Widget commonPatterns(BuildContext context) {
           'Common Text Patterns',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         Text('Link Style', style: Theme.of(context).textTheme.titleSmall),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Click here to learn more',
           style: AppTypography.linkStyle(context),
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         Text('Error Style', style: Theme.of(context).textTheme.titleSmall),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Invalid email address. Please try again.',
           style: AppTypography.errorStyle(context),
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         Text('Success Style', style: Theme.of(context).textTheme.titleSmall),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Profile updated successfully!',
           style: AppTypography.successStyle(context),
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         Text('Warning Style', style: Theme.of(context).textTheme.titleSmall),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Connection may be unstable. Please check your network.',
           style: AppTypography.warningStyle(context),
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         Text('Hint Style', style: Theme.of(context).textTheme.titleSmall),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Enter your email address to continue',
           style: AppTypography.hintStyle(context),
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         Text('Disabled Style', style: Theme.of(context).textTheme.titleSmall),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'This option is currently unavailable',
           style: AppTypography.disabledStyle(context),
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         Text('Code Style', style: Theme.of(context).textTheme.titleSmall),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text('const value = 42;', style: AppTypography.codeStyle(context)),
       ],
     ),
@@ -459,7 +477,7 @@ Widget commonPatterns(BuildContext context) {
 @widgetbook.UseCase(name: 'Text Comparisons', type: AppTypography)
 Widget textComparisons(BuildContext context) {
   return SingleChildScrollView(
-    padding: const EdgeInsets.all(24.0),
+    padding: const EdgeInsets.all(AppSpacing.lg),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -467,18 +485,18 @@ Widget textComparisons(BuildContext context) {
           'Font Size Comparison',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-        const SizedBox(height: 16),
+        const VGap.md(),
         Text('12sp', style: AppTypography.withSize(null, 12)),
         Text('14sp', style: AppTypography.withSize(null, 14)),
         Text('16sp', style: AppTypography.withSize(null, 16)),
         Text('20sp', style: AppTypography.withSize(null, 20)),
         Text('24sp', style: AppTypography.withSize(null, 24)),
-        const SizedBox(height: 32),
+        const VGap.xl(),
         Text(
           'Font Weight Comparison',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-        const SizedBox(height: 16),
+        const VGap.md(),
         Text(
           'Light (300)',
           style: Theme.of(
@@ -503,12 +521,12 @@ Widget textComparisons(BuildContext context) {
             context,
           ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w700),
         ),
-        const SizedBox(height: 32),
+        const VGap.xl(),
         Text(
           'Line Height Comparison',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-        const SizedBox(height: 16),
+        const VGap.md(),
         Text(
           'Line height 1.0: Lorem ipsum dolor sit amet, '
           'consectetur adipiscing elit. Sed do eiusmod tempor.',
@@ -517,7 +535,7 @@ Widget textComparisons(BuildContext context) {
             1.0,
           ),
         ),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Line height 1.5: Lorem ipsum dolor sit amet, '
           'consectetur adipiscing elit. Sed do eiusmod tempor.',
@@ -526,7 +544,7 @@ Widget textComparisons(BuildContext context) {
             1.5,
           ),
         ),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Line height 2.0: Lorem ipsum dolor sit amet, '
           'consectetur adipiscing elit. Sed do eiusmod tempor.',
@@ -544,7 +562,7 @@ Widget textComparisons(BuildContext context) {
 @widgetbook.UseCase(name: 'Hierarchy Example', type: AppTypography)
 Widget hierarchyExample(BuildContext context) {
   return SingleChildScrollView(
-    padding: const EdgeInsets.all(24.0),
+    padding: const EdgeInsets.all(AppSpacing.lg),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -552,23 +570,23 @@ Widget hierarchyExample(BuildContext context) {
           'Welcome to Our App',
           style: Theme.of(context).textTheme.displaySmall,
         ),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'Getting Started Guide',
           style: Theme.of(context).textTheme.headlineMedium,
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         Text('Introduction', style: Theme.of(context).textTheme.titleLarge),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           'This guide will help you understand the typography system '
           'and how to use it effectively in your application. '
           'Follow these best practices for consistent text styling.',
           style: Theme.of(context).textTheme.bodyLarge,
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         Text('Key Features', style: Theme.of(context).textTheme.titleMedium),
-        const SizedBox(height: 8),
+        const VGap.sm(),
         Text(
           '• Complete Material Design 3 type scale',
           style: Theme.of(context).textTheme.bodyMedium,
@@ -581,12 +599,12 @@ Widget hierarchyExample(BuildContext context) {
           '• Accessibility support',
           style: Theme.of(context).textTheme.bodyMedium,
         ),
-        const SizedBox(height: 16),
+        const VGap.md(),
         Text(
           'Note: Always use semantic text styles from the theme.',
           style: Theme.of(context).textTheme.bodySmall,
         ),
-        const SizedBox(height: 24),
+        const VGap.lg(),
         ElevatedButton(
           onPressed: () {},
           child: Text(
@@ -603,7 +621,7 @@ Widget hierarchyExample(BuildContext context) {
 @widgetbook.UseCase(name: 'Use Case Examples', type: AppTypography)
 Widget useCaseExamples(BuildContext context) {
   return SingleChildScrollView(
-    padding: const EdgeInsets.all(24.0),
+    padding: const EdgeInsets.all(AppSpacing.lg),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -611,59 +629,185 @@ Widget useCaseExamples(BuildContext context) {
           'Use Case Examples',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-        const SizedBox(height: 24),
-        _UseCaseCard(
-          title: 'Page Title',
-          useCase: 'displayLarge or headlineLarge',
-          example: Text(
-            'Dashboard',
-            style: Theme.of(context).textTheme.headlineLarge,
+        const VGap.lg(),
+        AppCard.outlined(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Page Title',
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              const VGap.xs(),
+              Text(
+                'Style: displayLarge or headlineLarge',
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
+                  fontFamily: 'monospace',
+                ),
+              ),
+              const VGap.sm(),
+              Text(
+                'Dashboard',
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 16),
-        _UseCaseCard(
-          title: 'Section Header',
-          useCase: 'headlineMedium or headlineSmall',
-          example: Text(
-            'Recent Activity',
-            style: Theme.of(context).textTheme.headlineMedium,
+        const VGap.md(),
+        AppCard.outlined(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Section Header',
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              const VGap.xs(),
+              Text(
+                'Style: headlineMedium or headlineSmall',
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
+                  fontFamily: 'monospace',
+                ),
+              ),
+              const VGap.sm(),
+              Text(
+                'Recent Activity',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 16),
-        _UseCaseCard(
-          title: 'Card Title',
-          useCase: 'titleLarge or titleMedium',
-          example: Text(
-            'Product Features',
-            style: Theme.of(context).textTheme.titleLarge,
+        const VGap.md(),
+        AppCard.outlined(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Card Title',
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              const VGap.xs(),
+              Text(
+                'Style: titleLarge or titleMedium',
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
+                  fontFamily: 'monospace',
+                ),
+              ),
+              const VGap.sm(),
+              Text(
+                'Product Features',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 16),
-        _UseCaseCard(
-          title: 'Body Text',
-          useCase: 'bodyLarge or bodyMedium',
-          example: Text(
-            'This is the main content of your application. '
-            'Use body styles for paragraphs and descriptions.',
-            style: Theme.of(context).textTheme.bodyLarge,
+        const VGap.md(),
+        AppCard.outlined(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Body Text',
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              const VGap.xs(),
+              Text(
+                'Style: bodyLarge or bodyMedium',
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
+                  fontFamily: 'monospace',
+                ),
+              ),
+              const VGap.sm(),
+              Text(
+                'This is the main content of your application. '
+                'Use body styles for paragraphs and descriptions.',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 16),
-        _UseCaseCard(
-          title: 'Button Label',
-          useCase: 'labelLarge',
-          example: ElevatedButton(
-            onPressed: () {},
-            child: const Text('Action Button'),
+        const VGap.md(),
+        AppCard.outlined(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Button Label',
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              const VGap.xs(),
+              Text(
+                'Style: labelLarge',
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
+                  fontFamily: 'monospace',
+                ),
+              ),
+              const VGap.sm(),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Action Button'),
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: 16),
-        _UseCaseCard(
-          title: 'Caption / Helper Text',
-          useCase: 'bodySmall or labelSmall',
-          example: Text(
-            'Last updated 2 hours ago',
-            style: Theme.of(context).textTheme.bodySmall,
+        const VGap.md(),
+        AppCard.outlined(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Caption / Helper Text',
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              const VGap.xs(),
+              Text(
+                'Style: bodySmall or labelSmall',
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
+                  fontFamily: 'monospace',
+                ),
+              ),
+              const VGap.sm(),
+              Text(
+                'Last updated 2 hours ago',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
           ),
         ),
       ],
@@ -672,45 +816,6 @@ Widget useCaseExamples(BuildContext context) {
 }
 
 // Helper Widgets
-
-class _TypeScaleSection extends StatelessWidget {
-  const _TypeScaleSection({
-    required this.title,
-    required this.description,
-    required this.styles,
-  });
-
-  final String title;
-  final String description;
-  final List<_TypeScaleItem> styles;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-            color: Theme.of(context).colorScheme.primary,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          description,
-          style: Theme.of(context).textTheme.bodySmall!.copyWith(
-            color: Theme.of(
-              context,
-            ).colorScheme.onSurface.withValues(alpha: 0.6),
-          ),
-        ),
-        const SizedBox(height: 16),
-        ...styles,
-      ],
-    );
-  }
-}
 
 class _TypeScaleItem extends StatelessWidget {
   const _TypeScaleItem({
@@ -726,7 +831,7 @@ class _TypeScaleItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.only(bottom: AppSpacing.md),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -749,56 +854,8 @@ class _TypeScaleItem extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 4),
+          const VGap.xs(),
           Text('The quick brown fox', style: style),
-        ],
-      ),
-    );
-  }
-}
-
-class _UseCaseCard extends StatelessWidget {
-  const _UseCaseCard({
-    required this.title,
-    required this.useCase,
-    required this.example,
-  });
-
-  final String title;
-  final String useCase;
-  final Widget example;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
-        ),
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Style: $useCase',
-            style: Theme.of(context).textTheme.labelSmall!.copyWith(
-              color: Theme.of(
-                context,
-              ).colorScheme.onSurface.withValues(alpha: 0.6),
-              fontFamily: 'monospace',
-            ),
-          ),
-          const SizedBox(height: 12),
-          example,
         ],
       ),
     );
