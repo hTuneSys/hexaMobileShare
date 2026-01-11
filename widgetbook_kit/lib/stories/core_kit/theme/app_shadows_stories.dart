@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:core_kit/theme/app_shadows.dart';
+import 'package:core_kit/widgets/surfaces/app_card.dart';
+import 'package:core_kit/widgets/buttons/app_fab.dart';
+import 'package:core_kit/widgets/surfaces/app_list_tile.dart';
 
 /// Widgetbook stories for AppShadows
 ///
@@ -21,11 +24,6 @@ Widget interactivePlayground(BuildContext context) {
     options: [0, 1, 2, 3, 4, 5],
     initialOption: 2,
     labelBuilder: (value) => 'Level $value (${AppShadows.levelName(value)})',
-  );
-
-  final enableTint = context.knobs.boolean(
-    label: 'Enable Surface Tint',
-    initialValue: true,
   );
 
   final width = context.knobs.double.slider(
@@ -67,30 +65,22 @@ Widget interactivePlayground(BuildContext context) {
         : ThemeData.light(useMaterial3: true),
     child: Builder(
       builder: (context) {
-        final decoration = enableTint
-            ? AppShadows.decorationWithTint(
-                context: context,
-                level: level,
-                backgroundColor: backgroundColor,
-                borderRadius: BorderRadius.circular(borderRadius),
-              )
-            : BoxDecoration(
-                color: backgroundColor ?? Theme.of(context).colorScheme.surface,
-                borderRadius: BorderRadius.circular(borderRadius),
-                boxShadow: AppShadows.forLevel(level),
-              );
-
         return Center(
-          child: Container(
+          child: SizedBox(
             width: width,
             height: height,
-            decoration: decoration,
-            child: Center(
-              child: Text(
-                'Level $level\n${AppShadows.levelName(level).toUpperCase()}',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface,
+            child: AppCard(
+              elevation: _elevationForLevel(level),
+              color: backgroundColor,
+              borderRadius: BorderRadius.circular(borderRadius),
+              padding: const EdgeInsets.all(16),
+              child: Center(
+                child: Text(
+                  'Level $level\n${AppShadows.levelName(level).toUpperCase()}',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                 ),
               ),
             ),
@@ -143,49 +133,41 @@ Widget elevationLevelsShowcase(BuildContext context) {
         : ThemeData.light(useMaterial3: true),
     child: Builder(
       builder: (context) {
-        final decoration = showTint
-            ? AppShadows.decorationWithTint(
-                context: context,
-                level: level,
-                borderRadius: BorderRadius.circular(12),
-              )
-            : BoxDecoration(
-                color: Theme.of(context).colorScheme.surface,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: AppShadows.forLevel(level),
-              );
-
         return Center(
-          child: Container(
+          child: SizedBox(
             width: containerWidth,
             height: containerHeight,
-            decoration: decoration,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Level $level',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontWeight: FontWeight.bold,
+            child: AppCard(
+              elevation: _elevationForLevel(level),
+              surfaceTintColor: showTint ? null : Colors.transparent,
+              padding: const EdgeInsets.all(24),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Level $level',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    AppShadows.levelName(level).toUpperCase(),
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    const SizedBox(height: 8),
+                    Text(
+                      AppShadows.levelName(level).toUpperCase(),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    showTint ? 'With Surface Tint' : 'Shadows Only',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
+                    const SizedBox(height: 16),
+                    Text(
+                      showTint ? 'With Surface Tint' : 'Shadows Only',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -223,24 +205,13 @@ Widget lightVsDarkMode(BuildContext context) {
         : ThemeData.light(useMaterial3: true),
     child: Builder(
       builder: (context) {
-        final decoration = showTint
-            ? AppShadows.decorationWithTint(
-                context: context,
-                level: level,
-                borderRadius: BorderRadius.circular(16),
-              )
-            : BoxDecoration(
-                color: Theme.of(context).colorScheme.surface,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: AppShadows.forLevel(level),
-              );
-
         return Center(
-          child: Container(
+          child: SizedBox(
             width: 280,
             height: 200,
-            decoration: decoration,
-            child: Padding(
+            child: AppCard(
+              elevation: _elevationForLevel(level),
+              surfaceTintColor: showTint ? null : Colors.transparent,
               padding: const EdgeInsets.all(24),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -302,109 +273,114 @@ Widget commonComponents(BuildContext context) {
         : ThemeData.light(useMaterial3: true),
     child: Builder(
       builder: (context) {
-        final decoration = AppShadows.decorationWithTint(
-          context: context,
-          level: level,
-          borderRadius: BorderRadius.circular(componentType == 'FAB' ? 28 : 12),
-        );
-
         Widget content;
         switch (componentType) {
           case 'Card':
-            content = Container(
+            content = SizedBox(
               width: 300,
               height: 150,
-              decoration: decoration,
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Card Title',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontWeight: FontWeight.bold,
+              child: AppCard(
+                elevation: _elevationForLevel(level),
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Card Title',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Cards use Level 1 elevation (sm)',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    const SizedBox(height: 8),
+                    Text(
+                      'Cards use Level 1 elevation (sm)',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
             break;
 
           case 'FAB':
-            content = Container(
-              width: 56,
-              height: 56,
-              decoration: decoration.copyWith(
-                color: Theme.of(context).colorScheme.primaryContainer,
-              ),
-              child: Icon(
-                Icons.add,
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              ),
+            // Use actual AppFab component
+            content = Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AppFab(icon: Icons.add, onPressed: () {}),
+                const SizedBox(height: 16),
+                Text(
+                  'FABs use Level 3 elevation (lg)',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
             );
             break;
 
           case 'Dialog':
-            content = Container(
+            // Visual representation of dialog using AppCard
+            // (Note: Actual AppDialog.show() can't be used in static story)
+            content = SizedBox(
               width: 280,
               height: 200,
-              decoration: decoration,
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Dialog',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontWeight: FontWeight.bold,
+              child: AppCard(
+                elevation: _elevationForLevel(level),
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Dialog',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Dialogs use Level 5 elevation (xxl)',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    const SizedBox(height: 8),
+                    Text(
+                      'Dialogs use Level 5 elevation (xxl)',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
             break;
 
           case 'Navigation Drawer':
-            content = Container(
+            content = SizedBox(
               width: 300,
               height: 400,
-              decoration: decoration,
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Navigation',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontWeight: FontWeight.bold,
+              child: AppCard(
+                elevation: _elevationForLevel(level),
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Navigation',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Drawers use Level 4 elevation (xl)',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    const SizedBox(height: 16),
+                    Text(
+                      'Drawers use Level 4 elevation (xl)',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
             break;
@@ -456,43 +432,36 @@ Widget shadowVariations(BuildContext context) {
         : ThemeData.light(useMaterial3: true),
     child: Builder(
       builder: (context) {
-        final decoration = enableTint
-            ? AppShadows.decorationWithTint(
-                context: context,
-                level: level,
-                backgroundColor: backgroundColor,
-                borderRadius: BorderRadius.circular(12),
-              )
-            : BoxDecoration(
-                color: backgroundColor ?? Theme.of(context).colorScheme.surface,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: AppShadows.forLevel(level),
-              );
-
         return Center(
-          child: Container(
+          child: SizedBox(
             width: 250,
             height: 180,
-            decoration: decoration,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    shadowType.toUpperCase(),
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontWeight: FontWeight.bold,
+            child: AppCard(
+              elevation: _elevationForLevel(level),
+              color: backgroundColor,
+              surfaceTintColor: enableTint ? null : Colors.transparent,
+              padding: const EdgeInsets.all(24),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      shadowType.toUpperCase(),
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(
+                            color: Theme.of(context).colorScheme.onSurface,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Level $level Shadow',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    const SizedBox(height: 8),
+                    Text(
+                      'Level $level Shadow',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -553,15 +522,11 @@ Widget surfaceTintDemo(BuildContext context) {
               };
 
         return Center(
-          child: Container(
+          child: SizedBox(
             width: 300,
             height: 250,
-            decoration: AppShadows.decorationWithTint(
-              context: context,
-              level: level,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Padding(
+            child: AppCard(
+              elevation: _elevationForLevel(level),
               padding: const EdgeInsets.all(24),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -799,91 +764,42 @@ Widget realWorldExamples(BuildContext context) {
         Widget example;
 
         switch (exampleType) {
-          case 'Hover Card':
+          case 'Hover Effect':
             final level = isElevated ? 2 : 1;
-            example = Container(
-              width: 300,
-              height: 180,
-              decoration: AppShadows.decorationWithTint(
-                context: context,
-                level: level,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.photo,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      const SizedBox(width: 12),
-                      Text(
-                        isElevated ? 'Hovered' : 'Normal',
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(
-                              color: Theme.of(context).colorScheme.onSurface,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Text(
-                    'Card elevation changes on hover',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Level: $level (${AppShadows.levelName(level)})',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                ],
-              ),
-            );
-            break;
-
-          case 'Bottom Sheet':
-            final level = isElevated ? 5 : 0;
-            example = Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                width: double.infinity,
-                height: 200,
-                decoration: AppShadows.decorationWithTint(
-                  context: context,
-                  level: level,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(28),
-                    topRight: Radius.circular(28),
-                  ),
-                ),
-                padding: const EdgeInsets.all(24),
+            example = SizedBox(
+              width: 200,
+              height: 150,
+              child: AppCard(
+                elevation: _elevationForLevel(level),
+                padding: const EdgeInsets.all(16),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 32,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.photo,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          isElevated ? 'Hovered' : 'Normal',
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.onSurface,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 16),
+                    const Spacer(),
                     Text(
-                      isElevated ? 'Modal Sheet' : 'Persistent Sheet',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface,
-                        fontWeight: FontWeight.bold,
+                      'Card elevation changes on hover',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 4),
                     Text(
                       'Level: $level (${AppShadows.levelName(level)})',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -896,22 +812,82 @@ Widget realWorldExamples(BuildContext context) {
             );
             break;
 
+          case 'Bottom Sheet':
+            final level = isElevated ? 5 : 0;
+            example = Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                width: double.infinity,
+                height: 200,
+                child: AppCard(
+                  elevation: _elevationForLevel(level),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(28),
+                    topRight: Radius.circular(28),
+                  ),
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 32,
+                        height: 4,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        isElevated ? 'Modal Sheet' : 'Persistent Sheet',
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurface,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Level: $level (${AppShadows.levelName(level)})',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+            break;
+
           case 'Menu':
             final level = isElevated ? 3 : 1;
-            example = Container(
+            example = SizedBox(
               width: 200,
-              decoration: AppShadows.decorationWithTint(
-                context: context,
-                level: level,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _MenuItem(label: 'Copy', icon: Icons.copy),
-                  _MenuItem(label: 'Paste', icon: Icons.paste),
-                  _MenuItem(label: 'Delete', icon: Icons.delete),
-                ],
+              child: AppCard(
+                elevation: _elevationForLevel(level),
+                padding: EdgeInsets.zero,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    AppListTile(
+                      leading: const Icon(Icons.copy, size: 20),
+                      title: 'Copy',
+                      dense: true,
+                      onTap: () {},
+                    ),
+                    AppListTile(
+                      leading: const Icon(Icons.paste, size: 20),
+                      title: 'Paste',
+                      dense: true,
+                      onTap: () {},
+                    ),
+                    AppListTile(
+                      leading: const Icon(Icons.delete, size: 20),
+                      title: 'Delete',
+                      dense: true,
+                      onTap: () {},
+                    ),
+                  ],
+                ),
               ),
             );
             break;
@@ -920,35 +896,35 @@ Widget realWorldExamples(BuildContext context) {
             final level = isElevated ? 2 : 0;
             example = Align(
               alignment: Alignment.topCenter,
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 height: 64,
-                decoration: AppShadows.decorationWithTint(
-                  context: context,
-                  level: level,
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.menu,
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
-                    const SizedBox(width: 16),
-                    Text(
-                      isElevated ? 'Scrolled' : 'Top',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                child: AppCard(
+                  elevation: _elevationForLevel(level),
+                  borderRadius: BorderRadius.zero,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.menu,
                         color: Theme.of(context).colorScheme.onSurface,
                       ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      'Level $level',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
+                      const SizedBox(width: 16),
+                      Text(
+                        isElevated ? 'Scrolled' : 'Top',
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
                       ),
-                    ),
-                  ],
+                      const Spacer(),
+                      Text(
+                        'Level $level',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
@@ -964,39 +940,32 @@ Widget realWorldExamples(BuildContext context) {
   );
 }
 
-class _MenuItem extends StatelessWidget {
-  const _MenuItem({required this.label, required this.icon});
+// ==================== Helper Functions ====================
 
-  final String label;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: () {},
-        child: Container(
-          height: 48,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            children: [
-              Icon(
-                icon,
-                size: 20,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-              const SizedBox(width: 12),
-              Text(
-                label,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+/// Maps AppShadows elevation level (0-5) to AppCard elevation in dp.
+///
+/// Material Design 3 elevation mapping:
+/// - Level 0 (none): 0dp
+/// - Level 1 (sm): 1dp
+/// - Level 2 (md): 3dp
+/// - Level 3 (lg): 6dp
+/// - Level 4 (xl): 8dp
+/// - Level 5 (xxl): 12dp
+double _elevationForLevel(int level) {
+  switch (level) {
+    case 0:
+      return 0.0;
+    case 1:
+      return 1.0;
+    case 2:
+      return 3.0;
+    case 3:
+      return 6.0;
+    case 4:
+      return 8.0;
+    case 5:
+      return 12.0;
+    default:
+      return 0.0;
   }
 }
