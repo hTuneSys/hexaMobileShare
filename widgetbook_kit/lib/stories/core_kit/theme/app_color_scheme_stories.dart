@@ -162,97 +162,85 @@ Widget appColorSchemePlayground(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Main demonstration card
-            Container(
+            ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 500),
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
+              child: AppCard(
+                padding: const EdgeInsets.all(AppSpacing.lg),
                 color: backgroundColor,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: colorScheme.shadow.withValues(alpha: 0.1),
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Header with icon
-                  Row(
-                    children: [
-                      if (showIcon)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 12),
-                          child: Icon(icon, color: textColor, size: 32),
-                        ),
-                      Expanded(
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            color: textColor,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  // Description
-                  Text(
-                    description,
-                    style: TextStyle(color: textColor, fontSize: 16),
-                  ),
-                  const SizedBox(height: 16),
-                  // Color information
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: textColor.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                borderRadius: AppRadius.lgRadius,
+                elevation: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Header with icon
+                    Row(
                       children: [
-                        Text(
-                          'Background: $hexValue',
-                          style: TextStyle(
-                            color: textColor,
-                            fontSize: 14,
-                            fontFamily: 'monospace',
+                        if (showIcon)
+                          Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: Icon(icon, color: textColor, size: 32),
                           ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Foreground: $textHexValue',
-                          style: TextStyle(
-                            color: textColor,
-                            fontSize: 14,
-                            fontFamily: 'monospace',
+                        Expanded(
+                          child: Text(
+                            title,
+                            style: TextStyle(
+                              color: textColor,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
                     ),
-                  ),
-                  if (showButton) ...[
+                    const SizedBox(height: 12),
+                    // Description
+                    Text(
+                      description,
+                      style: TextStyle(color: textColor, fontSize: 16),
+                    ),
                     const SizedBox(height: 16),
-                    // Action button
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: textColor,
-                          foregroundColor: backgroundColor,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                        ),
-                        child: const Text('Action Button'),
+                    // Color information
+                    AppCard(
+                      padding: const EdgeInsets.all(AppSpacing.sm),
+                      color: textColor.withValues(alpha: 0.1),
+                      borderRadius: AppRadius.smRadius,
+                      elevation: 0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Background: $hexValue',
+                            style: TextStyle(
+                              color: textColor,
+                              fontSize: 14,
+                              fontFamily: 'monospace',
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Foreground: $textHexValue',
+                            style: TextStyle(
+                              color: textColor,
+                              fontSize: 14,
+                              fontFamily: 'monospace',
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+                    if (showButton) ...[
+                      const SizedBox(height: 16),
+                      // Action button
+                      AppButton.elevated(
+                        label: 'Action Button',
+                        onPressed: () {},
+                        fullWidth: true,
+                        backgroundColor: textColor,
+                        foregroundColor: backgroundColor,
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
           ],
@@ -348,7 +336,7 @@ Widget appColorSchemeLightDarkComparison(BuildContext context) {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(AppSpacing.md),
                   color: lightScheme.primary,
                   child: Center(
                     child: Text(
@@ -363,7 +351,7 @@ Widget appColorSchemeLightDarkComparison(BuildContext context) {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(AppSpacing.md),
                     itemCount: lightColors.length,
                     itemBuilder: (context, index) {
                       final entry = lightColors.entries.elementAt(index);
@@ -384,7 +372,7 @@ Widget appColorSchemeLightDarkComparison(BuildContext context) {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(AppSpacing.md),
                   color: darkScheme.primary,
                   child: Center(
                     child: Text(
@@ -399,7 +387,7 @@ Widget appColorSchemeLightDarkComparison(BuildContext context) {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(AppSpacing.md),
                     itemCount: darkColors.length,
                     itemBuilder: (context, index) {
                       final entry = darkColors.entries.elementAt(index);
@@ -490,17 +478,16 @@ Widget appColorSchemeSemanticUsage(BuildContext context) {
     ),
     body: Center(
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(AppSpacing.lg),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Card example
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: backgroundColor,
-                borderRadius: BorderRadius.circular(12),
-              ),
+            AppCard(
+              padding: const EdgeInsets.all(AppSpacing.lg),
+              color: backgroundColor,
+              borderRadius: AppRadius.mdRadius,
+              elevation: 1,
               child: Row(
                 children: [
                   Icon(icon, color: textColor, size: 32),
@@ -520,25 +507,20 @@ Widget appColorSchemeSemanticUsage(BuildContext context) {
             ),
             const SizedBox(height: 32),
             // Button example
-            ElevatedButton.icon(
+            AppButton.elevated(
+              label: '$semanticType Action',
+              icon: icon,
               onPressed: () {},
-              icon: Icon(icon),
-              label: Text('$semanticType Action'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: backgroundColor,
-                foregroundColor: textColor,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 12,
-                ),
-              ),
+              backgroundColor: backgroundColor,
+              foregroundColor: textColor,
             ),
             const SizedBox(height: 16),
             // Chip example
-            Chip(
-              avatar: Icon(icon, color: textColor, size: 20),
-              label: Text(semanticType, style: TextStyle(color: textColor)),
+            AppChip.assist(
+              label: semanticType,
+              icon: icon,
               backgroundColor: backgroundColor,
+              labelColor: textColor,
             ),
           ],
         ),
@@ -643,110 +625,113 @@ Widget appColorSchemeSurfaceVariants(BuildContext context) {
     ),
     body: Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(AppSpacing.lg),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Main surface demonstration
-            Container(
+            ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 600),
-              padding: const EdgeInsets.all(32),
-              decoration: BoxDecoration(
+              child: AppCard(
+                padding: const EdgeInsets.all(AppSpacing.xl),
                 color: surfaceColor,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: colorScheme.outline, width: 2),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    colorName,
-                    style: TextStyle(
-                      color: colorScheme.onSurface,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    elevationInfo,
-                    style: TextStyle(
-                      color: colorScheme.onSurfaceVariant,
-                      fontSize: 14,
-                      fontFamily: 'monospace',
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: colorScheme.onSurface.withValues(alpha: 0.05),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Hex Value: $hexValue',
-                          style: TextStyle(
-                            color: colorScheme.onSurface,
-                            fontSize: 12,
-                            fontFamily: 'monospace',
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          usageDescription,
-                          style: TextStyle(
-                            color: colorScheme.onSurfaceVariant,
-                            fontSize: 12,
-                            height: 1.4,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  if (showContent) ...[
-                    const SizedBox(height: 24),
-                    Divider(color: colorScheme.outline),
-                    const SizedBox(height: 16),
+                borderRadius: AppRadius.lgRadius,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(color: colorScheme.outline, width: 2),
+                  borderRadius: AppRadius.lgRadius,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Text(
-                      'Example Content',
+                      colorName,
                       style: TextStyle(
                         color: colorScheme.onSurface,
-                        fontSize: 18,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'This is how text and content would appear on this surface variant. The surface color provides the appropriate contrast and visual hierarchy for the content.',
+                      elevationInfo,
                       style: TextStyle(
-                        color: colorScheme.onSurface,
+                        color: colorScheme.onSurfaceVariant,
                         fontSize: 14,
-                        height: 1.5,
+                        fontFamily: 'monospace',
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: OutlinedButton(
-                            onPressed: () {},
-                            child: const Text('Secondary'),
+                    const SizedBox(height: 16),
+                    AppCard(
+                      padding: const EdgeInsets.all(AppSpacing.sm),
+                      color: colorScheme.onSurface.withValues(alpha: 0.05),
+                      borderRadius: AppRadius.smRadius,
+                      elevation: 0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Hex Value: $hexValue',
+                            style: TextStyle(
+                              color: colorScheme.onSurface,
+                              fontSize: 12,
+                              fontFamily: 'monospace',
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: FilledButton(
-                            onPressed: () {},
-                            child: const Text('Primary'),
+                          const SizedBox(height: 8),
+                          Text(
+                            usageDescription,
+                            style: TextStyle(
+                              color: colorScheme.onSurfaceVariant,
+                              fontSize: 12,
+                              height: 1.4,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
+                    if (showContent) ...[
+                      const SizedBox(height: 24),
+                      Divider(color: colorScheme.outline),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Example Content',
+                        style: TextStyle(
+                          color: colorScheme.onSurface,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'This is how text and content would appear on this surface variant. The surface color provides the appropriate contrast and visual hierarchy for the content.',
+                        style: TextStyle(
+                          color: colorScheme.onSurface,
+                          fontSize: 14,
+                          height: 1.5,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AppButton.outlined(
+                              label: 'Secondary',
+                              onPressed: () {},
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: AppButton.filled(
+                              label: 'Primary',
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
           ],
@@ -807,18 +792,19 @@ Widget appColorSchemeContrastTester(BuildContext context) {
     appBar: AppBar(title: const Text('Contrast Ratio Tester')),
     body: Center(
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(AppSpacing.lg),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Preview
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(32),
-              decoration: BoxDecoration(
-                color: backgroundColor,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.grey),
+            AppCard(
+              padding: const EdgeInsets.all(AppSpacing.xl),
+              color: backgroundColor,
+              borderRadius: AppRadius.mdRadius,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(color: Colors.grey),
+                borderRadius: AppRadius.mdRadius,
               ),
               child: Text(
                 'Sample Text',
@@ -891,13 +877,12 @@ Widget appColorSchemeContrastTester(BuildContext context) {
 Widget _buildColorTile(String name, Color color) {
   final hexValue =
       '#${color.toARGB32().toRadixString(16).substring(2).toUpperCase()}';
-  return Container(
-    margin: const EdgeInsets.only(bottom: 8),
-    padding: const EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      color: color,
-      borderRadius: BorderRadius.circular(8),
-    ),
+  return AppCard(
+    margin: const EdgeInsets.only(bottom: AppSpacing.sm),
+    padding: const EdgeInsets.all(AppSpacing.sm),
+    color: color,
+    borderRadius: AppRadius.smRadius,
+    elevation: 0,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1167,76 +1152,78 @@ Widget appColorSchemeColorPaletteGrid(BuildContext context) {
     ),
     body: Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(AppSpacing.lg),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Main color demonstration
-            Container(
+            ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 500),
-              padding: const EdgeInsets.all(32),
-              decoration: BoxDecoration(
+              child: AppCard(
+                padding: const EdgeInsets.all(AppSpacing.xl),
                 color: color,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: colorScheme.outline, width: 2),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(Icons.palette, color: textColor, size: 48),
-                  const SizedBox(height: 16),
-                  Text(
-                    colorToken,
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                borderRadius: AppRadius.lgRadius,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(color: colorScheme.outline, width: 2),
+                  borderRadius: AppRadius.lgRadius,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.palette, color: textColor, size: 48),
+                    const SizedBox(height: 16),
+                    Text(
+                      colorToken,
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    hexValue,
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: 16,
-                      fontFamily: 'monospace',
+                    const SizedBox(height: 8),
+                    Text(
+                      hexValue,
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: 16,
+                        fontFamily: 'monospace',
+                      ),
                     ),
-                  ),
-                  if (showUsageInfo) ...[
-                    const SizedBox(height: 24),
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
+                    if (showUsageInfo) ...[
+                      const SizedBox(height: 24),
+                      AppCard(
+                        padding: const EdgeInsets.all(AppSpacing.md),
                         color: textColor.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            colorFamily,
-                            style: TextStyle(
-                              color: textColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                        borderRadius: AppRadius.smRadius,
+                        elevation: 0,
+                        child: Column(
+                          children: [
+                            Text(
+                              colorFamily,
+                              style: TextStyle(
+                                color: textColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            usageDescription,
-                            style: TextStyle(
-                              color: textColor,
-                              fontSize: 12,
-                              height: 1.4,
+                            const SizedBox(height: 8),
+                            Text(
+                              usageDescription,
+                              style: TextStyle(
+                                color: textColor,
+                                fontSize: 12,
+                                height: 1.5,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
           ],
@@ -1277,128 +1264,132 @@ Widget appColorSchemePrimaryFamily(BuildContext context) {
     ),
     body: Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(AppSpacing.lg),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Primary + onPrimary
-            Container(
+            ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 500),
-              margin: const EdgeInsets.only(bottom: 16),
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
+              child: AppCard(
+                margin: const EdgeInsets.only(bottom: AppSpacing.md),
+                padding: const EdgeInsets.all(AppSpacing.lg),
                 color: colorScheme.primary,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.star, color: colorScheme.onPrimary, size: 32),
-                      const SizedBox(width: 12),
-                      Expanded(
+                borderRadius: AppRadius.lgRadius,
+                elevation: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.star,
+                          color: colorScheme.onPrimary,
+                          size: 32,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            'Primary Color',
+                            style: TextStyle(
+                              color: colorScheme.onPrimary,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'High-emphasis actions and key components',
+                      style: TextStyle(
+                        color: colorScheme.onPrimary,
+                        fontSize: 14,
+                      ),
+                    ),
+                    if (showContrastRatio) ...[
+                      const SizedBox(height: 12),
+                      AppCard(
+                        padding: const EdgeInsets.all(AppSpacing.sm),
+                        color: colorScheme.onPrimary.withValues(alpha: 0.1),
+                        borderRadius: AppRadius.smRadius,
+                        elevation: 0,
                         child: Text(
-                          'Primary Color',
+                          'Contrast: ${primaryContrast.toStringAsFixed(2)}:1',
                           style: TextStyle(
                             color: colorScheme.onPrimary,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            fontFamily: 'monospace',
                           ),
                         ),
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'High-emphasis actions and key components',
-                    style: TextStyle(
-                      color: colorScheme.onPrimary,
-                      fontSize: 14,
-                    ),
-                  ),
-                  if (showContrastRatio) ...[
-                    const SizedBox(height: 12),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: colorScheme.onPrimary.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        'Contrast: ${primaryContrast.toStringAsFixed(2)}:1',
-                        style: TextStyle(
-                          color: colorScheme.onPrimary,
-                          fontSize: 12,
-                          fontFamily: 'monospace',
-                        ),
-                      ),
-                    ),
                   ],
-                ],
+                ),
               ),
             ),
 
             // PrimaryContainer + onPrimaryContainer
-            Container(
+            ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 500),
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
+              child: AppCard(
+                padding: const EdgeInsets.all(AppSpacing.lg),
                 color: colorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.star_border,
+                borderRadius: AppRadius.lgRadius,
+                elevation: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.star_border,
+                          color: colorScheme.onPrimaryContainer,
+                          size: 32,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            'Primary Container',
+                            style: TextStyle(
+                              color: colorScheme.onPrimaryContainer,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Lower-emphasis primary backgrounds',
+                      style: TextStyle(
                         color: colorScheme.onPrimaryContainer,
-                        size: 32,
+                        fontSize: 14,
                       ),
-                      const SizedBox(width: 12),
-                      Expanded(
+                    ),
+                    if (showContrastRatio) ...[
+                      const SizedBox(height: 12),
+                      AppCard(
+                        padding: const EdgeInsets.all(AppSpacing.sm),
+                        color: colorScheme.onPrimaryContainer.withValues(
+                          alpha: 0.1,
+                        ),
+                        borderRadius: AppRadius.smRadius,
+                        elevation: 0,
                         child: Text(
-                          'Primary Container',
+                          'Contrast: ${containerContrast.toStringAsFixed(2)}:1',
                           style: TextStyle(
                             color: colorScheme.onPrimaryContainer,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            fontFamily: 'monospace',
                           ),
                         ),
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Lower-emphasis primary backgrounds',
-                    style: TextStyle(
-                      color: colorScheme.onPrimaryContainer,
-                      fontSize: 14,
-                    ),
-                  ),
-                  if (showContrastRatio) ...[
-                    const SizedBox(height: 12),
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: colorScheme.onPrimaryContainer.withValues(
-                          alpha: 0.1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        'Contrast: ${containerContrast.toStringAsFixed(2)}:1',
-                        style: TextStyle(
-                          color: colorScheme.onPrimaryContainer,
-                          fontSize: 12,
-                          fontFamily: 'monospace',
-                        ),
-                      ),
-                    ),
                   ],
-                ],
+                ),
               ),
             ),
           ],
@@ -1490,99 +1481,99 @@ Widget appColorSchemeTextHierarchy(BuildContext context) {
     ),
     body: Center(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(AppSpacing.lg),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 600),
-              padding: const EdgeInsets.all(32),
-              decoration: BoxDecoration(
+              child: AppCard(
+                padding: const EdgeInsets.all(AppSpacing.xl),
                 color: colorScheme.surfaceContainerLow,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Main text demonstration
-                  Text(
-                    '$emphasisLevel Example',
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: fontSize,
-                      fontWeight: fontWeight,
+                borderRadius: AppRadius.lgRadius,
+                elevation: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Main text demonstration
+                    Text(
+                      '$emphasisLevel Example',
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: fontSize,
+                        fontWeight: fontWeight,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Sample content
-                  Text(
-                    'The quick brown fox jumps over the lazy dog. This sentence demonstrates how the selected emphasis level affects text visibility and readability.',
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: fontSize * 0.75,
-                      height: 1.5,
-                    ),
-                  ),
-
-                  if (showTechnicalInfo) ...[
-                    const SizedBox(height: 24),
-                    Divider(color: colorScheme.outline),
                     const SizedBox(height: 16),
 
-                    // Technical information
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: colorScheme.surfaceContainer,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Color Information',
-                            style: TextStyle(
-                              color: colorScheme.onSurface,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          _buildInfoRow(
-                            'Color Token',
-                            colorName,
-                            colorScheme.onSurface,
-                          ),
-                          _buildInfoRow(
-                            'Opacity',
-                            opacityInfo,
-                            colorScheme.onSurface,
-                          ),
-                          _buildInfoRow(
-                            'Font Size',
-                            '${fontSize}pt',
-                            colorScheme.onSurface,
-                          ),
-                          _buildInfoRow(
-                            'Font Weight',
-                            fontWeight == FontWeight.bold ? 'Bold' : 'Normal',
-                            colorScheme.onSurface,
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            usageDescription,
-                            style: TextStyle(
-                              color: colorScheme.onSurfaceVariant,
-                              fontSize: 12,
-                              height: 1.4,
-                            ),
-                          ),
-                        ],
+                    // Sample content
+                    Text(
+                      'The quick brown fox jumps over the lazy dog. This sentence demonstrates how the selected emphasis level affects text visibility and readability.',
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: fontSize * 0.75,
+                        height: 1.5,
                       ),
                     ),
+
+                    if (showTechnicalInfo) ...[
+                      const SizedBox(height: 24),
+                      Divider(color: colorScheme.outline),
+                      const SizedBox(height: 16),
+
+                      // Technical information
+                      AppCard(
+                        padding: const EdgeInsets.all(AppSpacing.md),
+                        color: colorScheme.surfaceContainer,
+                        borderRadius: AppRadius.smRadius,
+                        elevation: 0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Color Information',
+                              style: TextStyle(
+                                color: colorScheme.onSurface,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            _buildInfoRow(
+                              'Color Token',
+                              colorName,
+                              colorScheme.onSurface,
+                            ),
+                            _buildInfoRow(
+                              'Opacity',
+                              opacityInfo,
+                              colorScheme.onSurface,
+                            ),
+                            _buildInfoRow(
+                              'Font Size',
+                              '${fontSize}pt',
+                              colorScheme.onSurface,
+                            ),
+                            _buildInfoRow(
+                              'Font Weight',
+                              fontWeight == FontWeight.bold ? 'Bold' : 'Normal',
+                              colorScheme.onSurface,
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              usageDescription,
+                              style: TextStyle(
+                                color: colorScheme.onSurfaceVariant,
+                                fontSize: 12,
+                                height: 1.4,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
           ],
