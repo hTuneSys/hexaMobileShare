@@ -27,8 +27,7 @@ Widget appOverlinePlayground(BuildContext context) {
 
   final textAlign = context.knobs.object.dropdown(
     label: 'Text Align',
-    options: const ['start', 'center', 'end', 'justify'],
-    labelBuilder: (value) => value,
+    options: ['start', 'center', 'end', 'justify'],
   );
 
   // Map string to TextAlign enum
