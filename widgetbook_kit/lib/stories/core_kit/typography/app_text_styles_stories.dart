@@ -69,26 +69,34 @@ Widget interactivePlayground(BuildContext context) {
     max: 1.0,
   );
 
-  // Color dropdown
-  final color = context.knobs.object.dropdown(
-    label: 'Color',
-    options: const [
-      Colors.black,
-      Colors.red,
-      Colors.green,
-      Colors.blue,
-      Colors.orange,
-      Colors.purple,
-      Colors.grey,
+  // Color override (optional) - Using Material Design 3 ColorScheme
+  final colorScheme = Theme.of(context).colorScheme;
+
+  final colorOverride = context.knobs.objectOrNull.dropdown<Color>(
+    label: 'Color Override',
+    options: [
+      colorScheme.primary,
+      colorScheme.onPrimary,
+      colorScheme.secondary,
+      colorScheme.onSecondary,
+      colorScheme.tertiary,
+      colorScheme.onTertiary,
+      colorScheme.error,
+      colorScheme.onError,
+      colorScheme.surface,
+      colorScheme.onSurface,
     ],
     labelBuilder: (color) {
-      if (color == Colors.black) return 'Black';
-      if (color == Colors.red) return 'Red';
-      if (color == Colors.green) return 'Green';
-      if (color == Colors.blue) return 'Blue';
-      if (color == Colors.orange) return 'Orange';
-      if (color == Colors.purple) return 'Purple';
-      if (color == Colors.grey) return 'Grey';
+      if (color == colorScheme.primary) return 'Primary';
+      if (color == colorScheme.onPrimary) return 'On Primary';
+      if (color == colorScheme.secondary) return 'Secondary';
+      if (color == colorScheme.onSecondary) return 'On Secondary';
+      if (color == colorScheme.tertiary) return 'Tertiary';
+      if (color == colorScheme.onTertiary) return 'On Tertiary';
+      if (color == colorScheme.error) return 'Error';
+      if (color == colorScheme.onError) return 'On Error';
+      if (color == colorScheme.surface) return 'Surface';
+      if (color == colorScheme.onSurface) return 'On Surface';
       return 'Unknown';
     },
   );
@@ -150,15 +158,17 @@ Widget interactivePlayground(BuildContext context) {
   // Apply font size
   style = style.copyWith(fontSize: fontSize);
 
-  // Apply color
-  style = AppTextStyles.withColor(style, color);
+  // Apply color override only if not default
+  if (colorOverride != null) {
+    style = AppTextStyles.withColor(style, colorOverride);
+  }
 
   // Apply opacity
   style = AppTextStyles.withOpacity(style, opacity);
 
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Text(text, style: style),
     ),
   );
@@ -171,24 +181,24 @@ Widget interactivePlayground(BuildContext context) {
 Widget semanticPresets(BuildContext context) {
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Error: Operation failed', style: AppTextStyles.error(context)),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text('Success: Changes saved', style: AppTextStyles.success(context)),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text('Warning: Please review', style: AppTextStyles.warning(context)),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Info: New update available',
             style: AppTextStyles.info(context),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text('Link: Learn more', style: AppTextStyles.link(context)),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Muted: Secondary information',
             style: AppTextStyles.muted(context),
@@ -206,20 +216,20 @@ Widget semanticPresets(BuildContext context) {
 Widget modificationHelpers(BuildContext context) {
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Bold text style', style: AppTextStyles.bold(context)),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text('Italic text style', style: AppTextStyles.italic(context)),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Underlined text style',
             style: AppTextStyles.underline(context),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Strikethrough text style',
             style: AppTextStyles.strikethrough(context),
@@ -235,18 +245,18 @@ Widget modificationHelpers(BuildContext context) {
 Widget errorMessages(BuildContext context) {
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Invalid email address', style: AppTextStyles.error(context)),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Password must be at least 8 characters',
             style: AppTextStyles.error(context),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Network connection failed',
             style: AppTextStyles.error(context),
@@ -262,7 +272,7 @@ Widget errorMessages(BuildContext context) {
 Widget successMessages(BuildContext context) {
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,9 +281,9 @@ Widget successMessages(BuildContext context) {
             'Profile updated successfully',
             style: AppTextStyles.success(context),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text('Payment processed', style: AppTextStyles.success(context)),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text('File uploaded', style: AppTextStyles.success(context)),
         ],
       ),
@@ -286,7 +296,7 @@ Widget successMessages(BuildContext context) {
 Widget linkText(BuildContext context) {
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -295,9 +305,9 @@ Widget linkText(BuildContext context) {
             'Learn more about our features',
             style: AppTextStyles.link(context),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text('View terms and conditions', style: AppTextStyles.link(context)),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text('Contact support', style: AppTextStyles.link(context)),
         ],
       ),
@@ -310,15 +320,15 @@ Widget linkText(BuildContext context) {
 Widget monospaceCode(BuildContext context) {
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('const value = 42;', style: AppTextStyles.monospace(context)),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text('npm install package', style: AppTextStyles.monospace(context)),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'git commit -m "feat: add feature"',
             style: AppTextStyles.monospace(context),
@@ -336,7 +346,7 @@ Widget sizeVariations(BuildContext context) {
 
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -345,14 +355,14 @@ Widget sizeVariations(BuildContext context) {
             'Smaller text (0.85x)',
             style: AppTextStyles.smaller(context, style: baseStyle),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text('Normal text (1.0x)', style: baseStyle),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Larger text (1.2x)',
             style: AppTextStyles.larger(context, style: baseStyle),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Much larger text (1.5x)',
             style: AppTextStyles.larger(context, style: baseStyle, factor: 1.5),
@@ -368,7 +378,7 @@ Widget sizeVariations(BuildContext context) {
 Widget combinedStyles(BuildContext context) {
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -380,7 +390,7 @@ Widget combinedStyles(BuildContext context) {
               style: AppTextStyles.error(context),
             ),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Italic muted text',
             style: AppTextStyles.italic(
@@ -388,7 +398,7 @@ Widget combinedStyles(BuildContext context) {
               style: AppTextStyles.muted(context),
             ),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Large success message',
             style: AppTextStyles.larger(
@@ -396,7 +406,7 @@ Widget combinedStyles(BuildContext context) {
               style: AppTextStyles.success(context),
             ),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Faded strikethrough',
             style: AppTextStyles.withOpacity(
@@ -417,7 +427,7 @@ Widget opacityVariations(BuildContext context) {
 
   return Center(
     child: Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -426,22 +436,22 @@ Widget opacityVariations(BuildContext context) {
             'Full opacity (100%)',
             style: AppTextStyles.withOpacity(baseStyle, 1.0),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'High opacity (80%)',
             style: AppTextStyles.withOpacity(baseStyle, 0.8),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Medium opacity (60%)',
             style: AppTextStyles.withOpacity(baseStyle, 0.6),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Low opacity (40%)',
             style: AppTextStyles.withOpacity(baseStyle, 0.4),
           ),
-          const SizedBox(height: 12),
+          const VGap.md(),
           Text(
             'Very low opacity (20%)',
             style: AppTextStyles.withOpacity(baseStyle, 0.2),
