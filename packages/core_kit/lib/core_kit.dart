@@ -9,6 +9,9 @@ export 'theme/app_spacing.dart';
 export 'theme/app_radius.dart';
 export 'theme/app_shadows.dart';
 
+// Layout exports
+export 'layout/core_scaffold.dart';
+
 // Widget exports
 
 // Buttons
