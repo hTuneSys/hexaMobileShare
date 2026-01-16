@@ -9,6 +9,10 @@ export 'theme/app_spacing.dart';
 export 'theme/app_radius.dart';
 export 'theme/app_shadows.dart';
 
+// Layout exports
+export 'layout/gap.dart';
+export 'layout/responsive_padding.dart';
+
 // Widget exports
 
 // Buttons
