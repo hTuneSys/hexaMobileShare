@@ -1,136 +1,10 @@
-// SPDX-FileCopyrightText: 2026 hexaTune LLC
+// SPDX-FileCopyrightText: 2025 hexaTune LLC
 // SPDX-License-Identifier: MIT
 
 import 'package:core_kit/core_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
-
-@widgetbook.UseCase(name: 'Spacing Scale', type: AppSpacing)
-Widget spacingScale(BuildContext context) {
-  return ListView(
-    padding: const EdgeInsets.all(24.0),
-    children: [
-      _SpacingItem(name: 'xs', value: AppSpacing.xs),
-      _SpacingItem(name: 'sm', value: AppSpacing.sm),
-      _SpacingItem(name: 'md', value: AppSpacing.md),
-      _SpacingItem(name: 'lg', value: AppSpacing.lg),
-      _SpacingItem(name: 'xl', value: AppSpacing.xl),
-      _SpacingItem(name: 'xxl', value: AppSpacing.xxl),
-      _SpacingItem(name: 'xxxl', value: AppSpacing.xxxl),
-    ],
-  );
-}
-
-@widgetbook.UseCase(name: 'Padding Helpers', type: AppSpacing)
-Widget paddingHelpers(BuildContext context) {
-  return ListView(
-    padding: const EdgeInsets.all(24.0),
-    children: [
-      _PaddingItem(
-        name: 'edgeInsetsAllSm (8.0)',
-        padding: AppSpacing.edgeInsetsAllSm,
-      ),
-      const SizedBox(height: 16),
-      _PaddingItem(
-        name: 'edgeInsetsHMd (Horizontal 16.0)',
-        padding: AppSpacing.edgeInsetsHMd,
-      ),
-      const SizedBox(height: 16),
-      _PaddingItem(
-        name: 'edgeInsetsVLg (Vertical 24.0)',
-        padding: AppSpacing.edgeInsetsVLg,
-      ),
-    ],
-  );
-}
-
-@widgetbook.UseCase(name: 'SizedBox Helpers', type: AppSpacing)
-Widget sizedBoxHelpers(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(24.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text('Items separated by verticalMd (16.0)'),
-        Container(height: 50, color: Colors.blue.withAlpha(51)),
-        AppSpacing.verticalMd,
-        Container(height: 50, color: Colors.blue.withAlpha(51)),
-        AppSpacing.verticalMd,
-        Container(height: 50, color: Colors.blue.withAlpha(51)),
-        const SizedBox(height: 32),
-        const Text('Items separated by horizontalMd (16.0)'),
-        const SizedBox(height: 8),
-        Row(
-          children: [
-            Container(width: 50, height: 50, color: Colors.red.withAlpha(51)),
-            AppSpacing.horizontalMd,
-            Container(width: 50, height: 50, color: Colors.red.withAlpha(51)),
-            AppSpacing.horizontalMd,
-            Container(width: 50, height: 50, color: Colors.red.withAlpha(51)),
-          ],
-        ),
-      ],
-    ),
-  );
-}
-
-class _SpacingItem extends StatelessWidget {
-  const _SpacingItem({required this.name, required this.value});
-
-  final String name;
-  final double value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
-      child: Row(
-        children: [
-          Container(
-            width: value,
-            height: value,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-          const SizedBox(width: 16),
-          Text(
-            '$name (${value.toStringAsFixed(1)})',
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _PaddingItem extends StatelessWidget {
-  const _PaddingItem({required this.name, required this.padding});
-
-  final String name;
-  final EdgeInsets padding;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(name, style: Theme.of(context).textTheme.bodyMedium),
-        const SizedBox(height: 8),
-        Container(
-          color: Theme.of(context).colorScheme.surfaceContainerHighest,
-          child: Container(
-            margin: padding,
-            height: 50,
-            color: Theme.of(context).colorScheme.primary,
-            child: const Center(
-              child: Text('Content', style: TextStyle(color: Colors.white)),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 @widgetbook.UseCase(name: 'Interactive Playground', type: AppSpacing)
 Widget interactivePlayground(BuildContext context) {
@@ -164,51 +38,453 @@ Widget interactivePlayground(BuildContext context) {
     initialValue: false,
   );
 
+  final colorScheme = Theme.of(context).colorScheme;
+
   return Center(
     child: Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.withAlpha(76)), // 0.3 * 255 ≈ 76
-        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: colorScheme.outline),
+        borderRadius: BorderRadius.circular(AppRadius.md),
       ),
       child: isHorizontal
           ? Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _Box(color: Colors.blue),
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: colorScheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
+                  ),
+                ),
                 SizedBox(width: spacing),
-                _Box(color: Colors.red),
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: colorScheme.secondaryContainer,
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
+                  ),
+                ),
                 SizedBox(width: spacing),
-                _Box(color: Colors.green),
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: colorScheme.tertiaryContainer,
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
+                  ),
+                ),
               ],
             )
           : Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _Box(color: Colors.blue),
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: colorScheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
+                  ),
+                ),
                 SizedBox(height: spacing),
-                _Box(color: Colors.red),
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: colorScheme.secondaryContainer,
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
+                  ),
+                ),
                 SizedBox(height: spacing),
-                _Box(color: Colors.green),
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: colorScheme.tertiaryContainer,
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
+                  ),
+                ),
               ],
             ),
     ),
   );
 }
 
-class _Box extends StatelessWidget {
-  const _Box({required this.color});
-  final Color color;
+@widgetbook.UseCase(name: 'Spacing Scale', type: AppSpacing)
+Widget spacingScale(BuildContext context) {
+  final colorScheme = Theme.of(context).colorScheme;
+  final textTheme = Theme.of(context).textTheme;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 60,
-      height: 60,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(8),
+  return ListView(
+    padding: AppSpacing.edgeInsetsAllLg,
+    children: [
+      _buildSpacingItem(context, 'xs', AppSpacing.xs, colorScheme, textTheme),
+      VGap.md(),
+      _buildSpacingItem(context, 'sm', AppSpacing.sm, colorScheme, textTheme),
+      VGap.md(),
+      _buildSpacingItem(context, 'md', AppSpacing.md, colorScheme, textTheme),
+      VGap.md(),
+      _buildSpacingItem(context, 'lg', AppSpacing.lg, colorScheme, textTheme),
+      VGap.md(),
+      _buildSpacingItem(context, 'xl', AppSpacing.xl, colorScheme, textTheme),
+      VGap.md(),
+      _buildSpacingItem(context, 'xxl', AppSpacing.xxl, colorScheme, textTheme),
+      VGap.md(),
+      _buildSpacingItem(
+        context,
+        'xxxl',
+        AppSpacing.xxxl,
+        colorScheme,
+        textTheme,
       ),
-    );
+    ],
+  );
+}
+
+Widget _buildSpacingItem(
+  BuildContext context,
+  String name,
+  double value,
+  ColorScheme colorScheme,
+  TextTheme textTheme,
+) {
+  return Row(
+    children: [
+      Container(width: value, height: value, color: colorScheme.primary),
+      HGap.md(),
+      Text('$name (${value.toStringAsFixed(1)})', style: textTheme.bodyLarge),
+    ],
+  );
+}
+
+@widgetbook.UseCase(name: 'Padding Helpers', type: AppSpacing)
+Widget paddingHelpers(BuildContext context) {
+  final colorScheme = Theme.of(context).colorScheme;
+  final textTheme = Theme.of(context).textTheme;
+
+  return ListView(
+    padding: AppSpacing.edgeInsetsAllLg,
+    children: [
+      _buildPaddingItem(
+        context,
+        'edgeInsetsAllSm (8.0)',
+        AppSpacing.edgeInsetsAllSm,
+        colorScheme,
+        textTheme,
+      ),
+      VGap.md(),
+      _buildPaddingItem(
+        context,
+        'edgeInsetsHMd (Horizontal 16.0)',
+        AppSpacing.edgeInsetsHMd,
+        colorScheme,
+        textTheme,
+      ),
+      VGap.md(),
+      _buildPaddingItem(
+        context,
+        'edgeInsetsVLg (Vertical 24.0)',
+        AppSpacing.edgeInsetsVLg,
+        colorScheme,
+        textTheme,
+      ),
+    ],
+  );
+}
+
+Widget _buildPaddingItem(
+  BuildContext context,
+  String name,
+  EdgeInsets padding,
+  ColorScheme colorScheme,
+  TextTheme textTheme,
+) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(name, style: textTheme.bodyMedium),
+      VGap.sm(),
+      Container(
+        color: colorScheme.surfaceContainerHighest,
+        child: Container(
+          margin: padding,
+          height: 50,
+          color: colorScheme.primary,
+          child: Center(
+            child: Text(
+              'Content',
+              style: textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onPrimary,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+@widgetbook.UseCase(name: 'Gap Widgets Demo', type: AppSpacing)
+Widget gapWidgetsDemo(BuildContext context) {
+  final colorScheme = Theme.of(context).colorScheme;
+  final textTheme = Theme.of(context).textTheme;
+
+  return Padding(
+    padding: AppSpacing.edgeInsetsAllLg,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Items separated by VGap.md() (16.0)',
+          style: textTheme.titleMedium,
+        ),
+        VGap.sm(),
+        Container(height: 50, color: colorScheme.primaryContainer),
+        VGap.md(),
+        Container(height: 50, color: colorScheme.primaryContainer),
+        VGap.md(),
+        Container(height: 50, color: colorScheme.primaryContainer),
+        VGap.xl(),
+        Text(
+          'Items separated by HGap.md() (16.0)',
+          style: textTheme.titleMedium,
+        ),
+        VGap.sm(),
+        Row(
+          children: [
+            Container(
+              width: 50,
+              height: 50,
+              color: colorScheme.secondaryContainer,
+            ),
+            HGap.md(),
+            Container(
+              width: 50,
+              height: 50,
+              color: colorScheme.secondaryContainer,
+            ),
+            HGap.md(),
+            Container(
+              width: 50,
+              height: 50,
+              color: colorScheme.secondaryContainer,
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+@widgetbook.UseCase(name: 'Common Patterns', type: AppSpacing)
+Widget commonPatterns(BuildContext context) {
+  final colorScheme = Theme.of(context).colorScheme;
+  final textTheme = Theme.of(context).textTheme;
+
+  return ListView(
+    padding: AppSpacing.edgeInsetsAllLg,
+    children: [
+      // Card Padding Pattern
+      Text('Card Padding Pattern', style: textTheme.titleLarge),
+      VGap.sm(),
+      Container(
+        padding: AppSpacing.edgeInsetsAllMd,
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerLow,
+          borderRadius: BorderRadius.circular(AppRadius.md),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Card Title', style: textTheme.titleMedium),
+            VGap.sm(),
+            Text(
+              'Card content with 16dp padding on all sides',
+              style: textTheme.bodyMedium,
+            ),
+          ],
+        ),
+      ),
+      VGap.xl(),
+
+      // List Item Spacing Pattern
+      Text('List Item Spacing Pattern', style: textTheme.titleLarge),
+      VGap.sm(),
+      Container(
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerLow,
+          borderRadius: BorderRadius.circular(AppRadius.md),
+        ),
+        child: Column(
+          children: [
+            Container(
+              padding: AppSpacing.edgeInsetsAllMd,
+              child: Text('List Item 1', style: textTheme.bodyMedium),
+            ),
+            Divider(height: 1, color: colorScheme.outlineVariant),
+            Container(
+              padding: AppSpacing.edgeInsetsAllMd,
+              child: Text('List Item 2', style: textTheme.bodyMedium),
+            ),
+            Divider(height: 1, color: colorScheme.outlineVariant),
+            Container(
+              padding: AppSpacing.edgeInsetsAllMd,
+              child: Text('List Item 3', style: textTheme.bodyMedium),
+            ),
+          ],
+        ),
+      ),
+      VGap.xl(),
+
+      // Form Field Gaps Pattern
+      Text('Form Field Gaps Pattern', style: textTheme.titleLarge),
+      VGap.sm(),
+      Container(
+        padding: AppSpacing.edgeInsetsAllMd,
+        decoration: BoxDecoration(
+          color: colorScheme.surfaceContainerLow,
+          borderRadius: BorderRadius.circular(AppRadius.md),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Field 1', style: textTheme.bodyMedium),
+            Container(height: 40, color: colorScheme.surfaceContainerHighest),
+            VGap.md(),
+            Text('Field 2', style: textTheme.bodyMedium),
+            Container(height: 40, color: colorScheme.surfaceContainerHighest),
+            VGap.md(),
+            Text('Field 3', style: textTheme.bodyMedium),
+            Container(height: 40, color: colorScheme.surfaceContainerHighest),
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+@widgetbook.UseCase(name: 'Responsive Spacing', type: AppSpacing)
+Widget responsiveSpacing(BuildContext context) {
+  final colorScheme = Theme.of(context).colorScheme;
+  final textTheme = Theme.of(context).textTheme;
+
+  // Demonstrate responsive spacing
+  final responsiveSpacing = AppSpacing.responsive(context, AppSpacing.md);
+  final screenWidth = MediaQuery.of(context).size.width;
+
+  String deviceType;
+  if (screenWidth < 600) {
+    deviceType = 'Mobile';
+  } else if (screenWidth < 840) {
+    deviceType = 'Tablet';
+  } else {
+    deviceType = 'Desktop';
   }
+
+  return Center(
+    child: Container(
+      padding: AppSpacing.edgeInsetsAllLg,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('Responsive Spacing Demo', style: textTheme.titleLarge),
+          VGap.md(),
+          Text('Device: $deviceType', style: textTheme.bodyLarge),
+          VGap.sm(),
+          Text(
+            'Screen Width: ${screenWidth.toStringAsFixed(0)}dp',
+            style: textTheme.bodyMedium,
+          ),
+          VGap.sm(),
+          Text(
+            'Base Spacing (md): ${AppSpacing.md}dp',
+            style: textTheme.bodyMedium,
+          ),
+          VGap.sm(),
+          Text(
+            'Responsive Spacing: ${responsiveSpacing.toStringAsFixed(0)}dp',
+            style: textTheme.bodyLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: colorScheme.primary,
+            ),
+          ),
+          VGap.xl(),
+          Container(
+            padding: EdgeInsets.all(responsiveSpacing),
+            decoration: BoxDecoration(
+              color: colorScheme.primaryContainer,
+              borderRadius: BorderRadius.circular(AppRadius.md),
+            ),
+            child: Text(
+              'This box uses responsive padding',
+              style: textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onPrimaryContainer,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+@widgetbook.UseCase(name: 'Edge Cases', type: AppSpacing)
+Widget edgeCases(BuildContext context) {
+  final colorScheme = Theme.of(context).colorScheme;
+  final textTheme = Theme.of(context).textTheme;
+
+  return ListView(
+    padding: AppSpacing.edgeInsetsAllLg,
+    children: [
+      Text('Minimum Spacing (xs - 4dp)', style: textTheme.titleMedium),
+      VGap.xs(),
+      Container(
+        height: 40,
+        color: colorScheme.primaryContainer,
+        child: Center(
+          child: Text('Tightly spaced content', style: textTheme.bodyMedium),
+        ),
+      ),
+      VGap.xs(),
+      Container(
+        height: 40,
+        color: colorScheme.primaryContainer,
+        child: Center(
+          child: Text('Tightly spaced content', style: textTheme.bodyMedium),
+        ),
+      ),
+      VGap.xl(),
+      Text('Maximum Spacing (xxxl - 64dp)', style: textTheme.titleMedium),
+      const SizedBox(height: AppSpacing.xxxl),
+      Container(
+        height: 40,
+        color: colorScheme.secondaryContainer,
+        child: Center(
+          child: Text('Widely spaced content', style: textTheme.bodyMedium),
+        ),
+      ),
+      const SizedBox(height: AppSpacing.xxxl),
+      Container(
+        height: 40,
+        color: colorScheme.secondaryContainer,
+        child: Center(
+          child: Text('Widely spaced content', style: textTheme.bodyMedium),
+        ),
+      ),
+      VGap.xl(),
+      Text('Mixed Spacing Pattern', style: textTheme.titleMedium),
+      VGap.xs(),
+      Container(height: 30, color: colorScheme.tertiaryContainer),
+      VGap.sm(),
+      Container(height: 30, color: colorScheme.tertiaryContainer),
+      VGap.md(),
+      Container(height: 30, color: colorScheme.tertiaryContainer),
+      VGap.lg(),
+      Container(height: 30, color: colorScheme.tertiaryContainer),
+    ],
+  );
 }
