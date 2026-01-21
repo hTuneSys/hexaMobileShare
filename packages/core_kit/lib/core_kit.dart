@@ -13,6 +13,7 @@ export 'theme/app_shadows.dart';
 export 'typography/app_h1.dart';
 export 'typography/app_h2.dart';
 export 'typography/app_h3.dart';
+export 'typography/app_caption.dart';
 
 // Widget exports
 
