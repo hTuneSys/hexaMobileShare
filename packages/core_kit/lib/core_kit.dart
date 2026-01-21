@@ -67,3 +67,6 @@ export 'widgets/chips/app_chip.dart';
 export 'widgets/chips/app_filter_chip.dart';
 export 'widgets/chips/app_input_chip.dart';
 export 'widgets/chips/app_tag.dart';
+
+// Typography
+export 'typography/app_overline.dart';
