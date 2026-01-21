@@ -104,6 +104,8 @@ class AppButton extends StatelessWidget {
     this.variant = AppButtonVariant.filled,
     this.fullWidth = false,
     this.isLoading = false,
+    this.backgroundColor,
+    this.foregroundColor,
     super.key,
   });
 
@@ -125,6 +127,8 @@ class AppButton extends StatelessWidget {
     this.icon,
     this.fullWidth = false,
     this.isLoading = false,
+    this.backgroundColor,
+    this.foregroundColor,
     super.key,
   }) : variant = AppButtonVariant.filled;
 
@@ -146,6 +150,8 @@ class AppButton extends StatelessWidget {
     this.icon,
     this.fullWidth = false,
     this.isLoading = false,
+    this.backgroundColor,
+    this.foregroundColor,
     super.key,
   }) : variant = AppButtonVariant.outlined;
 
@@ -168,6 +174,8 @@ class AppButton extends StatelessWidget {
     this.icon,
     this.fullWidth = false,
     this.isLoading = false,
+    this.backgroundColor,
+    this.foregroundColor,
     super.key,
   }) : variant = AppButtonVariant.text;
 
@@ -190,6 +198,8 @@ class AppButton extends StatelessWidget {
     this.icon,
     this.fullWidth = false,
     this.isLoading = false,
+    this.backgroundColor,
+    this.foregroundColor,
     super.key,
   }) : variant = AppButtonVariant.elevated;
 
@@ -234,6 +244,20 @@ class AppButton extends StatelessWidget {
   /// Defaults to false.
   final bool isLoading;
 
+  /// Custom background color for the button.
+  ///
+  /// If null, uses the theme's default color for the button variant.
+  /// For filled buttons, defaults to primary color.
+  /// For outlined/text buttons, defaults to transparent.
+  final Color? backgroundColor;
+
+  /// Custom foreground color (text and icon color) for the button.
+  ///
+  /// If null, uses the theme's default foreground color.
+  /// For filled buttons, defaults to onPrimary color.
+  /// For outlined/text buttons, defaults to primary color.
+  final Color? foregroundColor;
+
   @override
   Widget build(BuildContext context) {
     // Determine button content: loading indicator or label
@@ -245,47 +269,71 @@ class AppButton extends StatelessWidget {
           )
         : _buildButtonContent();
 
+    // Create custom button style if colors are provided
+    ButtonStyle? customStyle;
+    if (backgroundColor != null || foregroundColor != null) {
+      customStyle = ButtonStyle(
+        backgroundColor: backgroundColor != null
+            ? WidgetStateProperty.all(backgroundColor)
+            : null,
+        foregroundColor: foregroundColor != null
+            ? WidgetStateProperty.all(foregroundColor)
+            : null,
+      );
+    }
+
     // Build appropriate button variant
     final button = switch (variant) {
       AppButtonVariant.filled =>
         icon != null && !isLoading
             ? FilledButton.icon(
                 onPressed: isLoading ? null : onPressed,
+                style: customStyle,
                 icon: Icon(icon),
                 label: Text(label),
               )
             : FilledButton(
                 onPressed: isLoading ? null : onPressed,
+                style: customStyle,
                 child: child,
               ),
       AppButtonVariant.outlined =>
         icon != null && !isLoading
             ? OutlinedButton.icon(
                 onPressed: isLoading ? null : onPressed,
+                style: customStyle,
                 icon: Icon(icon),
                 label: Text(label),
               )
             : OutlinedButton(
                 onPressed: isLoading ? null : onPressed,
+                style: customStyle,
                 child: child,
               ),
       AppButtonVariant.text =>
         icon != null && !isLoading
             ? TextButton.icon(
                 onPressed: isLoading ? null : onPressed,
+                style: customStyle,
                 icon: Icon(icon),
                 label: Text(label),
               )
-            : TextButton(onPressed: isLoading ? null : onPressed, child: child),
+            : TextButton(
+                onPressed: isLoading ? null : onPressed,
+                style: customStyle,
+                child: child,
+              ),
       AppButtonVariant.elevated =>
         icon != null && !isLoading
             ? ElevatedButton.icon(
                 onPressed: isLoading ? null : onPressed,
+                style: customStyle,
                 icon: Icon(icon),
                 label: Text(label),
               )
             : ElevatedButton(
                 onPressed: isLoading ? null : onPressed,
+                style: customStyle,
                 child: child,
               ),
     };
