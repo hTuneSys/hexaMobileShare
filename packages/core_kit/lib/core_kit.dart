@@ -3,6 +3,7 @@
 
 // Theme exports
 export 'theme/app_theme.dart';
+export 'theme/app_theme_builder.dart';
 export 'theme/app_color_scheme.dart';
 export 'theme/app_typography.dart';
 export 'theme/app_spacing.dart';
