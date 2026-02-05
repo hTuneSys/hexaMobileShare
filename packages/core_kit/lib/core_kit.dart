@@ -9,6 +9,9 @@ export 'theme/app_spacing.dart';
 export 'theme/app_radius.dart';
 export 'theme/app_shadows.dart';
 
+// Icons exports
+export 'icons/app_icon.dart';
+
 // Typography exports
 export 'typography/app_text_styles.dart';
 
