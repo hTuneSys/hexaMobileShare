@@ -8,6 +8,7 @@ export 'theme/app_typography.dart';
 export 'theme/app_spacing.dart';
 export 'theme/app_radius.dart';
 export 'theme/app_shadows.dart';
+export 'theme/app_theme_extension.dart';
 
 // Typography exports
 export 'typography/app_text_styles.dart';
