@@ -20,7 +20,7 @@ Widget appIconsPlayground(BuildContext context) {
   final iconName = _getIconsForCategory(category, context);
 
   // Size selector - using AppIconSizes system (MD3 standard)
-  final sizeOptions = const [
+  final sizeOptions = [
     ('xs (16dp)', AppIconSizes.xs),
     ('sm (20dp)', AppIconSizes.sm),
     ('md (24dp)', AppIconSizes.md),
@@ -177,7 +177,7 @@ Widget uiControlIcons(BuildContext context) {
 /// Icon Sizes Reference - Demonstrates proper Material Design 3 icon sizing
 @widgetbook.UseCase(name: 'Icon Sizes Reference', type: Icon)
 Widget iconSizesReference(BuildContext context) {
-  final sizes = const [
+  final sizes = [
     ('xs', AppIconSizes.xs),
     ('sm', AppIconSizes.sm),
     ('md', AppIconSizes.md),
