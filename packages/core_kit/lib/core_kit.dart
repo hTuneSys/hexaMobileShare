@@ -77,3 +77,4 @@ export 'typography/app_h3.dart';
 export 'typography/app_caption.dart';
 export 'typography/app_body_text.dart';
 export 'typography/app_label.dart';
+export 'icons/app_icons.dart';
