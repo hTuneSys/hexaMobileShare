@@ -7,7 +7,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:core_kit/core_kit.dart';
 
 /// Interactive Playground - Explore AppIcons with full customization
-@widgetbook.UseCase(name: 'Interactive Playground', type: AppIcons)
+@widgetbook.UseCase(name: 'Interactive Playground', type: Icon)
 Widget appIconsPlayground(BuildContext context) {
   // Category selector
   final category = context.knobs.object.dropdown<String>(
@@ -64,19 +64,19 @@ Widget appIconsPlayground(BuildContext context) {
 }
 
 /// Navigation Icons - Common navigation and wayfinding icons
-@widgetbook.UseCase(name: 'Navigation Icons', type: AppIcons)
+@widgetbook.UseCase(name: 'Navigation Icons', type: Icon)
 Widget navigationIcons(BuildContext context) {
   return _buildCategorizedIconGrid(context, 'Navigation');
 }
 
 /// Action Icons - User actions and commands
-@widgetbook.UseCase(name: 'Action Icons', type: AppIcons)
+@widgetbook.UseCase(name: 'Action Icons', type: Icon)
 Widget actionIcons(BuildContext context) {
   return _buildCategorizedIconGrid(context, 'Actions');
 }
 
 /// Status Icons - Status indicators with semantic colors
-@widgetbook.UseCase(name: 'Status Icons', type: AppIcons)
+@widgetbook.UseCase(name: 'Status Icons', type: Icon)
 Widget statusIcons(BuildContext context) {
   final colorScheme = Theme.of(context).colorScheme;
   final icons = AppIcons.categoricalIcons['Status'] ?? {};
@@ -157,25 +157,25 @@ Widget statusIcons(BuildContext context) {
 }
 
 /// Content Icons - Content types and media
-@widgetbook.UseCase(name: 'Content Icons', type: AppIcons)
+@widgetbook.UseCase(name: 'Content Icons', type: Icon)
 Widget contentIcons(BuildContext context) {
   return _buildCategorizedIconGrid(context, 'Content');
 }
 
 /// Communication Icons - Communication and messaging
-@widgetbook.UseCase(name: 'Communication Icons', type: AppIcons)
+@widgetbook.UseCase(name: 'Communication Icons', type: Icon)
 Widget communicationIcons(BuildContext context) {
   return _buildCategorizedIconGrid(context, 'Communication');
 }
 
 /// UI Control Icons - Interface controls and toggles
-@widgetbook.UseCase(name: 'UI Control Icons', type: AppIcons)
+@widgetbook.UseCase(name: 'UI Control Icons', type: Icon)
 Widget uiControlIcons(BuildContext context) {
   return _buildCategorizedIconGrid(context, 'UI Controls');
 }
 
 /// Icon Sizes Reference - Demonstrates proper Material Design 3 icon sizing
-@widgetbook.UseCase(name: 'Icon Sizes Reference', type: AppIcons)
+@widgetbook.UseCase(name: 'Icon Sizes Reference', type: Icon)
 Widget iconSizesReference(BuildContext context) {
   final sizes = const [
     ('xs', AppIconSizes.xs),
