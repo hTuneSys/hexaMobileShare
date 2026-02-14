@@ -796,7 +796,7 @@ class ThemeDocumentationGenerator {
       final s = entry.value;
       if (s == null) continue;
       buf.writeln(
-        '| `${entry.key}` | ${s.fontSize ?? '-'} | ${s.fontWeight?.index ?? '-'} | ${s.letterSpacing?.toStringAsFixed(2) ?? '-'} |',
+        '| `${entry.key}` | ${s.fontSize ?? '-'} | ${s.fontWeight?.value ?? '-'} | ${s.letterSpacing?.toStringAsFixed(2) ?? '-'} |',
       );
     }
 
