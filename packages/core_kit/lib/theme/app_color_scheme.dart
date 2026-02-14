@@ -139,6 +139,110 @@ class AppColorScheme {
     );
   }
 
+  /// High-contrast light color scheme for WCAG AAA compliance.
+  ///
+  /// All foreground/background pairs achieve a minimum 7:1 contrast ratio.
+  /// Colors are more saturated and darker for foregrounds, lighter for
+  /// backgrounds to maximize readability.
+  static ColorScheme highContrastLight() {
+    return const ColorScheme.light(
+      // Primary - darker for 7:1+ contrast on white
+      primary: Color(0xFF21005D),
+      onPrimary: Color(0xFFFFFFFF),
+      primaryContainer: Color(0xFFD4C1F7),
+      onPrimaryContainer: Color(0xFF0E0033),
+      // Secondary - darker
+      secondary: Color(0xFF332D41),
+      onSecondary: Color(0xFFFFFFFF),
+      secondaryContainer: Color(0xFFD5CCE6),
+      onSecondaryContainer: Color(0xFF0E0A19),
+      // Tertiary - darker
+      tertiary: Color(0xFF4A2532),
+      onTertiary: Color(0xFFFFFFFF),
+      tertiaryContainer: Color(0xFFF5C8D6),
+      onTertiaryContainer: Color(0xFF1F0510),
+      // Error - darker
+      error: Color(0xFF8C1D18),
+      onError: Color(0xFFFFFFFF),
+      errorContainer: Color(0xFFF5C6C2),
+      onErrorContainer: Color(0xFF2D0607),
+      // Surface - pure white for maximum contrast
+      surface: Color(0xFFFFFFFF),
+      onSurface: Color(0xFF000000),
+      onSurfaceVariant: Color(0xFF1D1B20),
+      // Surface variants - higher contrast steps
+      surfaceBright: Color(0xFFFFFFFF),
+      surfaceDim: Color(0xFFC9C4CE),
+      surfaceContainer: Color(0xFFEDE8F2),
+      surfaceContainerLow: Color(0xFFF3EEF8),
+      surfaceContainerLowest: Color(0xFFFFFFFF),
+      surfaceContainerHigh: Color(0xFFE1DCE6),
+      surfaceContainerHighest: Color(0xFFD5D0DA),
+      // Outline - darker for visibility
+      outline: Color(0xFF49454F),
+      outlineVariant: Color(0xFF79747E),
+      // Shadow and scrim
+      shadow: Color(0xFF000000),
+      scrim: Color(0xFF000000),
+      // Inverse
+      inverseSurface: Color(0xFF1D1B20),
+      onInverseSurface: Color(0xFFFFFFFF),
+      inversePrimary: Color(0xFFE8DEFF),
+    );
+  }
+
+  /// High-contrast dark color scheme for WCAG AAA compliance.
+  ///
+  /// All foreground/background pairs achieve a minimum 7:1 contrast ratio.
+  /// Colors are lighter and brighter for foregrounds on very dark backgrounds
+  /// to maximize readability in dark mode.
+  static ColorScheme highContrastDark() {
+    return const ColorScheme.dark(
+      // Primary - brighter for 7:1+ contrast on black
+      primary: Color(0xFFF0E6FF),
+      onPrimary: Color(0xFF1A0044),
+      primaryContainer: Color(0xFF3D2672),
+      onPrimaryContainer: Color(0xFFF5EEFF),
+      // Secondary - brighter
+      secondary: Color(0xFFE8DEF8),
+      onSecondary: Color(0xFF1D192B),
+      secondaryContainer: Color(0xFF3B3548),
+      onSecondaryContainer: Color(0xFFF3EDFF),
+      // Tertiary - brighter
+      tertiary: Color(0xFFFFF0F4),
+      onTertiary: Color(0xFF31111D),
+      tertiaryContainer: Color(0xFF522E3B),
+      onTertiaryContainer: Color(0xFFFFF0F4),
+      // Error - brighter
+      error: Color(0xFFFFF0EF),
+      onError: Color(0xFF410E0B),
+      errorContainer: Color(0xFF6E1511),
+      onErrorContainer: Color(0xFFFFF0EF),
+      // Surface - pure black for maximum contrast
+      surface: Color(0xFF000000),
+      onSurface: Color(0xFFFFFFFF),
+      onSurfaceVariant: Color(0xFFE6E0E9),
+      // Surface variants - higher contrast steps
+      surfaceBright: Color(0xFF3B383E),
+      surfaceDim: Color(0xFF000000),
+      surfaceContainer: Color(0xFF1A181E),
+      surfaceContainerLow: Color(0xFF121016),
+      surfaceContainerLowest: Color(0xFF000000),
+      surfaceContainerHigh: Color(0xFF252329),
+      surfaceContainerHighest: Color(0xFF302E34),
+      // Outline - brighter for visibility
+      outline: Color(0xFFCAC4D0),
+      outlineVariant: Color(0xFF938F99),
+      // Shadow and scrim
+      shadow: Color(0xFF000000),
+      scrim: Color(0xFF000000),
+      // Inverse
+      inverseSurface: Color(0xFFFFFFFF),
+      onInverseSurface: Color(0xFF000000),
+      inversePrimary: Color(0xFF4F378B),
+    );
+  }
+
   /// Lightens a color by a given amount (0.0 to 1.0).
   ///
   /// **Parameters**:
