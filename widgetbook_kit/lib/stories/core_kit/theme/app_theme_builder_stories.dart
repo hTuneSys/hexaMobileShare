@@ -53,10 +53,9 @@ String _seedColorLabelBuilder(String value) {
 /// Creates a seed color knob with full or short options.
 Color _seedColorKnob(BuildContext context, {bool useShortOptions = false}) {
   final options = useShortOptions ? _seedColorOptionsShort : _seedColorOptions;
-  final seedColorHex = context.knobs.list<String>(
+  final seedColorHex = context.knobs.object.dropdown(
     label: 'Seed Color',
     options: options,
-    initialOption: options.first,
     labelBuilder: _seedColorLabelBuilder,
   );
   return Color(int.parse(seedColorHex));
@@ -80,9 +79,9 @@ Brightness _getBrightness(BuildContext context) {
 Widget interactivePlayground(BuildContext context) {
   final seedColor = _seedColorKnob(context);
 
-  final colorRole = context.knobs.list<String>(
+  final colorRole = context.knobs.object.dropdown(
     label: 'Color Role',
-    options: [
+    options: const [
       'Primary',
       'Secondary',
       'Tertiary',
@@ -92,13 +91,13 @@ Widget interactivePlayground(BuildContext context) {
       'Secondary Container',
       'Tertiary Container',
     ],
-    initialOption: 'Primary',
+    labelBuilder: (value) => value,
   );
 
-  final componentType = context.knobs.list<String>(
+  final componentType = context.knobs.object.dropdown(
     label: 'Component Type',
-    options: ['Tag', 'Button', 'Card'],
-    initialOption: 'Tag',
+    options: const ['Tag', 'Button', 'Card'],
+    labelBuilder: (value) => value,
   );
 
   final highContrast = context.knobs.boolean(
@@ -218,9 +217,9 @@ Widget interactivePlayground(BuildContext context) {
 Widget seedColorTheme(BuildContext context) {
   final seedColor = _seedColorKnob(context);
 
-  final colorRole = context.knobs.list<String>(
+  final colorRole = context.knobs.object.dropdown(
     label: 'Color Role',
-    options: [
+    options: const [
       'Primary',
       'Secondary',
       'Tertiary',
@@ -228,7 +227,7 @@ Widget seedColorTheme(BuildContext context) {
       'Surface',
       'Primary Container',
     ],
-    initialOption: 'Primary',
+    labelBuilder: (value) => value,
   );
 
   return Builder(
@@ -453,10 +452,10 @@ Widget dynamicColorTheme(BuildContext context) {
 Widget customColorScheme(BuildContext context) {
   final seedColor = _seedColorKnob(context, useShortOptions: true);
 
-  final colorRole = context.knobs.list<String>(
+  final colorRole = context.knobs.object.dropdown(
     label: 'Color Role to Override',
-    options: ['Primary', 'Secondary', 'None'],
-    initialOption: 'Primary',
+    options: const ['Primary', 'Secondary', 'None'],
+    labelBuilder: (value) => value,
   );
 
   return Builder(
