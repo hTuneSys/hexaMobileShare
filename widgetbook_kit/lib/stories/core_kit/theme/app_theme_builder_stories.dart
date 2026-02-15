@@ -357,16 +357,15 @@ Widget lightDarkThemePair(BuildContext context) {
 /// Use Widgetbook's Addons (top bar) to switch between Light/Dark mode.
 @UseCase(name: 'Dynamic Color Theme', type: AppThemeBuilder)
 Widget dynamicColorTheme(BuildContext context) {
-  final wallpaperColorHex = context.knobs.object.dropdown<String>(
+  final wallpaperColorHex = context.knobs.object.dropdown(
     label: 'Simulated Wallpaper Color',
-    options: [
+    options: const [
       '0xFF3C8CE7',
       '0xFF00695C',
       '0xFFF57C00',
       '0xFF7B1FA2',
       '0xFFD32F2F',
     ],
-    initialOption: '0xFF3C8CE7', // ✅ initialValue değil
     labelBuilder: (value) {
       switch (value) {
         case '0xFF3C8CE7':
@@ -380,14 +379,14 @@ Widget dynamicColorTheme(BuildContext context) {
         case '0xFFD32F2F':
           return 'Red';
         default:
-          return value?.toString() ?? '';
+          return value.toString();
       }
     },
   );
 
-  final colorRole = context.knobs.object.dropdown<String>(
+  final colorRole = context.knobs.object.dropdown(
     label: 'Color Role',
-    options: [
+    options: const [
       'Primary',
       'Secondary',
       'Tertiary',
@@ -397,7 +396,7 @@ Widget dynamicColorTheme(BuildContext context) {
       'Secondary Container',
       'Tertiary Container',
     ],
-    initialOption: 'Primary',
+    labelBuilder: (value) => value,
   );
 
   final wallpaperColor = Color(int.parse(wallpaperColorHex));
@@ -522,10 +521,10 @@ Widget themeSwitchingAnimation(BuildContext context) {
     max: 1000,
   );
 
-  final animationCurve = context.knobs.object.dropdown<String>(
+  final animationCurve = context.knobs.object.dropdown(
     label: 'Animation Curve',
-    options: ['easeInOut', 'easeIn', 'easeOut', 'linear'],
-    initialOption: 'easeInOut',
+    options: const ['easeInOut', 'easeIn', 'easeOut', 'linear'],
+    labelBuilder: (value) => value,
   );
 
   Curve getCurve(String name) {
@@ -559,10 +558,10 @@ Widget themeSwitchingAnimation(BuildContext context) {
 Widget themePreviewComparison(BuildContext context) {
   final seedColor = _seedColorKnob(context, useShortOptions: true);
 
-  final componentType = context.knobs.object.dropdown<String>(
+  final componentType = context.knobs.object.dropdown(
     label: 'Component Type',
-    options: ['Tag', 'Button', 'Card'],
-    initialValue: 'Tag',
+    options: const ['Tag', 'Button', 'Card'],
+    labelBuilder: (value) => value,
   );
 
   return Builder(
