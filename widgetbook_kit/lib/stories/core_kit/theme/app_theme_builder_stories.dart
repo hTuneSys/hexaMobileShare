@@ -357,16 +357,16 @@ Widget lightDarkThemePair(BuildContext context) {
 /// Use Widgetbook's Addons (top bar) to switch between Light/Dark mode.
 @UseCase(name: 'Dynamic Color Theme', type: AppThemeBuilder)
 Widget dynamicColorTheme(BuildContext context) {
-  final wallpaperColorHex = context.knobs.list<String>(
+  final wallpaperColorHex = context.knobs.object.dropdown<String>(
     label: 'Simulated Wallpaper Color',
     options: [
-      '0xFF3C8CE7', // Sky Blue
-      '0xFF00695C', // Teal
-      '0xFFF57C00', // Orange
-      '0xFF7B1FA2', // Purple
-      '0xFFD32F2F', // Red
+      '0xFF3C8CE7',
+      '0xFF00695C',
+      '0xFFF57C00',
+      '0xFF7B1FA2',
+      '0xFFD32F2F',
     ],
-    initialOption: '0xFF3C8CE7',
+    initialValue: '0xFF3C8CE7',
     labelBuilder: (value) {
       switch (value) {
         case '0xFF3C8CE7':
@@ -380,15 +380,24 @@ Widget dynamicColorTheme(BuildContext context) {
         case '0xFFD32F2F':
           return 'Red';
         default:
-          return value;
+          return value ?? '';
       }
     },
   );
 
-  final colorRole = context.knobs.list<String>(
+  final colorRole = context.knobs.object.dropdown<String>(
     label: 'Color Role',
-    options: ['Primary', 'Secondary', 'Tertiary', 'Surface'],
-    initialOption: 'Primary',
+    options: [
+      'Primary',
+      'Secondary',
+      'Tertiary',
+      'Error',
+      'Surface',
+      'Primary Container',
+      'Secondary Container',
+      'Tertiary Container',
+    ],
+    initialValue: 'Primary',
   );
 
   final wallpaperColor = Color(int.parse(wallpaperColorHex));
@@ -513,10 +522,10 @@ Widget themeSwitchingAnimation(BuildContext context) {
     max: 1000,
   );
 
-  final animationCurve = context.knobs.list<String>(
+  final animationCurve = context.knobs.object.dropdown<String>(
     label: 'Animation Curve',
     options: ['easeInOut', 'easeIn', 'easeOut', 'linear'],
-    initialOption: 'easeInOut',
+    initialValue: 'easeInOut',
   );
 
   Curve getCurve(String name) {
@@ -550,10 +559,10 @@ Widget themeSwitchingAnimation(BuildContext context) {
 Widget themePreviewComparison(BuildContext context) {
   final seedColor = _seedColorKnob(context, useShortOptions: true);
 
-  final componentType = context.knobs.list<String>(
-    label: 'Preview Component',
-    options: ['Card', 'Button', 'TextField', 'Chip'],
-    initialOption: 'Card',
+  final componentType = context.knobs.object.dropdown<String>(
+    label: 'Component Type',
+    options: ['Tag', 'Button', 'Card'],
+    initialValue: 'Tag',
   );
 
   return Builder(
