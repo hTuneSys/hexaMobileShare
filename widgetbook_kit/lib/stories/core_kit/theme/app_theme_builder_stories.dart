@@ -366,7 +366,7 @@ Widget dynamicColorTheme(BuildContext context) {
       '0xFF7B1FA2',
       '0xFFD32F2F',
     ],
-    initialValue: '0xFF3C8CE7',
+    initialOption: '0xFF3C8CE7', // ✅ initialValue değil
     labelBuilder: (value) {
       switch (value) {
         case '0xFF3C8CE7':
@@ -380,7 +380,7 @@ Widget dynamicColorTheme(BuildContext context) {
         case '0xFFD32F2F':
           return 'Red';
         default:
-          return value ?? '';
+          return value?.toString() ?? '';
       }
     },
   );
@@ -397,7 +397,7 @@ Widget dynamicColorTheme(BuildContext context) {
       'Secondary Container',
       'Tertiary Container',
     ],
-    initialValue: 'Primary',
+    initialOption: 'Primary',
   );
 
   final wallpaperColor = Color(int.parse(wallpaperColorHex));
@@ -525,7 +525,7 @@ Widget themeSwitchingAnimation(BuildContext context) {
   final animationCurve = context.knobs.object.dropdown<String>(
     label: 'Animation Curve',
     options: ['easeInOut', 'easeIn', 'easeOut', 'linear'],
-    initialValue: 'easeInOut',
+    initialOption: 'easeInOut',
   );
 
   Curve getCurve(String name) {
